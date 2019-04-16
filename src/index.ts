@@ -17,3 +17,51 @@
  *
  */
 /* imports */
+import { platform } from 'os'
+import pty = require('node-pty')
+import chalk from 'chalk'
+
+const shell = platform() === 'win32' ? 'powershell.exe' : 'bash'
+const { stdin, stdout } = process
+
+const getColumns = () => stdout.columns || 80
+const getRows = () => stdout.rows || 24
+
+if (!stdin.isTTY || !stdout.isTTY) {
+  throw new Error('TTY is required')
+}
+if (!stdin.setRawMode) {
+  throw new Error('RawMode is required')
+}
+
+const ptyProcess = pty.spawn(shell, [], {
+  name: 'xterm-256color',
+  cols: getColumns(),
+  rows: getRows(),
+  // cwd: platform() === 'win32' ? process.env.USERPROFILE : process.env.HOME,
+  experimentalUseConpty: true
+})
+
+stdout.on('resize', () => {
+  ptyProcess.resize(getColumns(), getRows())
+})
+
+stdin.setRawMode(true)
+console.log(chalk.blue('---SESSION STARTED---'))
+
+ptyProcess.on('data', function(data) {
+  stdout.write(data)
+})
+
+stdin.on('data', chunk => {
+  ptyProcess.write(chunk)
+})
+
+ptyProcess.on('exit', (exitCode) => {
+  process.exit(exitCode)
+})
+
+process.on('exit', () => {
+  ptyProcess.kill()
+  console.log(chalk.red('---SESSION ENDED---'))
+})
