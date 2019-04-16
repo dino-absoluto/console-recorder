@@ -1,0 +1,30 @@
+{
+  "name": "console-recorder",
+  "version": "1.0.0",
+  "description": "Record console session",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dino-absoluto/console-recorder.git"
+  },
+  "keywords": [
+    "cli",
+    "console",
+    "record",
+    "replay",
+    "edit"
+  ],
+  "author": "Dino <dinoabsoluto+dev@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/dino-absoluto/console-recorder/issues"
+  },
+  "homepage": "https://github.com/dino-absoluto/console-recorder#readme",
+  "devDependencies": {
+    "@types/node": "^11.13.4",
+    "typescript": "^3.4.3"
+  }
+}

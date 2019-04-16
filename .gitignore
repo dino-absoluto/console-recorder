@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+
+__tmp__
+/node_modules
+/lib
+/coverage
+/built
