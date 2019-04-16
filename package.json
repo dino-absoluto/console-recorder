@@ -2,7 +2,7 @@
   "name": "console-recorder",
   "version": "1.0.0",
   "description": "Record console session",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
