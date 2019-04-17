@@ -1,0 +1,15 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "Examples",
+  "main": "index.js",
+  "scripts": {
+    "rec": "console-recorder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dino <dinoabsoluto+dev@gmail.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "console-recorder": "^1.0.0"
+  }
+}
