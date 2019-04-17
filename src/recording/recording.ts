@@ -37,6 +37,7 @@ const elapseTimer = (): () => number => {
 const SPEED_DEFAULT = 1.25
 const SPEED_MIN = 0.1
 const THRESHOLD = 4
+const NORMALIZATION_STEP = 25
 
 export class Recording {
   public columns: number = process.stdout.columns || 80
@@ -102,19 +103,19 @@ export class Recording {
     this.pPlaySpeed = speed > SPEED_MIN ? speed : SPEED_DEFAULT
   }
 
-  public normalize (STEP?: number): void {
+  public normalize (step?: number): void {
     const { events } = this
     if (!(events.length > 0)) {
       return
     }
-    if (!STEP || !(STEP > 1)) {
-      STEP = 100
+    if (!step || !(step > 1)) {
+      step = NORMALIZATION_STEP
     }
     let startTime = events[0].time
     let lastTime = startTime
-    let corrected = -STEP
+    let corrected = -step
     for (const e of events) {
-      corrected += Math.max(1, Math.round((e.time - lastTime) / STEP)) * STEP
+      corrected += Math.max(1, Math.round((e.time - lastTime) / step)) * step
       lastTime = e.time
       e.time = corrected
     }
