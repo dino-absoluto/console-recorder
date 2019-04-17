@@ -29,7 +29,7 @@ export const builder =
 (yargs: typeof parser) => // eslint-disable-line @typescript-eslint/explicit-function-return-type
   yargs.strict(true)
     .positional('output', {
-      desc: 'file to save TTY session to',
+      desc: 'File to save TTY session to',
       type: 'string'
     })
     .demandOption('output')
