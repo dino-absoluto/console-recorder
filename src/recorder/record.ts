@@ -38,6 +38,7 @@ export class Record {
   public columns: number = process.stdout.columns || 80
   public rows: number = process.stdout.rows || 25
   public events: RecordEvent[] = []
+  protected playing: Promise<void> | undefined
   public constructor (events?: RecordEvent[], columns?: number, rows?: number) {
     if (events) {
       this.events = events
@@ -93,17 +94,34 @@ export class Record {
     await writeFile(fpath, JSON.stringify(this, null, 1))
   }
 
-  public async play (stream: NodeJS.WritableStream): Promise<void> {
+  public async replay (stream: NodeJS.WritableStream): Promise<void> {
     const timer = elapseTimer()
-    for (const e of this.events) {
-      const elapsed = timer()
-      const period = e.time - elapsed
-      if (period <= 0) {
-        stream.write(e.text)
-      } else {
-        await delay(period)
-        stream.write(e.text)
+    const play = async (): Promise<void> => {
+      for (const e of this.events) {
+        const elapsed = timer()
+        const period = e.time - elapsed
+        if (this.playing === undefined) {
+          throw new Error('canceled')
+        }
+        if (period <= 0) {
+          stream.write(e.text)
+        } else {
+          await delay(period)
+          stream.write(e.text)
+        }
       }
     }
+    this.playing = new Promise<void>((resolve, reject): void => {
+      setImmediate((): void => {
+        play().then(resolve, reject)
+      })
+    })
+    return this.playing
+  }
+
+  public async stop (): Promise<void> {
+    const p = this.playing
+    this.playing = undefined
+    return p
   }
 }

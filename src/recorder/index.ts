@@ -21,6 +21,7 @@ import { spawnShell } from './shell'
 import { Record } from './record'
 import * as path from 'path'
 import * as readLine from 'readline'
+import chalk from 'chalk'
 import makeDir = require('make-dir')
 
 const recordFile = path.join(__dirname, '/../__tmp__/_record.json')
@@ -31,18 +32,39 @@ if (process.argv.indexOf('--play') >= 0) {
       return
     }
     const { stdin, stdout } = process
+    console.log(chalk.blue('---REPLAY STARTED---'))
     if (stdin.setRawMode) {
       stdin.setRawMode(true)
       readLine.emitKeypressEvents(stdin)
     }
-    stdin.on('keypress', (_, key): void => {
+    const handleKeypress = (_: unknown,
+      key: {
+        ctrl: boolean
+        name: string
+      }): void => {
       if (key && key.ctrl && key.name === 'c') {
-        console.log('^C')
-        process.exit()
+        record.stop().catch((): void => {
+          console.log('^C')
+        })
+      }
+    }
+    stdin.on('keypress', handleKeypress)
+    await record.replay(stdout).then((): void => {
+      console.log(chalk.red('---REPLAY ENDED---'))
+    }).catch((err): void => {
+      if (err.message.indexOf('canceled') >= 0) {
+        console.log(chalk.red('---REPLAY CANCELED---'))
+      } else {
+        console.log(chalk.red('---REPLAY ERRORED---'))
+        console.error(chalk.red(err))
+      }
+    }).finally((): void => {
+      stdin.off('keypress', handleKeypress)
+      if (stdin.setRawMode) {
+        stdin.setRawMode(false)
+        stdin.pause()
       }
     })
-    await record.play(stdout)
-    process.exit(0)
   })
 } else {
   const stream = spawnShell()
