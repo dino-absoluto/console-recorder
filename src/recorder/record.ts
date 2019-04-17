@@ -34,3 +34,5 @@ export const record = (fname: string): void => {
     await record.save(fname)
   })
 }
+
+export default record

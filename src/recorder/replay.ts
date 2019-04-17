@@ -62,3 +62,5 @@ export const replay = (fname: string): void => {
     })
   })
 }
+
+export default replay
