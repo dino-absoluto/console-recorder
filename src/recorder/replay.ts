@@ -45,12 +45,12 @@ export const replay = (fname: string): void => {
     }
     stdin.on('keypress', handleKeypress)
     await record.replay(stdout).then((): void => {
-      console.log(chalk.red('---REPLAY ENDED---'))
+      console.log(chalk.red('\n---REPLAY ENDED---'))
     }).catch((err): void => {
       if (err.message.indexOf('canceled') >= 0) {
-        console.log(chalk.red('---REPLAY CANCELED---'))
+        console.log(chalk.red('\n---REPLAY CANCELED---'))
       } else {
-        console.log(chalk.red('---REPLAY ERRORED---'))
+        console.log(chalk.red('\n---REPLAY ERRORED---'))
         console.error(chalk.red(err))
       }
     }).finally((): void => {

@@ -90,7 +90,7 @@ export const spawnShell = (): PTYStream => {
   })
 
   ptyProcess.on('exit', (exitCode): void => {
-    console.log(chalk.red('---SESSION ENDED---'))
+    console.log(chalk.red('\n---SESSION ENDED---'))
     if (stdin.setRawMode) {
       stdin.setRawMode(false)
     }
