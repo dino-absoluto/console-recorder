@@ -96,6 +96,7 @@ export const spawnShell = (): PTYStream => {
     }
     stdout.off('resize', handleResize)
     stdin.off('data', handleData)
+    stdin.pause()
     process.off('exit', handleExit)
     if (exitCode !== 0) {
       stream.end((): void =>
