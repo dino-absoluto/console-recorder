@@ -18,14 +18,14 @@
  */
 /* imports */
 import { platform } from 'os'
-import pty = require('node-pty')
 import chalk from 'chalk'
+import pty = require('node-pty')
 
 const shell = platform() === 'win32' ? 'powershell.exe' : 'bash'
 const { stdin, stdout } = process
 
-const getColumns = () => stdout.columns || 80
-const getRows = () => stdout.rows || 24
+const getColumns = (): number => stdout.columns || 80
+const getRows = (): number => stdout.rows || 24
 
 if (!stdin.isTTY || !stdout.isTTY) {
   throw new Error('TTY is required')
@@ -42,26 +42,26 @@ const ptyProcess = pty.spawn(shell, [], {
   experimentalUseConpty: true
 })
 
-stdout.on('resize', () => {
+stdout.on('resize', (): void => {
   ptyProcess.resize(getColumns(), getRows())
 })
 
 stdin.setRawMode(true)
 console.log(chalk.blue('---SESSION STARTED---'))
 
-ptyProcess.on('data', function(data) {
+ptyProcess.on('data', (data): void => {
   stdout.write(data)
 })
 
-stdin.on('data', chunk => {
+stdin.on('data', (chunk): void => {
   ptyProcess.write(chunk)
 })
 
-ptyProcess.on('exit', (exitCode) => {
+ptyProcess.on('exit', (exitCode): void => {
   process.exit(exitCode)
 })
 
-process.on('exit', () => {
+process.on('exit', (): void => {
   ptyProcess.kill()
   console.log(chalk.red('---SESSION ENDED---'))
 })
