@@ -27,8 +27,9 @@ interface ReplayOptions {
   normalize?: number
 }
 
-export const replay = (fname: string, options: ReplayOptions = {}): void => {
-  Recording.fromFile(fname).then(async (record): Promise<void> => {
+export const replay =
+async (fname: string, options: ReplayOptions = {}): Promise<void> => {
+  return Recording.fromFile(fname).then(async (record): Promise<void> => {
     if (record == null) {
       return
     }

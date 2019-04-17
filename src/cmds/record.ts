@@ -68,5 +68,5 @@ type Options = ReturnType<typeof builder>['argv']
 export const handler = async (argv: Options): Promise<void> => {
   const { record } = await import('..')
   const { output } = argv
-  record(output)
+  await record(output)
 }

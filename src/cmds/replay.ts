@@ -17,7 +17,7 @@
  *
  */
 /* imports */
-import { accessSync } from 'fs'
+import { accessSync, constants } from 'fs'
 import { parser } from '../cli'
 import { failedCheck } from '../utils/fail'
 
@@ -56,12 +56,13 @@ export const builder =
       }
       const input = argv.input
       try {
-        accessSync(input)
+        accessSync(input, constants.F_OK | constants.R_OK)
       } catch (err) {
-        if (err.code === 'ENOENT') {
-          throw failedCheck('input file does not exist')
-        } else {
-          throw err
+        switch (err.code) {
+          case 'ENOENT':
+            throw failedCheck('input file does not exist')
+          default:
+            throw err
         }
       }
       return true
@@ -72,7 +73,7 @@ type Options = ReturnType<typeof builder>['argv']
 export const handler = async (argv: Options): Promise<void> => {
   const { replay } = await import('..')
   const input: string = argv.input as string
-  replay(input, {
+  await replay(input, {
     normalize: argv.normalize,
     playSpeed: argv.playSpeed
   })
