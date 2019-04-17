@@ -21,7 +21,19 @@ import { platform } from 'os'
 import chalk from 'chalk'
 import pty = require('node-pty')
 
-const shell = platform() === 'win32' ? 'powershell.exe' : 'bash'
+const shell = ((): string => {
+  if (platform() === 'win32') {
+    return 'powershell.exe'
+  } else {
+    const shell = process.env.SHELL
+    if (shell) {
+      return shell
+    } else {
+      return 'bash'
+    }
+  }
+})()
+
 const { stdin, stdout } = process
 
 const getColumns = (): number => stdout.columns || 80
