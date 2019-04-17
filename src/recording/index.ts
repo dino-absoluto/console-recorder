@@ -17,15 +17,6 @@
  *
  */
 /* imports */
-import * as path from 'path'
-import record from './record'
-import replay from './replay'
 
 /* code */
-const recFile = path.join(__dirname, '../__tmp__/_record.json')
-
-if (process.argv.indexOf('play') > 0) {
-  replay(recFile)
-} else if (process.argv.indexOf('rec') > 0) {
-  record(recFile)
-}
+export { Recording } from './recording'

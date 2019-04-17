@@ -17,28 +17,29 @@
  *
  */
 /* imports */
-import { spawnShell } from './shell'
-import { startMessage, endMessage } from './messages'
-import { Recording } from './recording'
 import * as path from 'path'
-import chalk from 'chalk'
-import makeDir = require('make-dir')
+import record from './record'
+import replay from '../replay/replay'
+import yargs = require('yargs')
 
-export const record = (fname: string): void => {
-  startMessage(chalk.blue('RECORDING STARTED'))
-  const stream = spawnShell()
-  Recording.record(
-    stream,
-    stream.columns,
-    stream.rows).then(async (record): Promise<void> => {
-    if (!(record.events.length > 0)) {
-      return
-    }
-    await makeDir(path.dirname(fname))
-    await record.save(fname)
-    console.log()
-    endMessage(chalk.blue('RECORDING ENDED'))
+/* code */
+/*
+yargs
+  .strict(true)
+  .usage('$0 <cmd> [args]')
+  .command('rec', 'record session', (yargs): typeof yargs => {
+    return yargs
+      .command('sub', 'sub command')
+      .demandCommand(1)
   })
-}
+  .parse()
+/**/
 
-export default record
+const recFile = path.join(__dirname, '../__tmp__/_record.json')
+
+if (process.argv.indexOf('play') > 0) {
+  replay(recFile)
+} else if (process.argv.indexOf('rec') > 0) {
+  record(recFile)
+}
+// */

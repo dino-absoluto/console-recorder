@@ -17,8 +17,8 @@
  *
  */
 /* imports */
-import { Recording } from './recording'
-import { startMessage, endMessage } from './messages'
+import { Recording } from '../recording'
+import { startMessage, endMessage } from '../utils/messages'
 import * as readLine from 'readline'
 import chalk from 'chalk'
 
