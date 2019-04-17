@@ -25,23 +25,11 @@ const webpack = require('webpack')
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-const defaultConfigs = {
-  mode: 'development',
-  target: 'node',
-  entry: './src/cli.ts',
-  output: {
-    pathinfo: false,
-    filename: 'cli.js',
-    libraryTarget: 'commonjs',
-    path: path.resolve(__dirname, '__tmp__/bin')
-  },
+const setupTypescript = (env) => ({
   devtool: 'source-map',
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
-  plugins: [
-    new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true })
-  ],
   module: {
     rules: [
       {
@@ -50,7 +38,10 @@ const defaultConfigs = {
           loader: 'ts-loader',
           options: {
             transpileOnly: true,
-            experimentalWatchApi: true
+            experimentalWatchApi: true,
+            compilerOptions: {
+              removeComments: !!env.prod
+            }
           }
         }
       }, {
@@ -65,56 +56,62 @@ const defaultConfigs = {
       whitelist: [ /^lodash/ ]
     })
   ]
-}
+})
 
-const dev = (config) => {
-  merge(config, {
-    output: {
-      path: path.resolve(__dirname, '__tmp__/bin')
-    },
-    optimization: {
-      removeAvailableModules: false,
-      removeEmptyChunks: false,
-      splitChunks: false
-    }
-  })
-}
+const setupProductionMode = (env) => env.prod ? ({
+  mode: 'development',
+  optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: false
+  }
+}) : ({
+  mode: 'production'
+})
 
-const mini = (config) => {
-  merge(config, {
-    mode: 'production',
-    output: {
-      path: path.resolve(__dirname, 'bin/')
-    },
-    module: {
-      rules: [
-        {
-          use: {
-            options: {
-              compilerOptions: {
-                removeComments: true
-              }
-            }
-          }
-        }
-      ]
-    }
-  })
-}
+const setupAnalyzeBundle = (env) => env.analyzeBundle ? ({
+  plugins: [
+    new BundleAnalyzerPlugin()
+  ]
+}) : {}
+
+const configBin = (env) => ({
+  target: 'node',
+  entry: './src/cli.ts',
+  output: {
+    pathinfo: false,
+    filename: 'cli.js',
+    libraryTarget: 'commonjs',
+    path: path.resolve(__dirname, env.prod ? 'bin' : '__tmp__/bin')
+  },
+  plugins: [
+    new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true })
+  ]
+})
+
+const configLib = (env) => ({
+  target: 'node',
+  entry: './src/index.ts',
+  output: {
+    pathinfo: false,
+    filename: 'index.js',
+    libraryTarget: 'commonjs',
+    path: path.resolve(__dirname, env.prod ? 'lib' : '__tmp__/lib')
+  }
+})
 
 module.exports = (env = {}) => {
-  const config = merge({}, defaultConfigs)
-  if (env.prod) {
-    mini(config)
-  } else {
-    dev(config)
-  }
-  if (env.analyzeBundle) {
-    merge(config, {
-      plugins: [
-        new BundleAnalyzerPlugin()
-      ]
-    })
-  }
-  return config
+  const bin = merge({}
+    , configBin(env)
+    , setupTypescript(env)
+    , setupProductionMode(env)
+    , setupAnalyzeBundle(env)
+  )
+  const lib = merge({}
+    , configLib(env)
+    , setupTypescript(env)
+    , setupProductionMode(env)
+    , setupAnalyzeBundle(env)
+  )
+  return [ bin, lib ]
 }
