@@ -40,7 +40,12 @@ const { stdin, stdout } = process
 const getColumns = (): number => stdout.columns || 80
 const getRows = (): number => stdout.rows || 24
 
-export const spawn = (): Readable => {
+interface PTYStream extends Readable {
+  columns?: number
+  rows?: number
+}
+
+export const spawnShell = (): PTYStream => {
   if (!stdin.isTTY || !stdout.isTTY) {
     throw new Error('TTY is required')
   }
@@ -56,9 +61,17 @@ export const spawn = (): Readable => {
     experimentalUseConpty: true
   })
 
-  stdout.on('resize', (): void => {
+  const handleResize = (): void => {
     ptyProcess.resize(getColumns(), getRows())
-  })
+  }
+  stdout.on('resize', handleResize)
+  const handleExit = (): void => {
+    ptyProcess.kill()
+  }
+  process.on('exit', handleExit)
+  const handleData = (chunk: string | Buffer): void => {
+    ptyProcess.write(chunk.toString())
+  }
 
   stdin.setRawMode(true)
   console.log(chalk.blue('---SESSION STARTED---'))
@@ -81,6 +94,9 @@ export const spawn = (): Readable => {
     if (stdin.setRawMode) {
       stdin.setRawMode(false)
     }
+    stdout.off('resize', handleResize)
+    stdin.off('data', handleData)
+    process.off('exit', handleExit)
     if (exitCode !== 0) {
       stream.end((): void =>
         stream.destroy(new Error(`shell exit with ${exitCode}`)))
@@ -88,14 +104,7 @@ export const spawn = (): Readable => {
       stream.end()
     }
   })
-
-  process.on('exit', (): void => {
-    ptyProcess.kill()
-  })
-
-  stdin.on('data', (chunk): void => {
-    ptyProcess.write(chunk)
-  })
+  stdin.on('data', handleData)
 
   return stream
 }
