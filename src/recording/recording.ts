@@ -34,14 +34,15 @@ const elapseTimer = (): () => number => {
   return (): number => Date.now() - startTime
 }
 
-const defaultSpeed = 1.25
+const SPEED_DEFAULT = 1.25
+const SPEED_MIN = 0.1
 
 export class Recording {
   public columns: number = process.stdout.columns || 80
   public rows: number = process.stdout.rows || 25
-  protected playbackSpeed: number = defaultSpeed
   public events: RecordEvent[] = []
   private playing: Promise<void> | undefined
+  private pPlaySpeed: number = SPEED_DEFAULT
   public constructor (events?: RecordEvent[], columns?: number, rows?: number) {
     if (events) {
       this.events = events
@@ -52,10 +53,14 @@ export class Recording {
     if (rows) {
       this.rows = rows
     }
+    Object.defineProperties(this, {
+      pPlaySpeed: { enumerable: false }
+    })
   }
 
-  public setPlaybackSpeed (speed: number): void {
-    this.playbackSpeed = speed > 0.1 ? speed : defaultSpeed
+  public get playSpeed (): number { return this.pPlaySpeed }
+  public set playSpeed (speed: number) {
+    this.pPlaySpeed = speed > SPEED_MIN ? speed : SPEED_DEFAULT
   }
 
   public static async fromFile (fpath: string): Promise<Recording | undefined> {
@@ -102,7 +107,7 @@ export class Recording {
   }
 
   public async replay (stream: NodeJS.WritableStream): Promise<void> {
-    const ratio = 1 / this.playbackSpeed
+    const ratio = 1 / this.playSpeed
     const timer = elapseTimer()
     const play = async (): Promise<void> => {
       for (const e of this.events) {

@@ -28,9 +28,17 @@ export const describe = 'Replay TTY session'
 export const builder =
 (yargs: typeof parser) => // eslint-disable-line @typescript-eslint/explicit-function-return-type
   yargs.strict(true)
+    .option('playSpeed', {
+      type: 'number',
+      desc: 'Playing speed multiplier',
+      default: 1.0,
+      coerce: (n: number): number => {
+        return n > 0.1 ? n : 1.0
+      }
+    })
     .positional('input', {
-      desc: 'a recorded TTY session',
-      type: 'string'
+      type: 'string',
+      desc: 'A recorded TTY session'
     })
     .demandOption('input')
     .check((argv): boolean => {
@@ -60,5 +68,7 @@ type Options = ReturnType<typeof builder>['argv']
 
 export const handler = (argv: Options): void => {
   const input: string = argv.input as string
-  replay(input)
+  replay(input, {
+    playSpeed: argv.playSpeed
+  })
 }

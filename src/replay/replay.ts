@@ -22,10 +22,17 @@ import { startMessage, endMessage } from '../utils/messages'
 import * as readLine from 'readline'
 import chalk from 'chalk'
 
-export const replay = (fname: string): void => {
+interface ReplayOptions {
+  playSpeed?: number
+}
+
+export const replay = (fname: string, options: ReplayOptions = {}): void => {
   Recording.fromFile(fname).then(async (record): Promise<void> => {
     if (record == null) {
       return
+    }
+    if (options.playSpeed) {
+      record.playSpeed = options.playSpeed
     }
     const { stdin, stdout } = process
     const columns = stdout.columns || 40
