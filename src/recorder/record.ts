@@ -17,111 +17,20 @@
  *
  */
 /* imports */
-import { readFile, writeFile } from '../utils/pfs'
+import { spawnShell } from './shell'
+import { Recording } from './recording'
+import * as path from 'path'
+import makeDir = require('make-dir')
 
-/* code */
-export interface RecordEvent {
-  time: number
-  text: string
-}
-
-const delay = (period: number): Promise<void> => {
-  return new Promise((resolve): void => { setTimeout(resolve, period) })
-}
-
-const elapseTimer = (): () => number => {
-  const startTime = Date.now()
-  return (): number => Date.now() - startTime
-}
-
-export class Record {
-  public columns: number = process.stdout.columns || 80
-  public rows: number = process.stdout.rows || 25
-  public events: RecordEvent[] = []
-  protected playing: Promise<void> | undefined
-  public constructor (events?: RecordEvent[], columns?: number, rows?: number) {
-    if (events) {
-      this.events = events
+export const record = (fname: string): void => {
+  const stream = spawnShell()
+  Recording.record(stream,
+    stream.columns,
+    stream.rows).then(async (record): Promise<void> => {
+    if (!(record.events.length > 0)) {
+      return
     }
-    if (columns) {
-      this.columns = columns
-    }
-    if (rows) {
-      this.rows = rows
-    }
-  }
-
-  public static async fromFile (fpath: string): Promise<Record | undefined> {
-    const THRESHOLD = 2
-    const data = JSON.parse((await readFile(fpath)).toString())
-    if (data && Array.isArray(data.events)) {
-      let events: RecordEvent[] = data.events
-      events = events.reduce((acc, e): RecordEvent[] => {
-        const last = acc[acc.length - 1]
-        if (last && Math.abs(last.time - e.time) < THRESHOLD) {
-          last.text += e.text
-        } else {
-          acc.push(e)
-        }
-        return acc
-      }, [] as RecordEvent[])
-      return new Record(events, data.columns, data.rows)
-    }
-  }
-
-  public static async record (
-    stream: NodeJS.ReadableStream
-    , columns?: number
-    , rows?: number): Promise<Record> {
-    const events: RecordEvent[] = []
-    const timer = elapseTimer()
-    const promise = new Promise<Record>((resolve, reject): void => {
-      stream.on('error', reject)
-      stream.on('end', (): void => {
-        resolve(new Record(events, columns, rows))
-      })
-    })
-    stream.on('data', (chunk): void => {
-      events.push({
-        time: timer(),
-        text: chunk.toString()
-      })
-    })
-    return promise
-  }
-
-  public async save (fpath: string): Promise<void> {
-    await writeFile(fpath, JSON.stringify(this, null, 1))
-  }
-
-  public async replay (stream: NodeJS.WritableStream): Promise<void> {
-    const timer = elapseTimer()
-    const play = async (): Promise<void> => {
-      for (const e of this.events) {
-        const elapsed = timer()
-        const period = e.time - elapsed
-        if (this.playing === undefined) {
-          throw new Error('canceled')
-        }
-        if (period <= 0) {
-          stream.write(e.text)
-        } else {
-          await delay(period)
-          stream.write(e.text)
-        }
-      }
-    }
-    this.playing = new Promise<void>((resolve, reject): void => {
-      setImmediate((): void => {
-        play().then(resolve, reject)
-      })
-    })
-    return this.playing
-  }
-
-  public async stop (): Promise<void> {
-    const p = this.playing
-    this.playing = undefined
-    return p
-  }
+    await makeDir(path.dirname(fname))
+    await record.save(fname)
+  })
 }
