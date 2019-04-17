@@ -17,31 +17,55 @@
  *
  */
 /* imports */
-import * as path from 'path'
 import record from './record'
+import { accessSync } from 'fs'
 import { parser } from '..'
+import { failedCheck } from '../utils/fail'
 
 export const command = 'record <output>'
 export const aliases = [ 'rec' ]
 export const describe = 'Record TTY session'
-export const builder = (yargs: typeof parser): typeof parser => {
-  return yargs.strict(true)
+export const builder =
+(yargs: typeof parser) => // eslint-disable-line @typescript-eslint/explicit-function-return-type
+  yargs.strict(true)
+    .option('overwrite', {
+      type: 'boolean',
+      default: false,
+      desc: 'Overwrite existing file'
+    })
     .check((argv): boolean => {
       if (argv._.length > 1) {
-        const err = new Error('too many output file')
-        err.name = 'Check'
-        throw err
+        throw failedCheck('too many output')
       }
       return true
     })
-}
+    .check((argv): boolean => {
+      if (!argv.output || typeof argv.output !== 'string') {
+        throw failedCheck('invalid input')
+      }
+      const output = argv.output
+      if (argv.overwrite) {
+        return true
+      }
+      try {
+        accessSync(output)
+        throw failedCheck(`file existed "${argv.output}"`)
+      } catch (err) {
+        if (err.code === 'ENOENT') {
+          return true
+        } else {
+          throw err
+        }
+      }
+    })
 
-type Argv = typeof parser.argv
+type Argv = ReturnType<typeof builder>['argv']
 
 interface Options extends Argv {
   output?: string
 }
 
 export const handler = (argv: Options): void => {
-  console.log(argv)
+  const output: string = argv.output as string
+  record(output)
 }
