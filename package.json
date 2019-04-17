@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "description": "Record console session",
   "main": "lib/index.js",
+  "files": [
+    "bin/cli.js",
+    "lib/index.js"
+  ],
+  "bin": {
+    "console-recorder": "bin/cli.js"
+  },
   "scripts": {
     "lint": "eslint --ext .js,.ts src",
+    "prepublishOnly": "npm run build -- --env.prod",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

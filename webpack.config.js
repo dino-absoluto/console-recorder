@@ -21,6 +21,7 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const merge = require('lodash/merge')
+const webpack = require('webpack')
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
@@ -38,6 +39,9 @@ const defaultConfigs = {
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
+  plugins: [
+    new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true })
+  ],
   module: {
     rules: [
       {
