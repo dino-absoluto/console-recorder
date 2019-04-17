@@ -10,6 +10,6 @@
   "author": "Dino <dinoabsoluto+dev@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "console-recorder": "^1.0.0"
+    "console-recorder": "^1.0.2"
   }
 }
