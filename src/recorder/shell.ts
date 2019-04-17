@@ -18,7 +18,6 @@
  */
 /* imports */
 import { platform } from 'os'
-import chalk from 'chalk'
 import { PassThrough, Readable } from 'stream'
 import pty = require('node-pty')
 
@@ -74,7 +73,6 @@ export const spawnShell = (): PTYStream => {
   }
 
   stdin.setRawMode(true)
-  console.log(chalk.blue('---SESSION STARTED---'))
 
   const stream = new PassThrough({
     emitClose: true
@@ -90,7 +88,6 @@ export const spawnShell = (): PTYStream => {
   })
 
   ptyProcess.on('exit', (exitCode): void => {
-    console.log(chalk.red('\n---SESSION ENDED---'))
     if (stdin.setRawMode) {
       stdin.setRawMode(false)
     }

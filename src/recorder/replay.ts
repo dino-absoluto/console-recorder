@@ -18,6 +18,7 @@
  */
 /* imports */
 import { Recording } from './recording'
+import { startMessage, endMessage } from './messages'
 import * as readLine from 'readline'
 import chalk from 'chalk'
 
@@ -27,12 +28,14 @@ export const replay = (fname: string): void => {
       return
     }
     const { stdin, stdout } = process
-    if (record.columns !== stdout.columns || record.rows !== stdout.rows) {
+    const columns = stdout.columns || 40
+    const rows = stdout.rows || 24
+    if (record.columns !== columns || record.rows !== rows) {
       console.log(chalk.yellow(chalk.bold('WARNING:'), 'replaying at different console size.'))
       console.log(chalk.yellow(`The recording was made at ${
         record.columns}x${record.rows}.`))
     }
-    console.log(chalk.blue('---REPLAY STARTED---'))
+    startMessage(chalk.blue('REPLAY STARTED'))
     if (stdin.setRawMode) {
       stdin.setRawMode(true)
       readLine.emitKeypressEvents(stdin)
@@ -50,13 +53,15 @@ export const replay = (fname: string): void => {
     }
     stdin.on('keypress', handleKeypress)
     await record.replay(stdout).then((): void => {
-      console.log(chalk.red('\n---REPLAY ENDED---'))
+      console.log()
+      endMessage(chalk.blue('REPLAY ENDED'))
     }).catch((err): void => {
       process.stdout.write('\x1b[0m\x1b[?25h\x1b[?1049l\x1b[?2004l')
+      console.log()
       if (err.message.indexOf('canceled') >= 0) {
-        console.log(chalk.red('\n---REPLAY CANCELED---'))
+        endMessage(chalk.yellow('REPLAY CANCELED'))
       } else {
-        console.log(chalk.red('\n---REPLAY ERRORED---'))
+        endMessage(chalk.red('REPLAY ERRORED'))
         console.error(chalk.red(err))
       }
     }).finally((): void => {

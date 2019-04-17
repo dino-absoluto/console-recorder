@@ -17,28 +17,20 @@
  *
  */
 /* imports */
-import { spawnShell } from './shell'
-import { startMessage, endMessage } from './messages'
-import { Recording } from './recording'
-import * as path from 'path'
 import chalk from 'chalk'
-import makeDir = require('make-dir')
 
-export const record = (fname: string): void => {
-  startMessage(chalk.blue('RECORDING STARTED'))
-  const stream = spawnShell()
-  Recording.record(
-    stream,
-    stream.columns,
-    stream.rows).then(async (record): Promise<void> => {
-    if (!(record.events.length > 0)) {
-      return
-    }
-    await makeDir(path.dirname(fname))
-    await record.save(fname)
-    console.log()
-    endMessage(chalk.blue('RECORDING ENDED'))
-  })
+export const startMessage = (text: string): void => {
+  const columns = process.stdout.columns || 40
+  console.log(chalk.gray(
+    '┌' + '─'.repeat(columns - 2) + '┐'
+  ))
+  console.log(chalk.gray('│ -' + text + '-'))
 }
 
-export default record
+export const endMessage = (text: string): void => {
+  const columns = process.stdout.columns || 40
+  console.log(chalk.gray('│ -' + text + '-'))
+  console.log(chalk.gray(
+    '└' + '─'.repeat(columns - 2) + '┘'
+  ))
+}
