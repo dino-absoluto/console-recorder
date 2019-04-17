@@ -1,2 +1,3 @@
 # console-recorder
-Record console session
+
+> Record and replay console session made simple.
