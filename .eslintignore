@@ -1,3 +1,5 @@
 /__tmp__
 /bin
 /lib
+/node_modules
+/coverage
