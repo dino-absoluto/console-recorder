@@ -56,7 +56,7 @@ export const replay = (fname: string): void => {
       console.log()
       endMessage(chalk.blue('REPLAY ENDED'))
     }).catch((err): void => {
-      process.stdout.write('\x1b[0m\x1b[?25h\x1b[?1049l\x1b[?2004l')
+      process.stdout.write('\x1b[0m\x1b[?25h\x1b[?1049h\x1b[?1049l')
       console.log()
       if (err.message.indexOf('canceled') >= 0) {
         endMessage(chalk.yellow('REPLAY CANCELED'))
