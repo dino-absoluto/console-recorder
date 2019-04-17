@@ -17,9 +17,8 @@
  *
  */
 /* imports */
-import replay from './replay'
 import { accessSync } from 'fs'
-import { parser } from '..'
+import { parser } from '../cli'
 import { failedCheck } from '../utils/fail'
 
 export const command = 'replay <input>'
@@ -70,7 +69,8 @@ export const builder =
 
 type Options = ReturnType<typeof builder>['argv']
 
-export const handler = (argv: Options): void => {
+export const handler = async (argv: Options): Promise<void> => {
+  const { replay } = await import('..')
   const input: string = argv.input as string
   replay(input, {
     normalize: argv.normalize,

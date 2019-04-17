@@ -17,8 +17,8 @@
  *
  */
 /* imports */
-import * as record from './record'
-import * as replay from './replay'
+import * as record from './cmds/record'
+import * as replay from './cmds/replay'
 import * as kleur from 'kleur'
 import yargs = require('yargs')
 import once = require('lodash/once')

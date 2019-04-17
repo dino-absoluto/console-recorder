@@ -59,12 +59,7 @@ const setupTypescript = (env) => ({
 })
 
 const setupProductionMode = (env) => !env.prod ? ({
-  mode: 'development',
-  optimization: {
-    removeAvailableModules: false,
-    removeEmptyChunks: false,
-    splitChunks: false
-  }
+  mode: 'development'
 }) : ({
   mode: 'production'
 })
@@ -75,43 +70,25 @@ const setupAnalyzeBundle = (env) => env.analyzeBundle ? ({
   ]
 }) : {}
 
-const configBin = (env) => ({
-  target: 'node',
-  entry: './src/cli.ts',
-  output: {
-    pathinfo: false,
-    filename: 'cli.js',
-    libraryTarget: 'commonjs',
-    path: path.resolve(__dirname, env.prod ? 'bin' : '__tmp__/bin')
-  },
-  plugins: [
-    new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true })
-  ]
-})
-
 const configLib = (env) => ({
   target: 'node',
-  entry: './src/index.ts',
+  entry: {
+    lib: './src/index.ts',
+    bin: './src/cli.ts'
+  },
   output: {
     pathinfo: false,
-    filename: 'index.js',
+    filename: '[name].js',
     libraryTarget: 'commonjs',
-    path: path.resolve(__dirname, env.prod ? 'lib' : '__tmp__/lib')
+    path: path.resolve(__dirname, env.prod ? 'dist' : '__tmp__/dist')
   }
 })
 
 module.exports = (env = {}) => {
-  const bin = merge({}
-    , configBin(env)
-    , setupTypescript(env)
-    , setupProductionMode(env)
-    , setupAnalyzeBundle(env)
-  )
-  const lib = merge({}
+  return merge({}
     , configLib(env)
     , setupTypescript(env)
     , setupProductionMode(env)
     , setupAnalyzeBundle(env)
   )
-  return [ bin, lib ]
 }

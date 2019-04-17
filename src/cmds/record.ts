@@ -17,9 +17,8 @@
  *
  */
 /* imports */
-import record from './record'
 import { accessSync } from 'fs'
-import { parser } from '..'
+import { parser } from '../cli'
 import { failedCheck } from '../utils/fail'
 
 export const command = 'record <output>'
@@ -66,7 +65,8 @@ export const builder =
 
 type Options = ReturnType<typeof builder>['argv']
 
-export const handler = (argv: Options): void => {
+export const handler = async (argv: Options): Promise<void> => {
+  const { record } = await import('..')
   const { output } = argv
   record(output)
 }

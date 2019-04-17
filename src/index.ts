@@ -18,3 +18,5 @@
  */
 /* imports */
 export { Recording } from './recording'
+export { default as replay } from './replay/replay'
+export { default as record } from './record/record'

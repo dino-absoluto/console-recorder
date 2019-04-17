@@ -2,13 +2,13 @@
   "name": "console-recorder",
   "version": "1.0.0",
   "description": "Record console session",
-  "main": "lib/index.js",
+  "main": "dist/lib.js",
   "files": [
-    "bin/cli.js",
-    "lib/index.js"
+    "dist/bin.js",
+    "dist/lib.js"
   ],
   "bin": {
-    "console-recorder": "bin/cli.js"
+    "console-recorder": "dist/bin.js"
   },
   "scripts": {
     "lint": "eslint --ext .js,.ts src",
@@ -34,7 +34,7 @@
   "homepage": "https://github.com/dino-absoluto/console-recorder#readme",
   "devDependencies": {
     "@types/lodash": "^4.14.123",
-    "@types/node": "^11.13.4",
+    "@types/node": "^11.13.5",
     "@types/webpack-bundle-analyzer": "^2.13.1",
     "@types/webpack-node-externals": "^1.6.3",
     "@types/yargs": "^13.0.0",
