@@ -39,9 +39,9 @@ const defaultSpeed = 1.25
 export class Recording {
   public columns: number = process.stdout.columns || 80
   public rows: number = process.stdout.rows || 25
+  protected playbackSpeed: number = defaultSpeed
   public events: RecordEvent[] = []
-  private pPlaybackSpeed: number = defaultSpeed
-  protected playing: Promise<void> | undefined
+  private playing: Promise<void> | undefined
   public constructor (events?: RecordEvent[], columns?: number, rows?: number) {
     if (events) {
       this.events = events
@@ -54,9 +54,8 @@ export class Recording {
     }
   }
 
-  public get playbackSpeed (): number { return this.pPlaybackSpeed }
-  public set playbackSpeed (speed: number) {
-    this.pPlaybackSpeed = speed > 0.1 ? speed : defaultSpeed
+  public setPlaybackSpeed (speed: number): void {
+    this.playbackSpeed = speed > 0.1 ? speed : defaultSpeed
   }
 
   public static async fromFile (fpath: string): Promise<Recording | undefined> {
