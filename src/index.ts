@@ -17,3 +17,30 @@
  *
  */
 /* imports */
+import * as record from './record'
+import chalk from 'chalk'
+import yargs = require('yargs')
+import once = require('lodash/once')
+
+export const parser = yargs.strict(true)
+const printHelp = once((): void => {
+  parser.showHelp()
+})
+parser
+  .usage('$0 <cmd> [options] [output]')
+  .demandCommand(1, 1)
+  .command(record)
+  .help()
+  .fail((msg, err): void => {
+    printHelp()
+    if (err) {
+      if (err.name === 'Check') {
+        console.log(chalk.red('Error:', err.message || ''))
+      } else {
+        console.log(chalk.red(err.stack || ''))
+      }
+    } else {
+      console.error(chalk.red(msg))
+    }
+  })
+  .parse()

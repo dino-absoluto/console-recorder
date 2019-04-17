@@ -19,27 +19,29 @@
 /* imports */
 import * as path from 'path'
 import record from './record'
-import replay from '../replay/replay'
-import yargs = require('yargs')
+import { parser } from '..'
 
-/* code */
-/*
-yargs
-  .strict(true)
-  .usage('$0 <cmd> [args]')
-  .command('rec', 'record session', (yargs): typeof yargs => {
-    return yargs
-      .command('sub', 'sub command')
-      .demandCommand(1)
-  })
-  .parse()
-/**/
-
-const recFile = path.join(__dirname, '../__tmp__/_record.json')
-
-if (process.argv.indexOf('play') > 0) {
-  replay(recFile)
-} else if (process.argv.indexOf('rec') > 0) {
-  record(recFile)
+export const command = 'record <output>'
+export const aliases = [ 'rec' ]
+export const describe = 'Record TTY session'
+export const builder = (yargs: typeof parser): typeof parser => {
+  return yargs.strict(true)
+    .check((argv): boolean => {
+      if (argv._.length > 1) {
+        const err = new Error('too many output file')
+        err.name = 'Check'
+        throw err
+      }
+      return true
+    })
 }
-// */
+
+type Argv = typeof parser.argv
+
+interface Options extends Argv {
+  output?: string
+}
+
+export const handler = (argv: Options): void => {
+  console.log(argv)
+}
