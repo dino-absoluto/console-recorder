@@ -24,12 +24,16 @@ import chalk from 'chalk'
 
 interface ReplayOptions {
   playSpeed?: number
+  normalize?: number
 }
 
 export const replay = (fname: string, options: ReplayOptions = {}): void => {
   Recording.fromFile(fname).then(async (record): Promise<void> => {
     if (record == null) {
       return
+    }
+    if (options.normalize) {
+      record.normalize(options.normalize)
     }
     if (options.playSpeed) {
       record.playSpeed = options.playSpeed

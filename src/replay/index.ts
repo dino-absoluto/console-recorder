@@ -36,6 +36,10 @@ export const builder =
         return n > 0.1 ? n : 1.0
       }
     })
+    .option('normalize', {
+      type: 'number',
+      desc: 'Normalize events at steps of {number}ms'
+    })
     .positional('input', {
       type: 'string',
       desc: 'A recorded TTY session'
@@ -69,6 +73,7 @@ type Options = ReturnType<typeof builder>['argv']
 export const handler = (argv: Options): void => {
   const input: string = argv.input as string
   replay(input, {
+    normalize: argv.normalize,
     playSpeed: argv.playSpeed
   })
 }

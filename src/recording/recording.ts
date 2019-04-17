@@ -36,6 +36,7 @@ const elapseTimer = (): () => number => {
 
 const SPEED_DEFAULT = 1.25
 const SPEED_MIN = 0.1
+const THRESHOLD = 4
 
 export class Recording {
   public columns: number = process.stdout.columns || 80
@@ -58,13 +59,7 @@ export class Recording {
     })
   }
 
-  public get playSpeed (): number { return this.pPlaySpeed }
-  public set playSpeed (speed: number) {
-    this.pPlaySpeed = speed > SPEED_MIN ? speed : SPEED_DEFAULT
-  }
-
   public static async fromFile (fpath: string): Promise<Recording | undefined> {
-    const THRESHOLD = 2
     const data = JSON.parse((await readFile(fpath)).toString())
     if (data && Array.isArray(data.events)) {
       let events: RecordEvent[] = data.events
@@ -100,6 +95,29 @@ export class Recording {
       })
     })
     return promise
+  }
+
+  public get playSpeed (): number { return this.pPlaySpeed }
+  public set playSpeed (speed: number) {
+    this.pPlaySpeed = speed > SPEED_MIN ? speed : SPEED_DEFAULT
+  }
+
+  public normalize (STEP?: number): void {
+    const { events } = this
+    if (!(events.length > 0)) {
+      return
+    }
+    if (!STEP || !(STEP > 1)) {
+      STEP = 100
+    }
+    let startTime = events[0].time
+    let lastTime = startTime
+    let corrected = -STEP
+    for (const e of events) {
+      corrected += Math.max(1, Math.round((e.time - lastTime) / STEP)) * STEP
+      lastTime = e.time
+      e.time = corrected
+    }
   }
 
   public async save (fpath: string): Promise<void> {
