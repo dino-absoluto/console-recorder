@@ -52,6 +52,7 @@ export const replay = (fname: string): void => {
     await record.replay(stdout).then((): void => {
       console.log(chalk.red('\n---REPLAY ENDED---'))
     }).catch((err): void => {
+      process.stdout.write('\x1b[0m\x1b[?25h\x1b[?1049l\x1b[?2004l')
       if (err.message.indexOf('canceled') >= 0) {
         console.log(chalk.red('\n---REPLAY CANCELED---'))
       } else {
