@@ -18,6 +18,7 @@
  */
 /* imports */
 import * as record from './record'
+import * as replay from './replay'
 import chalk from 'chalk'
 import yargs = require('yargs')
 import once = require('lodash/once')
@@ -30,6 +31,7 @@ parser
   .usage('$0 <cmd> [options] [output]')
   .demandCommand(1, 1)
   .command(record)
+  .command(replay)
   .help()
   .fail((msg, err): void => {
     printHelp()

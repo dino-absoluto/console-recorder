@@ -17,27 +17,22 @@
  *
  */
 /* imports */
-import record from './record'
+import replay from './replay'
 import { accessSync } from 'fs'
 import { parser } from '..'
 import { failedCheck } from '../utils/fail'
 
-export const command = 'record <output>'
-export const aliases = [ 'rec' ]
-export const describe = 'Record TTY session'
+export const command = 'replay <input>'
+export const aliases = [ 'play' ]
+export const describe = 'Replay TTY session'
 export const builder =
 (yargs: typeof parser) => // eslint-disable-line @typescript-eslint/explicit-function-return-type
   yargs.strict(true)
-    .positional('output', {
-      desc: 'file to save TTY session to',
+    .positional('input', {
+      desc: 'a recorded TTY session',
       type: 'string'
     })
-    .demandOption('output')
-    .option('overwrite', {
-      type: 'boolean',
-      default: false,
-      desc: 'Overwrite existing file'
-    })
+    .demandOption('input')
     .check((argv): boolean => {
       if (argv._.length > 1) {
         throw failedCheck('too many output')
@@ -45,28 +40,25 @@ export const builder =
       return true
     })
     .check((argv): boolean => {
-      if (!argv.output) {
+      if (!argv.input || typeof argv.input !== 'string') {
         throw failedCheck('invalid input')
       }
-      const output = argv.output
-      if (argv.overwrite) {
-        return true
-      }
+      const input = argv.input
       try {
-        accessSync(output)
-        throw failedCheck(`file existed "${argv.output}"`)
+        accessSync(input)
       } catch (err) {
         if (err.code === 'ENOENT') {
-          return true
+          throw failedCheck('input file does not exist')
         } else {
           throw err
         }
       }
+      return true
     })
 
 type Options = ReturnType<typeof builder>['argv']
 
 export const handler = (argv: Options): void => {
-  const { output } = argv
-  record(output)
+  const input: string = argv.input as string
+  replay(input)
 }
