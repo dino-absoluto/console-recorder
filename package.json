@@ -15,8 +15,7 @@
     "cli",
     "console",
     "record",
-    "replay",
-    "edit"
+    "replay"
   ],
   "author": "Dino <dinoabsoluto+dev@gmail.com>",
   "license": "Apache-2.0",
