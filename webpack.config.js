@@ -81,7 +81,10 @@ const configLib = (env) => ({
     filename: '[name].js',
     libraryTarget: 'commonjs',
     path: path.resolve(__dirname, env.prod ? 'dist' : '__tmp__/dist')
-  }
+  },
+  plugins: [
+    new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true })
+  ]
 })
 
 module.exports = (env = {}) => {
