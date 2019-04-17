@@ -27,6 +27,11 @@ export const replay = (fname: string): void => {
       return
     }
     const { stdin, stdout } = process
+    if (record.columns !== stdout.columns || record.rows !== stdout.rows) {
+      console.log(chalk.yellow(chalk.bold('WARNING:'), 'replaying at different console size.'))
+      console.log(chalk.yellow(`The recording was made at ${
+        record.columns}x${record.rows}.`))
+    }
     console.log(chalk.blue('---REPLAY STARTED---'))
     if (stdin.setRawMode) {
       stdin.setRawMode(true)
