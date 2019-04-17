@@ -19,7 +19,7 @@
 /* imports */
 import * as record from './record'
 import * as replay from './replay'
-import chalk from 'chalk'
+import * as kleur from 'kleur'
 import yargs = require('yargs')
 import once = require('lodash/once')
 
@@ -37,12 +37,12 @@ parser
     printHelp()
     if (err) {
       if (err.name === 'Check') {
-        console.log(chalk.red('Error:', err.message || ''))
+        console.log(kleur.red(`Error: ${err.message || ''}`))
       } else {
-        console.log(chalk.red(err.stack || ''))
+        console.log(kleur.red(err.stack || ''))
       }
     } else {
-      console.error(chalk.red(msg))
+      console.error(kleur.red(msg))
     }
   })
   .parse()

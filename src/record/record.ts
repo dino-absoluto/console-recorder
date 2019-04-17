@@ -21,11 +21,11 @@ import { spawnShell } from './shell'
 import { startMessage, endMessage } from '../utils/messages'
 import { Recording } from '../recording'
 import * as path from 'path'
-import chalk from 'chalk'
+import * as kleur from 'kleur'
 import makeDir = require('make-dir')
 
 export const record = (fname: string): void => {
-  startMessage(chalk.blue('RECORDING STARTED'))
+  startMessage(kleur.blue('RECORDING STARTED'))
   const stream = spawnShell()
   Recording.record(
     stream,
@@ -37,7 +37,7 @@ export const record = (fname: string): void => {
     await makeDir(path.dirname(fname))
     await record.save(fname)
     console.log()
-    endMessage(chalk.blue('RECORDING ENDED'))
+    endMessage(kleur.blue('RECORDING ENDED'))
   })
 }
 

@@ -17,20 +17,20 @@
  *
  */
 /* imports */
-import chalk from 'chalk'
+import * as kleur from 'kleur'
 
 export const startMessage = (text: string): void => {
   const columns = process.stdout.columns || 40
-  console.log(chalk.gray(
+  console.log(kleur.gray(
     '┌' + '─'.repeat(columns - 2) + '┐'
   ))
-  console.log(chalk.gray('│ -' + text + '-'))
+  console.log(kleur.gray('│ -' + text + '-'))
 }
 
 export const endMessage = (text: string): void => {
   const columns = process.stdout.columns || 40
-  console.log(chalk.gray('│ -' + text + '-'))
-  console.log(chalk.gray(
+  console.log(kleur.gray('│ -' + text + '-'))
+  console.log(kleur.gray(
     '└' + '─'.repeat(columns - 2) + '┘'
   ))
 }

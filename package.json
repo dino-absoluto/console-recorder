@@ -39,7 +39,7 @@
     "typescript": "^3.4.3"
   },
   "dependencies": {
-    "chalk": "^2.4.2",
+    "kleur": "^3.0.3",
     "lodash": "^4.17.11",
     "make-dir": "^3.0.0",
     "node-pty": "^0.8.1",
