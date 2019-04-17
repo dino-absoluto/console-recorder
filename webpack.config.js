@@ -58,7 +58,7 @@ const setupTypescript = (env) => ({
   ]
 })
 
-const setupProductionMode = (env) => env.prod ? ({
+const setupProductionMode = (env) => !env.prod ? ({
   mode: 'development',
   optimization: {
     removeAvailableModules: false,
