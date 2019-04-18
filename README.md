@@ -4,13 +4,13 @@
 
 #### Concept
 
-It is in essence a text log with timestamp. By using the timestamp,
+It is in essence a text log with timestamps. By using the timestamps,
 you can reproduce the console state in real-time.
 
 Replay is a visual reproduction. The actual commands won't be re-run.
 
 #### Features
-- The playback speed can also be adjusted faster or slower.
+- The playback speed can be adjusted faster or slower.
 - Terminate the replay with Ctrl+C.
 - And obviously, tools such as VIM works too.
 
