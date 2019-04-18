@@ -3,9 +3,11 @@
   "version": "1.0.2",
   "description": "Record console session",
   "main": "dist/lib.js",
+  "typings": "dist/console-recorder-beta.d.ts",
   "files": [
     "dist/bin.js",
-    "dist/lib.js"
+    "dist/lib.js",
+    "dist/console-recorder-beta.d.ts"
   ],
   "bin": {
     "console-recorder": "dist/bin.js"
@@ -14,6 +16,12 @@
     "lint": "eslint --ext .js,.ts src",
     "prepublishOnly": "npm run build -- --env.prod",
     "build": "webpack",
+    "build:dts": "tsc -d --emitDeclarationOnly --outDir 'built/dts/'",
+    "build:extract-api": "api-extractor run --local --verbose",
+    "build:docs":
+      "api-documenter markdown --input-folder __tmp__/docModel --output-folder docs",
+    "build:etc":
+      "npm run build:dts && npm run build:extract-api && npm run build:docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -33,6 +41,8 @@
   },
   "homepage": "https://github.com/dino-absoluto/console-recorder#readme",
   "devDependencies": {
+    "@microsoft/api-documenter": "^7.1.1",
+    "@microsoft/api-extractor": "^7.1.0",
     "@types/lodash": "^4.14.123",
     "@types/node": "^11.13.5",
     "@types/webpack-bundle-analyzer": "^2.13.1",

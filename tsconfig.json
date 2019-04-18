@@ -6,7 +6,10 @@
     "moduleResolution": "node",
     "preserveConstEnums": true,
     "sourceMap": false,
-    "allowJs": true,
     "resolveJsonModule": true
-  }
+  },
+  "include": [
+    "src/index.ts",
+    "src/cli.ts"
+  ]
 }

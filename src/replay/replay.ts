@@ -22,13 +22,12 @@ import { startMessage, endMessage } from '../utils/messages'
 import * as readLine from 'readline'
 import * as kleur from 'kleur'
 
-interface ReplayOptions {
+export interface ReplayOptions {
   playSpeed?: number
   normalize?: number
 }
 
-export const replay =
-async (fname: string, options: ReplayOptions = {}): Promise<void> => {
+export async function replay (fname: string, options: ReplayOptions = {}): Promise<void> {
   return Recording.fromFile(fname).then(async (record): Promise<void> => {
     if (record == null) {
       return

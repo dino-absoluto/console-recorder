@@ -24,7 +24,7 @@ import * as path from 'path'
 import * as kleur from 'kleur'
 import makeDir = require('make-dir')
 
-export const record = async (fname: string): Promise<void> => {
+export async function record (fname: string): Promise<void> {
   startMessage(kleur.blue('RECORDING STARTED'))
   const stream = spawnShell()
   return Recording.record(
