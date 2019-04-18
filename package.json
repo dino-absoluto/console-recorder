@@ -1,6 +1,6 @@
 {
   "name": "console-recorder",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Record and replay console session",
   "main": "dist/lib.js",
   "typings": "dist/console-recorder-beta.d.ts",
