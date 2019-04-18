@@ -1,6 +1,6 @@
 {
   "name": "console-recorder",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Record console session",
   "main": "dist/lib.js",
   "typings": "dist/console-recorder-beta.d.ts",
