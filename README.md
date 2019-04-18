@@ -27,14 +27,13 @@ Record session.
 console-recorder rec log.json
 ┌────────────────────────────────────────────────┐
 │ -RECORDING STARTED-
-$ echo Hello World!
+▲ console-recorder/ $ echo Hello World!
 Hello World!
-$ exit
+▲ console-recorder/ $ exit
 exit
 
 │ -RECORDING ENDED-
 └────────────────────────────────────────────────┘
-▲ console-recorder/ $
 ```
 
 Replay a previously recorded session.
@@ -43,9 +42,9 @@ Replay a previously recorded session.
 console-recorder play log.json
 ┌────────────────────────────────────────────────┐
 │ -REPLAY STARTED-
-$ echo Hello World!
+▲ console-recorder/ $ echo Hello World!
 Hello World!
-$ exit
+▲ console-recorder/ $ exit
 exit
 
 │ -REPLAY ENDED-
