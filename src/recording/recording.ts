@@ -19,6 +19,7 @@
 /* imports */
 import { readFile, writeFile } from '../utils/pfs'
 import { delay, elapseTimer } from '../utils/time'
+import { once as eventOnce } from 'events'
 
 /* code */
 /** @public A recorded event */
@@ -79,29 +80,19 @@ export class Recording {
     , rows?: number): Promise<Recording> {
     const events: RecordEvent[] = []
     const timer = elapseTimer()
-    const listeners: [string, (buf: Buffer) => void][] = []
-    const addListener = (name: string, cb: (buf: Buffer) => void): void => {
-      listeners.push([name, cb])
-      stream.on(name, cb)
-    }
-    const promise = new Promise<Recording>((resolve, reject): void => {
-      addListener('error', reject)
-      addListener('end', (): void => {
-        resolve(new Recording(events, columns, rows))
-      })
-    })
-    addListener('data', (chunk: Buffer): void => {
+    const handleData = (chunk: Buffer): void => {
       events.push({
         time: timer(),
         text: chunk.toString()
       })
-    })
-    promise.finally((): void => {
-      for (const [name, cb] of listeners) {
-        stream.off(name, cb)
-      }
-    })
+    }
+    const promise = eventOnce(stream, 'end')
+    stream.addListener('data', handleData)
     return promise
+      .then((): Recording => new Recording(events, columns, rows))
+      .finally((): void => {
+        stream.off('data', handleData)
+      })
   }
 
   public get playSpeed (): number { return this.pPlaySpeed }
