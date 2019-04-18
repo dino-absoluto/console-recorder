@@ -2,7 +2,7 @@
   "name": "console-recorder",
   "version": "1.0.5",
   "description": "Record and replay console session",
-  "main": "lib/lib.js",
+  "main": "lib/lib",
   "typings": "dist/console-recorder-beta.d.ts",
   "files": [
     "dist/bin.js",
