@@ -18,21 +18,13 @@
  */
 /* imports */
 import { readFile, writeFile } from '../utils/pfs'
+import { delay, elapseTimer } from '../utils/time'
 
 /* code */
 /** @public A recorded event */
 export interface RecordEvent {
   time: number
   text: string
-}
-
-const delay = (period: number): Promise<void> => {
-  return new Promise((resolve): void => { setTimeout(resolve, period) })
-}
-
-const elapseTimer = (): () => number => {
-  const startTime = Date.now()
-  return (): number => Date.now() - startTime
 }
 
 const SPEED_DEFAULT = 1.25
@@ -104,7 +96,7 @@ export class Recording {
 
   public get playSpeed (): number { return this.pPlaySpeed }
   public set playSpeed (speed: number) {
-    this.pPlaySpeed = speed > SPEED_MIN ? speed : SPEED_DEFAULT
+    this.pPlaySpeed = speed >= SPEED_MIN ? speed : SPEED_DEFAULT
   }
 
   public normalize (step?: number): void {
