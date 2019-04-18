@@ -19,20 +19,8 @@
 /* imports */
 import { platform } from 'os'
 import { PassThrough, Readable } from 'stream'
-import pty = require('node-pty')
-
-const shell = ((): string => {
-  if (platform() === 'win32') {
-    return 'powershell.exe'
-  } else {
-    const shell = process.env.SHELL
-    if (shell) {
-      return shell
-    } else {
-      return 'bash'
-    }
-  }
-})()
+import { newScript } from './shell-script'
+import { newPty } from './shell-pty'
 
 const { stdin, stdout } = process
 
@@ -40,11 +28,22 @@ const getColumns = (): number => stdout.columns || 80
 const getRows = (): number => stdout.rows || 24
 
 interface PTYStream extends Readable {
+  name?: string
   columns?: number
   rows?: number
 }
 
-export const spawnShell = (): PTYStream => {
+export interface SessionOptions {
+  columns?: number
+  rows?: number
+}
+
+export interface SpawnShellOptions {
+  useNodePty?: boolean
+}
+
+export const spawnShell =
+async (options: SpawnShellOptions = {}): Promise<PTYStream> => {
   if (!stdin.isTTY || !stdout.isTTY) {
     throw new Error('TTY is required')
   }
@@ -52,13 +51,13 @@ export const spawnShell = (): PTYStream => {
     throw new Error('RawMode is required')
   }
 
-  const ptyProcess = pty.spawn(shell, [], {
-    name: 'xterm-256color',
-    cols: getColumns(),
-    rows: getRows(),
-    // cwd: platform() === 'win32' ? process.env.USERPROFILE : process.env.HOME,
-    experimentalUseConpty: true
-  })
+  const ptyOptions = {
+    columns: getColumns(),
+    rows: getRows()
+  }
+  const ptyProcess = await (platform() === 'win32' || options.useNodePty
+    ? newPty(ptyOptions)
+    : newScript(ptyOptions))
 
   const handleResize = (): void => {
     ptyProcess.resize(getColumns(), getRows())
@@ -74,7 +73,7 @@ export const spawnShell = (): PTYStream => {
 
   stdin.setRawMode(true)
 
-  const stream = new PassThrough({
+  const stream: PTYStream & PassThrough = new PassThrough({
     emitClose: true
   })
 
@@ -103,6 +102,8 @@ export const spawnShell = (): PTYStream => {
     }
   })
   stdin.on('data', handleData)
+
+  stream.name = ptyProcess.process
 
   return stream
 }
