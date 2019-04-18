@@ -43,7 +43,7 @@ const NORMALIZATION_STEP = 25
 /** @public A recorded history */
 export class Recording {
   public columns: number = process.stdout.columns || 80
-  public rows: number = process.stdout.rows || 25
+  public rows: number = process.stdout.rows || 24
   public events: RecordEvent[] = []
   /** @internal */
   private playing: Promise<void> | undefined
