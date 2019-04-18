@@ -4,8 +4,6 @@ desktop.ini
 
 __tmp__
 /node_modules
-/lib
-/bin
 /dist
 /coverage
 /built
