@@ -1,7 +1,7 @@
 {
   "name": "console-recorder",
   "version": "1.0.4",
-  "description": "Record console session",
+  "description": "Record and replay console session",
   "main": "dist/lib.js",
   "typings": "dist/console-recorder-beta.d.ts",
   "files": [
@@ -28,6 +28,7 @@
   "keywords": [
     "cli",
     "console",
+    "shell",
     "record",
     "replay"
   ],
