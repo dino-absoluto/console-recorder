@@ -19,7 +19,7 @@
 /* imports */
 import { readFile, writeFile } from '../utils/pfs'
 import { delay, elapseTimer } from '../utils/time'
-import { once as eventOnce } from 'events'
+import { eventOnce } from '../utils/event-once'
 
 /* code */
 /** @public A recorded event */
