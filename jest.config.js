@@ -30,19 +30,9 @@ module.exports = {
     'node_modules',
     '<rootDir>/jest/mods'
   ],
-  globals: {
-    'ts-jest': {
-      tsConfig: {
-        allowJs: true
-      }
-    }
-  },
   transform: {
-    '^.+\\.(ts|tsx|js)$': 'ts-jest'
+    '^.+\\.(ts|tsx)$': 'ts-jest'
   },
-  transformIgnorePatterns: [
-    '<rootDir>/node_modules/(?!lodash-es/.*)'
-  ],
   testMatch: [
     '**/?(*.)+(spec|test).(js)',
     '**/?(*.)+(spec|test).(ts|tsx)'
