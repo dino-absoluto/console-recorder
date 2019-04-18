@@ -2,6 +2,9 @@
 
 > Simply record and replay console session.
 
+[![Build Status](https://travis-ci.com/dino-absoluto/console-recorder.svg?branch=master)](https://travis-ci.com/dino-absoluto/console-recorder)
+[![Coverage Status](https://coveralls.io/repos/github/dino-absoluto/console-recorder/badge.svg?branch=master)](https://coveralls.io/github/dino-absoluto/console-recorder?branch=master)
+
 #### Concept
 
 It is in essence a text log with timestamps. By using the timestamps,
