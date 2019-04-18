@@ -5,7 +5,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "preserveConstEnums": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "resolveJsonModule": true
   },
   "include": [
