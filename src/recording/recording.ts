@@ -79,17 +79,27 @@ export class Recording {
     , rows?: number): Promise<Recording> {
     const events: RecordEvent[] = []
     const timer = elapseTimer()
+    const listeners: [string, (buf: Buffer) => void][] = []
+    const addListener = (name: string, cb: (buf: Buffer) => void): void => {
+      listeners.push([name, cb])
+      stream.on(name, cb)
+    }
     const promise = new Promise<Recording>((resolve, reject): void => {
-      stream.on('error', reject)
-      stream.on('end', (): void => {
+      addListener('error', reject)
+      addListener('end', (): void => {
         resolve(new Recording(events, columns, rows))
       })
     })
-    stream.on('data', (chunk): void => {
+    addListener('data', (chunk: Buffer): void => {
       events.push({
         time: timer(),
         text: chunk.toString()
       })
+    })
+    promise.finally((): void => {
+      for (const [name, cb] of listeners) {
+        stream.off(name, cb)
+      }
     })
     return promise
   }
