@@ -20,6 +20,7 @@
 import * as record from './cmds/record'
 import * as replay from './cmds/replay'
 import * as kleur from 'kleur'
+import { beQuiet } from './utils/messages'
 import yargs = require('yargs')
 import once = require('lodash/once')
 
@@ -27,8 +28,20 @@ export const parser = yargs.strict(true)
 const printHelp = once((): void => {
   parser.showHelp()
 })
+
 parser
   .usage('$0 <cmd> [options] [output]')
+  .option('quiet', {
+    type: 'boolean',
+    default: false,
+    alias: 'q',
+    desc: 'Be quiet!'
+  })
+  .check((argv): boolean => {
+    const { quiet } = argv
+    beQuiet(!!quiet)
+    return true
+  })
   .demandCommand(1, 1)
   .command(record)
   .command(replay)

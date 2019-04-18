@@ -19,7 +19,16 @@
 /* imports */
 import * as kleur from 'kleur'
 
+let quietMode = false
+
+export const beQuiet = (quiet: boolean = true): void => {
+  quietMode = quiet
+}
+
 export const startMessage = (text: string): void => {
+  if (quietMode) {
+    return
+  }
   const columns = process.stdout.columns || 40
   console.log(kleur.gray(
     '┌' + '─'.repeat(columns - 2) + '┐'
@@ -28,6 +37,9 @@ export const startMessage = (text: string): void => {
 }
 
 export const endMessage = (text: string): void => {
+  if (quietMode) {
+    return
+  }
   const columns = process.stdout.columns || 40
   console.log(kleur.gray('│ -' + text + '-'))
   console.log(kleur.gray(
