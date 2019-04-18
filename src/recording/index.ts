@@ -19,4 +19,4 @@
 /* imports */
 
 /* code */
-export { Recording } from './recording'
+export { Recording, RecordEvent } from './recording'

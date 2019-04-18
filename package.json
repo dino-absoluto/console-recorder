@@ -16,10 +16,9 @@
     "lint": "eslint --ext .js,.ts src",
     "prepublishOnly": "npm run build -- --env.prod && npm run build:extract-api",
     "build": "webpack",
-    "build:dts": "tsc -d --emitDeclarationOnly --outDir 'built/dts/'",
-    "build:extract-api": "api-extractor run --local --verbose",
+    "build:extract-api": "tsc -d --emitDeclarationOnly --outDir 'built/dts/' && api-extractor run --local --verbose",
     "build:docs": "api-documenter markdown -i __tmp__/docModel -o docs/api",
-    "build:etc": "npm run build:dts && npm run build:extract-api && npm run build:docs",
+    "build:etc": "npm run build:extract-api && npm run build:docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

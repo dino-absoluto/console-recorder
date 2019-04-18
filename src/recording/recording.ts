@@ -20,6 +20,7 @@
 import { readFile, writeFile } from '../utils/pfs'
 
 /* code */
+/** @public A recorded event */
 export interface RecordEvent {
   time: number
   text: string
@@ -39,11 +40,14 @@ const SPEED_MIN = 0.1
 const THRESHOLD = 4
 const NORMALIZATION_STEP = 25
 
+/** @public A recorded history */
 export class Recording {
   public columns: number = process.stdout.columns || 80
   public rows: number = process.stdout.rows || 25
   public events: RecordEvent[] = []
+  /** @internal */
   private playing: Promise<void> | undefined
+  /** @internal */
   private pPlaySpeed: number = SPEED_DEFAULT
   public constructor (events?: RecordEvent[], columns?: number, rows?: number) {
     if (events) {

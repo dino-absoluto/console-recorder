@@ -17,6 +17,6 @@
  *
  */
 /* imports */
-export { Recording } from './recording'
+export { Recording, RecordEvent } from './recording'
 export { replay, ReplayOptions } from './replay/replay'
 export { record } from './record/record'
