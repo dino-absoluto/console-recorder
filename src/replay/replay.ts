@@ -41,10 +41,14 @@ export async function replay (fname: string, options: ReplayOptions = {}): Promi
       record.playSpeed = options.playSpeed
     }
     const { stdin, stdout } = process
-    const columns = stdout.columns || 40
-    const rows = stdout.rows || 24
-    if (record.columns !== columns || record.rows !== rows) {
-      console.log(kleur.yellow(kleur.bold('WARNING:') + ' replaying at different console size.'))
+    const columns = stdout.columns
+    const rows = stdout.rows
+    if (!columns || !rows) {
+      console.log(kleur.yellow(kleur.bold('WARNING:') +
+        ' console size is indeterminable.'))
+    } else if (record.columns !== columns || record.rows !== rows) {
+      console.log(kleur.yellow(kleur.bold('WARNING:') +
+        ' replaying at different console size.'))
       console.log(kleur.yellow(`The recording was made at ${
         record.columns}x${record.rows}.`))
     }
@@ -66,7 +70,7 @@ export async function replay (fname: string, options: ReplayOptions = {}): Promi
     }
     stdin.on('keypress', handleKeypress)
     await record.replay(stdout).then((): void => {
-      console.log()
+      stdout.write('\n')
       endMessage(kleur.blue('REPLAY ENDED'))
     }).catch((err): void => {
       process.stdout.write('\x1b[0m\x1b[?25h\x1b[?1049h\x1b[?1049l')
