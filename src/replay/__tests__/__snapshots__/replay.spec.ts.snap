@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`replay simple 1`] = `
+"[?1034h[32m▲ fixtures/ (B[m$ echo Hello World!
+Hello World!
+[32m▲ fixtures/ (B[m$ echo [K[K[K[K[Kexit
+exit
+
+"
+`;
+
+exports[`replay simple 2`] = `
+"[33m[1mWARNING:[22m console size is indeterminable.[39m
+[90m┌──────────────────────────────────────┐[39m
+[90m│ -[34mREPLAY STARTED[39m[90m-[39m
+[90m│ -[34mREPLAY ENDED[39m[90m-[39m
+[90m└──────────────────────────────────────┘[39m
+"
+`;

@@ -1,0 +1,154 @@
+{
+ "columns": 80,
+ "rows": 40,
+ "events": [
+  {
+   "time": 0,
+   "text": "\u001b[?1034h\u001b[32m▲ fixtures/ \u001b(B\u001b[m$ "
+  },
+  {
+   "time": 600,
+   "text": "e"
+  },
+  {
+   "time": 800,
+   "text": "c"
+  },
+  {
+   "time": 900,
+   "text": "h"
+  },
+  {
+   "time": 1000,
+   "text": "o"
+  },
+  {
+   "time": 1200,
+   "text": " "
+  },
+  {
+   "time": 1400,
+   "text": "H"
+  },
+  {
+   "time": 1600,
+   "text": "e"
+  },
+  {
+   "time": 1700,
+   "text": "l"
+  },
+  {
+   "time": 1800,
+   "text": "l"
+  },
+  {
+   "time": 1900,
+   "text": "o"
+  },
+  {
+   "time": 2100,
+   "text": " "
+  },
+  {
+   "time": 2300,
+   "text": "W"
+  },
+  {
+   "time": 2500,
+   "text": "o"
+  },
+  {
+   "time": 2600,
+   "text": "r"
+  },
+  {
+   "time": 2800,
+   "text": "l"
+  },
+  {
+   "time": 3000,
+   "text": "d"
+  },
+  {
+   "time": 3400,
+   "text": "!"
+  },
+  {
+   "time": 3800,
+   "text": "\r\n"
+  },
+  {
+   "time": 3900,
+   "text": "Hello World!\r\n"
+  },
+  {
+   "time": 4000,
+   "text": "\u001b[32m▲ fixtures/ \u001b(B\u001b[m$ "
+  },
+  {
+   "time": 4200,
+   "text": "e"
+  },
+  {
+   "time": 4300,
+   "text": "c"
+  },
+  {
+   "time": 4400,
+   "text": "h"
+  },
+  {
+   "time": 4500,
+   "text": "o"
+  },
+  {
+   "time": 4900,
+   "text": " "
+  },
+  {
+   "time": 5300,
+   "text": "\b\u001b[K"
+  },
+  {
+   "time": 5400,
+   "text": "\b\u001b[K"
+  },
+  {
+   "time": 5500,
+   "text": "\b\u001b[K"
+  },
+  {
+   "time": 5600,
+   "text": "\b\u001b[K"
+  },
+  {
+   "time": 5700,
+   "text": "\b\u001b[K"
+  },
+  {
+   "time": 6100,
+   "text": "e"
+  },
+  {
+   "time": 6200,
+   "text": "x"
+  },
+  {
+   "time": 6300,
+   "text": "i"
+  },
+  {
+   "time": 6400,
+   "text": "t"
+  },
+  {
+   "time": 6600,
+   "text": "\r\n"
+  },
+  {
+   "time": 6700,
+   "text": "exit\r\n"
+  }
+ ]
+}
