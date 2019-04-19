@@ -22,6 +22,8 @@ import { Writable } from 'stream'
 import { promisify } from 'util'
 import { Console } from 'console'
 import { EventEmitter } from 'events'
+import { replay } from '../replay'
+import pick = require('lodash/pick')
 
 class TestStream extends Writable {
   public data = ''
@@ -36,10 +38,20 @@ const immediate = promisify(setImmediate)
 
 /* code */
 describe('replay', () => {
+  const { stdin, stdout } = process
+  const savedStdinState = pick(stdout, 'setRawMode')
+  const savedStdoutState = pick(stdout, 'columns', 'rows')
+  beforeEach(() => {
+    stdin.setRawMode = undefined
+    stdout.columns = undefined
+    stdout.rows = undefined
+  })
+  afterAll(() => {
+    Object.assign(stdin, savedStdinState)
+    Object.assign(stdout, savedStdoutState)
+  })
   test('simple', async () => {
     jest.useFakeTimers()
-    const { replay } = await import('../replay')
-    const { stdout } = process
     const stream = new TestStream()
     const logStream = new TestStream()
     const oldConsole = global.console
@@ -66,8 +78,6 @@ describe('replay', () => {
   })
   test('fake state', async () => {
     jest.useFakeTimers()
-    const { replay } = await import('../replay')
-    const { stdin, stdout } = process
     stdin.setRawMode = jest.fn()
     stdout.columns = 40
     stdout.rows = 24
@@ -92,16 +102,12 @@ describe('replay', () => {
       }
     })()])
     global.console = oldConsole
-    stdout.columns = undefined
-    stdout.rows = undefined
     expect(stream.data).toMatchSnapshot()
     expect(logStream.data).toMatchSnapshot()
     expect(stdin.setRawMode).toBeCalledTimes(2)
   })
   test('cancel', async () => {
     jest.useFakeTimers()
-    const { replay } = await import('../replay')
-    const { stdin, stdout } = process
     stdin.setRawMode = jest.fn()
     const events = new EventEmitter()
     const stream = new TestStream()
@@ -139,8 +145,6 @@ describe('replay', () => {
   })
   test('error', async () => {
     jest.useFakeTimers()
-    const { replay } = await import('../replay')
-    const { stdin, stdout } = process
     stdin.setRawMode = jest.fn()
     const events = new EventEmitter()
     const stream = new TestStream()
@@ -177,7 +181,6 @@ describe('replay', () => {
     expect(stdin.setRawMode).toBeCalledTimes(2)
   })
   test('error.ENOENT', async () => {
-    const { replay } = await import('../replay')
     const promise = replay(path.join(__dirname, 'fixtures/non-existent.json'), {
       playSpeed: 10
     })
