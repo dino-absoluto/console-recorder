@@ -19,8 +19,6 @@
     "prepublishOnly": "npm run build -- --env.prod && npm run build:extract-api",
     "build": "webpack",
     "build:extract-api": "tsc -d --emitDeclarationOnly --outDir 'built/dts/' && api-extractor run --local --verbose",
-    "build:docs": "api-documenter markdown -i __tmp__/docModel -o docs/api",
-    "build:etc": "npm run build:extract-api && npm run build:docs",
     "test": "jest"
   },
   "repository": {
@@ -41,7 +39,6 @@
   },
   "homepage": "https://github.com/dino-absoluto/console-recorder#readme",
   "devDependencies": {
-    "@microsoft/api-documenter": "^7.1.1",
     "@microsoft/api-extractor": "^7.1.0",
     "@types/jest": "^24.0.11",
     "@types/lodash": "^4.14.123",
