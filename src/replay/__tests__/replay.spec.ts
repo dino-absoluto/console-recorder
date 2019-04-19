@@ -21,6 +21,7 @@ import * as path from 'path'
 import { Writable } from 'stream'
 import { promisify } from 'util'
 import { Console } from 'console'
+import { EventEmitter } from 'events'
 
 class TestStream extends Writable {
   public data = ''
@@ -31,10 +32,11 @@ class TestStream extends Writable {
   }
 }
 
+const immediate = promisify(setImmediate)
+
 /* code */
 describe('replay', () => {
   test('simple', async () => {
-    const immediate = promisify(setImmediate)
     jest.useFakeTimers()
     const { replay } = await import('../replay')
     const { stdout } = process
@@ -61,5 +63,124 @@ describe('replay', () => {
     global.console = oldConsole
     expect(stream.data).toMatchSnapshot()
     expect(logStream.data).toMatchSnapshot()
+  })
+  test('fake state', async () => {
+    jest.useFakeTimers()
+    const { replay } = await import('../replay')
+    const { stdin, stdout } = process
+    stdin.setRawMode = jest.fn()
+    stdout.columns = 40
+    stdout.rows = 24
+    const stream = new TestStream()
+    const logStream = new TestStream()
+    const oldConsole = global.console
+    global.console = new Console(logStream)
+    jest.spyOn(stdout, 'write').mockImplementation(
+      stream.write.bind(stream) as typeof stdout.write)
+    jest.spyOn(stdout, 'end').mockImplementation(
+      stream.end.bind(stream) as typeof stdout.end)
+    const promise = replay(path.join(__dirname, 'fixtures/simple.json'), {
+      playSpeed: 10
+    })
+    let pDone = false
+    let done = () => pDone
+    promise.then(() => (pDone = true))
+    await Promise.race([promise, (async () => {
+      while (!done()) {
+        jest.runAllTimers()
+        await immediate()
+      }
+    })()])
+    global.console = oldConsole
+    stdout.columns = undefined
+    stdout.rows = undefined
+    expect(stream.data).toMatchSnapshot()
+    expect(logStream.data).toMatchSnapshot()
+    expect(stdin.setRawMode).toBeCalledTimes(2)
+  })
+  test('cancel', async () => {
+    jest.useFakeTimers()
+    const { replay } = await import('../replay')
+    const { stdin, stdout } = process
+    stdin.setRawMode = jest.fn()
+    const events = new EventEmitter()
+    const stream = new TestStream()
+    const logStream = new TestStream()
+    const oldConsole = global.console
+    global.console = new Console(logStream)
+    jest.spyOn(stdout, 'write').mockImplementation(
+      stream.write.bind(stream) as typeof stdout.write)
+    jest.spyOn(stdout, 'end').mockImplementation(
+      stream.end.bind(stream) as typeof stdout.end)
+    jest.spyOn(stdin, 'on').mockImplementation(
+      events.on.bind(events) as typeof stdin.on)
+    const promise = replay(path.join(__dirname, 'fixtures/simple.json'), {
+      normalize: 200
+    })
+    let pDone = false
+    let done = () => pDone
+    promise.then(() => (pDone = true))
+    await Promise.race([promise, (async () => {
+      while (!done() && stream.data.length < 50) {
+        jest.runAllTimers()
+        await immediate()
+      }
+      expect(done()).toBe(false)
+      events.emit('keypress', undefined, { ctrl: true, name: 'c' })
+      while (!done()) {
+        jest.runAllTimers()
+        await immediate()
+      }
+    })()])
+    global.console = oldConsole
+    expect(stream.data).toMatchSnapshot()
+    expect(logStream.data).toMatchSnapshot()
+    expect(stdin.setRawMode).toBeCalledTimes(2)
+  })
+  test('error', async () => {
+    jest.useFakeTimers()
+    const { replay } = await import('../replay')
+    const { stdin, stdout } = process
+    stdin.setRawMode = jest.fn()
+    const events = new EventEmitter()
+    const stream = new TestStream()
+    const logStream = new TestStream()
+    const oldConsole = global.console
+    global.console = new Console(logStream)
+    jest.spyOn(stdout, 'write').mockImplementation(
+      stream.write.bind(stream) as typeof stdout.write)
+    jest.spyOn(stdout, 'end').mockImplementation(
+      stream.end.bind(stream) as typeof stdout.end)
+    jest.spyOn(stdin, 'on').mockImplementation(
+      events.on.bind(events) as typeof stdin.on)
+    const promise = replay(path.join(__dirname, 'fixtures/simple.json'), {
+      playSpeed: 10
+    })
+    let pDone = false
+    let done = () => pDone
+    promise.then(() => (pDone = true))
+    await Promise.race([promise, (async () => {
+      while (!done() && stream.data.length < 50) {
+        jest.runAllTimers()
+        await immediate()
+      }
+      expect(done()).toBe(false)
+      stream.destroy()
+      while (!done()) {
+        jest.runAllTimers()
+        await immediate()
+      }
+    })()])
+    global.console = oldConsole
+    expect(stream.data).toMatchSnapshot()
+    expect(logStream.data).toMatchSnapshot()
+    expect(stdin.setRawMode).toBeCalledTimes(2)
+  })
+  test('error.ENOENT', async () => {
+    const { replay } = await import('../replay')
+    const promise = replay(path.join(__dirname, 'fixtures/non-existent.json'), {
+      playSpeed: 10
+    })
+    expect(promise).rejects.toThrow('ENOENT')
   })
 })

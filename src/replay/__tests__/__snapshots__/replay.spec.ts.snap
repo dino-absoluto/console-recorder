@@ -1,5 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`replay cancel 1`] = `
+"[?1034h[32m▲ fixtures/ (B[m$ echo Hello World!
+[0m[?25h[?1049h[?1049l
+"
+`;
+
+exports[`replay cancel 2`] = `
+"[33m[1mWARNING:[22m console size is indeterminable.[39m
+[90m┌──────────────────────────────────────┐[39m
+[90m│ -[34mREPLAY STARTED[39m[90m-[39m
+^C
+[90m│ -[33mREPLAY CANCELED[39m[90m-[39m
+[90m└──────────────────────────────────────┘[39m
+"
+`;
+
+exports[`replay error 1`] = `"[?1034h[32m▲ fixtures/ (B[m$ echo Hello World!"`;
+
+exports[`replay error 2`] = `
+"[33m[1mWARNING:[22m console size is indeterminable.[39m
+[90m┌──────────────────────────────────────┐[39m
+[90m│ -[34mREPLAY STARTED[39m[90m-[39m
+[90m│ -[31mREPLAY ERRORED[39m[90m-[39m
+[90m└──────────────────────────────────────┘[39m
+[31mError [ERR_STREAM_DESTROYED]: Cannot call write after a stream was destroyed[39m
+"
+`;
+
+exports[`replay fake state 1`] = `
+"[?1034h[32m▲ fixtures/ (B[m$ echo Hello World!
+Hello World!
+[32m▲ fixtures/ (B[m$ echo [K[K[K[K[Kexit
+exit
+
+"
+`;
+
+exports[`replay fake state 2`] = `
+"[33m[1mWARNING:[22m replaying at different console size.[39m
+[33mNow: 40x24. The recording was made at 80x40.[39m
+[90m┌──────────────────────────────────────┐[39m
+[90m│ -[34mREPLAY STARTED[39m[90m-[39m
+[90m│ -[34mREPLAY ENDED[39m[90m-[39m
+[90m└──────────────────────────────────────┘[39m
+"
+`;
+
 exports[`replay simple 1`] = `
 "[?1034h[32m▲ fixtures/ (B[m$ echo Hello World!
 Hello World!

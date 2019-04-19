@@ -57,7 +57,7 @@ export class Recording {
     })
   }
 
-  public static async fromFile (fpath: string): Promise<Recording | undefined> {
+  public static async fromFile (fpath: string): Promise<Recording> {
     const data = JSON.parse((await readFile(fpath)).toString())
     if (data && Array.isArray(data.events)) {
       let events: RecordEvent[] = data.events
@@ -72,6 +72,7 @@ export class Recording {
       }, [] as RecordEvent[])
       return new Recording(events, data.columns, data.rows)
     }
+    throw new Error('failed to read from file')
   }
 
   public static async record (
