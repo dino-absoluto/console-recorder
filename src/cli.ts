@@ -20,7 +20,8 @@
 import * as record from './cmds/record'
 import * as replay from './cmds/replay'
 import * as kleur from 'kleur'
-import { beQuiet } from './utils/messages'
+import { PassThrough } from 'stream'
+import { Console } from 'console'
 import yargs = require('yargs')
 import once = require('lodash/once')
 
@@ -39,7 +40,11 @@ parser
   })
   .check((argv): boolean => {
     const { quiet } = argv
-    beQuiet(!!quiet)
+    if (quiet) {
+      const stream = new PassThrough()
+      global.console = new Console(stream)
+      stream.on('data', (): void => void (0))
+    }
     return true
   })
   .demandCommand(1, 1)
