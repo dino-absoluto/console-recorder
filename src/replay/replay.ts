@@ -73,8 +73,7 @@ export async function replay (fname: string, options: ReplayOptions = {}): Promi
       stdout.write('\n')
       endMessage(kleur.blue('REPLAY ENDED'))
     }).catch((err): void => {
-      process.stdout.write('\x1b[0m\x1b[?25h\x1b[?1049h\x1b[?1049l')
-      console.log()
+      process.stdout.write('\x1b[0m\x1b[?25h\x1b[?1049h\x1b[?1049l\n')
       if (err.message.indexOf('canceled') >= 0) {
         endMessage(kleur.yellow('REPLAY CANCELED'))
       } else {
