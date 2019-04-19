@@ -18,9 +18,11 @@
  */
 /* imports */
 const makeDir = require('make-dir')
+const path = require('path')
+
 /* exports */
 module.exports = async () => {
-  const tmpDir = __dirname + '/../__tmp__'
+  const tmpDir = path.join(__dirname, '/../__tmp__')
   await makeDir(tmpDir)
   process.chdir(tmpDir)
 }
