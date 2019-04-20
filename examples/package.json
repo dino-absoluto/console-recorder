@@ -7,6 +7,7 @@
     "rec": "console-recorder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "private": true,
   "author": "Dino <dinoabsoluto+dev@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
