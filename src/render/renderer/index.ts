@@ -35,6 +35,7 @@ import {
 import { readFile, writeFile } from '../../utils/pfs'
 import * as c from 'kleur'
 import * as path from 'path'
+import paletteMinus from './palette-minus'
 import handlebars = require('handlebars')
 import round = require('lodash/round')
 
@@ -122,8 +123,10 @@ class DataBuilder {
     }
     const first = screens[0]
     if (first) {
-      this.defaultBackground = first.defaultBackground
-      this.defaultForeground = first.defaultForeground
+      this.defaultBackground =
+        new ScreenColor(first.defaultBackground.color, this)
+      this.defaultForeground =
+        new ScreenColor(first.defaultForeground.color, this)
       this.palette = first.palette
     } else {
       this.defaultBackground =
@@ -266,6 +269,7 @@ async (
   if (!screens) { return }
   // const screen = screens[screens.length - 1]
   const dataBuilder = new DataBuilder(screens)
+  dataBuilder.palette = paletteMinus
   dataBuilder.init()
   const template = await templatePromise
   const data = template(dataBuilder)
