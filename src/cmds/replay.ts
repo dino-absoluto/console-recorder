@@ -40,6 +40,14 @@ export const builder =
       type: 'number',
       desc: 'Normalize events at steps of {number}ms'
     })
+    .option('typingSpeed', {
+      type: 'number',
+      desc: 'Multiply typing speed by {number}'
+    })
+    .option('maxDelay', {
+      type: 'number',
+      desc: 'Maximum delay between events, calculated before playSpeed'
+    })
     .positional('input', {
       type: 'string',
       desc: 'A recorded TTY session'
@@ -76,6 +84,8 @@ export const handler = async (argv: Options): Promise<void> => {
   const input: string = argv.input as string
   await replay(input, {
     normalize: argv.normalize,
-    playSpeed: argv.playSpeed
+    playSpeed: argv.playSpeed,
+    typingSpeed: argv.typingSpeed,
+    maxDelay: argv.maxDelay
   })
 }

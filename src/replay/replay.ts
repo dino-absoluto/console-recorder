@@ -26,6 +26,8 @@ import * as kleur from 'kleur'
 export interface ReplayOptions {
   playSpeed?: number
   normalize?: number
+  maxDelay?: number
+  typingSpeed?: number
 }
 
 /** @public Start replaying */
@@ -33,6 +35,8 @@ export async function replay (fname: string, options: ReplayOptions = {}): Promi
   return Recording.fromFile(fname).then(async (record): Promise<void> => {
     if (options.normalize) {
       record.normalize({
+        maxDelay: options.maxDelay,
+        typingSpeed: options.typingSpeed,
         step: options.normalize
       })
     }
