@@ -29,12 +29,19 @@ export interface RecordEvent {
 }
 
 const SPEED_DEFAULT = 1.0
-const SPEED_MIN = 0.1
+const SPEED_MIN = 0.01
 const THRESHOLD = 4
 const NORMALIZATION_STEP = 25
 
+interface RecordingData {
+  columns: number
+  rows: number
+  events: RecordEvent[]
+  playSpeed: number
+}
+
 /** @public A recorded history */
-export class Recording {
+export class Recording implements RecordingData {
   public columns: number = process.stdout.columns || 80
   public rows: number = process.stdout.rows || 24
   public events: RecordEvent[] = []
@@ -42,15 +49,18 @@ export class Recording {
   private playing: Promise<void> | undefined
   /** @internal */
   private pPlaySpeed: number = SPEED_DEFAULT
-  public constructor (events?: RecordEvent[], columns?: number, rows?: number) {
-    if (events) {
-      this.events = events
+  public constructor (options: Partial<RecordingData> = {}) {
+    if (options.events) {
+      this.events = options.events
     }
-    if (columns) {
-      this.columns = columns
+    if (options.columns) {
+      this.columns = options.columns
     }
-    if (rows) {
-      this.rows = rows
+    if (options.rows) {
+      this.rows = options.rows
+    }
+    if (options.playSpeed) {
+      this.playSpeed = options.playSpeed
     }
     Object.defineProperties(this, {
       pPlaySpeed: { enumerable: false }
@@ -58,8 +68,9 @@ export class Recording {
   }
 
   public static async fromFile (fpath: string): Promise<Recording> {
-    const data = JSON.parse((await readFile(fpath)).toString())
-    if (data && Array.isArray(data.events)) {
+    const data =
+      JSON.parse((await readFile(fpath)).toString()) as Partial<RecordingData>
+    if (typeof data === 'object' && Array.isArray(data.events)) {
       let events: RecordEvent[] = data.events
       events = events.reduce((acc, e): RecordEvent[] => {
         const last = acc[acc.length - 1]
@@ -70,7 +81,12 @@ export class Recording {
         }
         return acc
       }, [] as RecordEvent[])
-      return new Recording(events, data.columns, data.rows)
+      return new Recording({
+        events,
+        columns: data.columns,
+        rows: data.rows,
+        playSpeed: data.playSpeed
+      })
     }
     throw new Error('failed to read from file')
   }
@@ -90,7 +106,9 @@ export class Recording {
     const promise = eventOnce(stream, 'end')
     stream.addListener('data', handleData)
     return promise
-      .then((): Recording => new Recording(events, columns, rows))
+      .then((): Recording => new Recording({
+        events, columns, rows
+      }))
       .finally((): void => {
         stream.off('data', handleData)
       })

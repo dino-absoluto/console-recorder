@@ -48,7 +48,11 @@ describe('Recording', (): void => {
       { time: 0, text: 'Hello' },
       { time: 100, text: ' World!' }
     ]
-    const rec = new Recording(events, 80, 24)
+    const rec = new Recording({
+      events,
+      columns: 80,
+      rows: 24
+    })
     expect(rec).toMatchObject({
       columns: 80,
       rows: 24,
@@ -66,7 +70,7 @@ describe('Recording', (): void => {
       { time: 110, text: ' World!' },
       { time: 170, text: ' World!' }
     ]
-    const rec = new Recording(events)
+    const rec = new Recording({ events })
     expect(rec.events).toMatchObject(events)
     rec.normalize(100)
     const eventsNormalized: RecordEvent[] = [
@@ -81,11 +85,15 @@ describe('Recording', (): void => {
   })
   test('playSpeed', (): void => {
     const rec = new Recording()
-    expect(rec.playSpeed).toBeCloseTo(1.25, 2)
+    expect(rec.playSpeed).toBeCloseTo(1.0, 2)
     rec.playSpeed = 0.1
     expect(rec.playSpeed).toBeCloseTo(0.1, 2)
     rec.playSpeed = 0.05
-    expect(rec.playSpeed).toBeCloseTo(1.25, 2)
+    expect(rec.playSpeed).toBeCloseTo(0.05, 2)
+    rec.playSpeed = 0.01
+    expect(rec.playSpeed).toBeCloseTo(0.01, 2)
+    rec.playSpeed = 0.00999
+    expect(rec.playSpeed).toBeCloseTo(1.0, 2)
   })
   test('simple recording', async (): Promise<void> => {
     const events: RecordEvent[] = [
@@ -111,7 +119,11 @@ describe('Recording', (): void => {
       { time: 0, text: 'Hello' },
       { time: 100, text: ' World!' }
     ]
-    const rec = new Recording(events, 80, 24)
+    const rec = new Recording({
+      events,
+      columns: 80,
+      rows: 24
+    })
     expect(rec).toMatchObject({
       columns: 80,
       rows: 24,
@@ -126,7 +138,11 @@ describe('Recording', (): void => {
       { time: 0, text: 'Hello' },
       { time: 100, text: ' World!' }
     ]
-    const rec = new Recording(events, 80, 24)
+    const rec = new Recording({
+      events,
+      columns: 80,
+      rows: 24
+    })
     expect(rec).toMatchObject({
       columns: 80,
       rows: 24,
