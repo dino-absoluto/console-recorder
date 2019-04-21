@@ -47,7 +47,7 @@ handlebars.registerHelper('average',
   (a: number, b: number): number => (a + b) / 2)
 
 /* constants */
-const rem = 12
+const rem = 15
 const glyphWidth = rem * 0.6
 const glyphHeight = rem * 1.5
 const glyphBottom = rem / 3
