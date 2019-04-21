@@ -32,7 +32,9 @@ export interface ReplayOptions {
 export async function replay (fname: string, options: ReplayOptions = {}): Promise<void> {
   return Recording.fromFile(fname).then(async (record): Promise<void> => {
     if (options.normalize) {
-      record.normalize(options.normalize)
+      record.normalize({
+        step: options.normalize
+      })
     }
     if (options.playSpeed) {
       record.playSpeed = options.playSpeed

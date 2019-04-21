@@ -64,25 +64,6 @@ describe('Recording', (): void => {
     const rec2 = await Recording.fromFile(fname)
     expect(rec2).toMatchObject(rec)
   })
-  test('normalize', async (): Promise<void> => {
-    const events: RecordEvent[] = [
-      { time: 25, text: 'Hello' },
-      { time: 110, text: ' World!' },
-      { time: 170, text: ' World!' }
-    ]
-    const rec = new Recording({ events })
-    expect(rec.events).toMatchObject(events)
-    rec.normalize(100)
-    const eventsNormalized: RecordEvent[] = [
-      { time: 0, text: 'Hello' },
-      { time: 100, text: ' World!' },
-      { time: 200, text: ' World!' }
-    ]
-    expect(rec.events).toMatchObject(eventsNormalized)
-    const rec2 = new Recording()
-    rec.normalize()
-    rec2.normalize()
-  })
   test('playSpeed', (): void => {
     const rec = new Recording()
     expect(rec.playSpeed).toBeCloseTo(1.0, 2)
@@ -152,5 +133,94 @@ describe('Recording', (): void => {
     expect(rec.replay(stream)).rejects.toThrow('canceled')
     await expect(rec.stop()).rejects.toThrow('canceled')
     expect(stream.data).not.toBe('Hello World!')
+  })
+  /*
+   * Normalization tests.
+   */
+  test('normalize', async (): Promise<void> => {
+    const events: RecordEvent[] = [
+      { time: 25, text: 'Hello' },
+      { time: 110, text: ' World!' },
+      { time: 170, text: ' World!' }
+    ]
+    const rec = new Recording({ events })
+    expect(rec.events).toMatchObject(events)
+    rec.normalize({ step: 100 })
+    const eventsNormalized: RecordEvent[] = [
+      { time: 0, text: 'Hello' },
+      { time: 100, text: ' World!' },
+      { time: 200, text: ' World!' }
+    ]
+    expect(rec.events).toMatchObject(eventsNormalized)
+    const rec2 = new Recording()
+    rec.normalize()
+    rec2.normalize()
+  })
+  test.each([
+    {
+      events: [
+        { time: 25, text: 'Hello' },
+        { time: 110, text: ' World!' },
+        { time: 170, text: ' World!' }
+      ],
+      options: {
+        step: 100
+      },
+      normalized: [
+        { time: 0, text: 'Hello' },
+        { time: 100, text: ' World!' },
+        { time: 200, text: ' World!' }
+      ]
+    },
+    {
+      events: [
+        { time: 25, text: 'Hello' },
+        { time: 110, text: ' World!' },
+        { time: 20000, text: ' World!' }
+      ],
+      options: {
+        step: 100,
+        maxDelay: 1000
+      },
+      normalized: [
+        { time: 0, text: 'Hello' },
+        { time: 100, text: ' World!' },
+        { time: 1100, text: ' World!' }
+      ]
+    },
+    {
+      events: [
+        { time: 25, text: 'a' },
+        { time: 110, text: 'b' },
+        { time: 170, text: 'c' },
+        { time: 260, text: 'd' },
+        { time: 370, text: 'e' },
+        { time: 475, text: '\b\u001b[K' },
+        { time: 570, text: 'Hello World!' },
+        { time: 675, text: 'Hello World!' }
+      ],
+      options: {
+        step: 100,
+        typingSpeed: 2
+      },
+      normalized: [
+        { time: 0, text: 'a' },
+        { time: 50, text: 'b' },
+        { time: 100, text: 'c' },
+        { time: 150, text: 'd' },
+        { time: 200, text: 'e' },
+        { time: 250, text: '\b\u001b[K' },
+        { time: 350, text: 'Hello World!' },
+        { time: 450, text: 'Hello World!' }
+      ]
+    }
+  ])('normalize', async ({
+    events,
+    options,
+    normalized
+  }): Promise<void> => {
+    const rec = new Recording({ events })
+    rec.normalize(options)
+    expect(rec.events).toMatchObject(normalized)
   })
 })

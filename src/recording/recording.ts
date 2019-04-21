@@ -33,11 +33,17 @@ const SPEED_MIN = 0.01
 const THRESHOLD = 4
 const NORMALIZATION_STEP = 25
 
-interface RecordingData {
+export interface RecordingData {
   columns: number
   rows: number
   events: RecordEvent[]
   playSpeed: number
+}
+
+export interface NormalizeOptions {
+  step?: number
+  typingSpeed?: number
+  maxDelay?: number
 }
 
 /** @public A recorded history */
@@ -119,21 +125,51 @@ export class Recording implements RecordingData {
     this.pPlaySpeed = speed >= SPEED_MIN ? speed : SPEED_DEFAULT
   }
 
-  public normalize (step?: number): void {
+  public normalize (options: NormalizeOptions = {}): void {
     const { events } = this
     if (!(events.length > 0)) {
       return
     }
+    let step = options.step
     if (!step || !(step > 1)) {
       step = NORMALIZATION_STEP
     }
+    const maxDelay = options.maxDelay && options.maxDelay > 0
+      ? options.maxDelay
+      : Number.MAX_SAFE_INTEGER
     let startTime = events[0].time
     let lastTime = startTime
-    let corrected = -step
+    let corrected = 0
+    const newEvents: RecordEvent[] = []
+    let lastEvent: RecordEvent | undefined
     for (const e of events) {
-      corrected += Math.max(1, Math.round((e.time - lastTime) / step)) * step
+      const delta = Math.min(maxDelay, Math.round((e.time - lastTime) / step) * step)
       lastTime = e.time
-      e.time = corrected
+      if (!lastEvent || delta > 0) {
+        corrected += delta
+        lastEvent = {
+          time: corrected,
+          text: e.text
+        }
+        newEvents.push(lastEvent)
+      } else {
+        lastEvent.text += e.text
+      }
+    }
+    this.events = newEvents
+    if (options.typingSpeed && options.typingSpeed > 0) {
+      const multiplier = 1 / options.typingSpeed
+      let lastTime = 0
+      let corrected = 0
+      for (const e of this.events) {
+        let delta = e.time - lastTime
+        lastTime = e.time
+        if (e.text.length === 1 || e.text === '\b\u001b[K') {
+          delta *= multiplier
+        }
+        corrected += delta
+        e.time = corrected
+      }
     }
   }
 
