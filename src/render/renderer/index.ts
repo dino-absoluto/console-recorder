@@ -48,6 +48,14 @@ const rem = 12
 const glyphWidth = rem * 0.6
 const glyphHeight = rem * 1.5
 const glyphBottom = rem / 3
+const fontDefault = [
+  'SFMono-Regular',
+  'Consolas',
+  'Liberation Mono',
+  'Menlo',
+  'Courier',
+  'monospace'
+]
 
 const templatePromise = (async ():
 Promise<ReturnType<typeof handlebars.compile>> => {
@@ -85,6 +93,7 @@ class DataBuilder {
   public glyphHeight = glyphHeight
   public width: number = 0
   public height: number = 0
+  public fontFamily = fontDefault
   public screens: ScreenBuffer[]
   public fragments: ReturnType<typeof toFragments> = []
   public fmMap = new Map<string, Text>()

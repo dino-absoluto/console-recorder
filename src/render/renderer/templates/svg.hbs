@@ -36,8 +36,14 @@ limitations under the License.
 
 .console-text > text {
   font-size: 1rem;
-  font-family:
-    SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+  font-family: {{0~}}
+  {{#each @root.fontFamily~}}
+    {{~#if @first~}}
+      {{this}}
+    {{~else~}}
+      , {{this}}
+    {{~/if~}}
+  {{~/each~}};
   pointer-events: none;
 }
 
