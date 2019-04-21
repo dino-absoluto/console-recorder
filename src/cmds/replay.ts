@@ -42,11 +42,13 @@ export const builder =
     })
     .option('typingSpeed', {
       type: 'number',
-      desc: 'Multiply typing speed by {number}'
+      desc: 'Multiply typing speed by {number}',
+      implies: 'normalize'
     })
     .option('maxDelay', {
       type: 'number',
-      desc: 'Maximum delay between events, calculated before playSpeed'
+      desc: 'Maximum delay between events, calculated before playSpeed',
+      implies: 'normalize'
     })
     .positional('input', {
       type: 'string',
