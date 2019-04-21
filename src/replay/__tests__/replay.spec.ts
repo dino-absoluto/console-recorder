@@ -61,7 +61,7 @@ describe('replay', () => {
     jest.spyOn(stdout, 'end').mockImplementation(
       stream.end.bind(stream) as typeof stdout.end)
     const promise = replay(path.join(__dirname, 'fixtures/simple.json'), {
-      playSpeed: 10
+      speed: 10
     })
     let pDone = false
     let done = () => pDone
@@ -90,7 +90,7 @@ describe('replay', () => {
     jest.spyOn(stdout, 'end').mockImplementation(
       stream.end.bind(stream) as typeof stdout.end)
     const promise = replay(path.join(__dirname, 'fixtures/simple.json'), {
-      playSpeed: 10
+      speed: 10
     })
     let pDone = false
     let done = () => pDone
@@ -121,7 +121,7 @@ describe('replay', () => {
     jest.spyOn(stdin, 'on').mockImplementation(
       events.on.bind(events) as typeof stdin.on)
     const promise = replay(path.join(__dirname, 'fixtures/simple.json'), {
-      normalize: 200
+      step: 200
     })
     let pDone = false
     let done = () => pDone
@@ -158,7 +158,7 @@ describe('replay', () => {
     jest.spyOn(stdin, 'on').mockImplementation(
       events.on.bind(events) as typeof stdin.on)
     const promise = replay(path.join(__dirname, 'fixtures/simple.json'), {
-      playSpeed: 10
+      speed: 10
     })
     let pDone = false
     let done = () => pDone
@@ -182,7 +182,7 @@ describe('replay', () => {
   })
   test('error.ENOENT', async () => {
     const promise = replay(path.join(__dirname, 'fixtures/non-existent.json'), {
-      playSpeed: 10
+      speed: 10
     })
     expect(promise).rejects.toThrow('ENOENT')
   })
