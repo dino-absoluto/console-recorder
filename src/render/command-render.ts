@@ -28,7 +28,8 @@ export const command = 'render [options]'
 export const aliases = []
 export const describe = 'Render a record to SVG file'
 export const builder =
-(yargs: typeof parser) => // eslint-disable-line @typescript-eslint/explicit-function-return-type
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+(yargs: typeof parser) =>
   yargs.strict(true)
     .usage('$0 -i <input> -o <output>')
     .option('input', {

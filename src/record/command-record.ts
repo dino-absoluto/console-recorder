@@ -25,7 +25,8 @@ export const command = 'record <output>'
 export const aliases = [ 'rec' ]
 export const describe = 'Record TTY session'
 export const builder =
-(yargs: typeof parser) => // eslint-disable-line @typescript-eslint/explicit-function-return-type
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+(yargs: typeof parser) =>
   yargs.strict(true)
     .positional('output', {
       desc: 'File to save TTY session to',
