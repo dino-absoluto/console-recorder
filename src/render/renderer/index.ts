@@ -18,10 +18,10 @@
  */
 /* imports */
 import { ScreenBuffer } from '../interpreter/screen'
+import { ScreenColor } from '../interpreter/color-screen'
 import {
-  ScreenColor
-  , Palette
-  , ANSIColors
+  Palette,
+  ANSIColors
 } from '../interpreter/color'
 import {
   palette8Bit
