@@ -19,6 +19,7 @@
 /* imports */
 import * as record from './record/command-record'
 import * as replay from './replay/command-replay'
+import * as render from './render/command-render'
 import * as kleur from 'kleur'
 import { PassThrough } from 'stream'
 import { Console } from 'console'
@@ -50,6 +51,7 @@ parser
   .demandCommand(1, 1)
   .command(record)
   .command(replay)
+  .command(render)
   .help()
   .fail((msg, err): void => {
     printHelp()
