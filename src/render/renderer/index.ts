@@ -50,9 +50,9 @@ handlebars.registerHelper('average',
 const rem = 15
 const glyphWidth = rem * 0.6
 const glyphHeight = rem * 1.5
-const glyphBottom = rem / 3
+const glyphBaseline = rem * 0.8
 const fontDefault = [
-  'Source Code Pro',
+  'PT Mono',
   'SFMono-Regular',
   'Menlo',
   'DejaVu Sans Mono',
@@ -151,7 +151,7 @@ class DataBuilder {
       if (!fm.options) {
         fm.options = {
           x: round(fm.col * glyphWidth, PRECISION),
-          y: round(fm.row * glyphHeight + (glyphHeight - glyphBottom), PRECISION),
+          y: round(fm.row * glyphHeight + glyphBaseline, PRECISION),
           width: round(fm.span * glyphWidth, PRECISION),
           height: glyphHeight,
           frames: []

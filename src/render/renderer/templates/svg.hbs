@@ -35,6 +35,8 @@ limitations under the License.
 }
 
 .console-text > text {
+  pointer-events: none;
+  dominant-baseline: middle;
   font-size: 1rem;
   font-family: {{0~}}
   {{#each @root.fontFamily~}}
@@ -44,7 +46,6 @@ limitations under the License.
       , {{this}}
     {{~/if~}}
   {{~/each~}};
-  pointer-events: none;
 }
 
 .text {
