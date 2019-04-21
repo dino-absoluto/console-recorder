@@ -17,31 +17,30 @@
  *
  */
 /* imports */
-import { Recording } from '../recording'
+import {
+  Recording,
+  NormalizeOptions } from '../recording'
 import { startMessage, endMessage } from '../utils/messages'
 import * as readLine from 'readline'
 import * as kleur from 'kleur'
 
 /** @public Describe options for replay() */
-export interface ReplayOptions {
-  playSpeed?: number
-  normalize?: number
-  maxDelay?: number
-  typingSpeed?: number
+export interface ReplayOptions extends NormalizeOptions {
+  speed?: number
 }
 
 /** @public Start replaying */
 export async function replay (fname: string, options: ReplayOptions = {}): Promise<void> {
   return Recording.fromFile(fname).then(async (record): Promise<void> => {
-    if (options.normalize) {
+    if (options.step) {
       record.normalize({
         maxDelay: options.maxDelay,
         typingSpeed: options.typingSpeed,
-        step: options.normalize
+        step: options.step
       })
     }
-    if (options.playSpeed) {
-      record.playSpeed = options.playSpeed
+    if (options.speed) {
+      record.playSpeed = options.speed
     }
     const { stdin, stdout } = process
     const columns = stdout.columns

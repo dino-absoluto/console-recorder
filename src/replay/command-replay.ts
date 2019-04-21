@@ -86,8 +86,8 @@ export const handler = async (argv: Options): Promise<void> => {
   const { replay } = await import('..')
   const input: string = argv.input as string
   await replay(input, {
-    normalize: argv.normalize,
-    playSpeed: argv.playSpeed,
+    step: argv.normalize,
+    speed: argv.playSpeed,
     typingSpeed: argv.typingSpeed,
     maxDelay: argv.maxDelay
   })

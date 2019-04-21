@@ -17,7 +17,10 @@
  *
  */
 /* imports */
-import { Recording } from '../../recording'
+import {
+  Recording,
+  NormalizeOptions
+} from '../../recording'
 import {
   ScreenBuffer
 } from './screen'
@@ -25,7 +28,11 @@ import * as c from 'kleur'
 
 const timeExtension = 2000
 
-export const fromFile = async (fpath: string): Promise<ScreenBuffer[] | undefined> => {
+interface InterpreterOptions extends NormalizeOptions {
+  speed?: number
+}
+
+export const fromFile = async (fpath: string, options: InterpreterOptions = {}): Promise<ScreenBuffer[] | undefined> => {
   console.log(
     c.blue('· input:'),
     c.white(fpath)
@@ -38,8 +45,17 @@ export const fromFile = async (fpath: string): Promise<ScreenBuffer[] | undefine
   // , defaultBackground: DEFAULT_FG
   // , defaultForeground: DEFAULT_BG
   })
-  // const multiplier = 1 / rec.playSpeed
-  const multiplier = 1 / 2
+  if (options.speed) {
+    rec.playSpeed = options.speed
+  }
+  if (options.step) {
+    rec.normalize({
+      maxDelay: options.maxDelay,
+      typingSpeed: options.typingSpeed,
+      step: options.step
+    })
+  }
+  const multiplier = 1 / rec.playSpeed
   const throttle = 50 * multiplier
   const screens = []
   let lastScreen: ScreenBuffer | undefined

@@ -46,6 +46,29 @@ export const builder =
       type: 'boolean',
       default: false
     })
+    .option('playSpeed', {
+      type: 'number',
+      alias: [ 'speed' ],
+      desc: 'Playing speed multiplier',
+      default: 1.0,
+      coerce: (n: number): number => {
+        return n > 0.1 ? n : 1.0
+      }
+    })
+    .option('normalize', {
+      type: 'number',
+      desc: 'Normalize events at steps of {number}ms'
+    })
+    .option('typingSpeed', {
+      type: 'number',
+      desc: 'Multiply typing speed by {number}',
+      implies: 'normalize'
+    })
+    .option('maxDelay', {
+      type: 'number',
+      desc: 'Maximum delay between events, calculated before playSpeed',
+      implies: 'normalize'
+    })
     .check((argv): boolean => {
       if (!argv.input) {
         throw failedCheck('invalid input')
@@ -72,7 +95,12 @@ export const builder =
 type Options = ReturnType<typeof builder>['argv']
 
 export const handler = async (argv: Options): Promise<void> => {
-  const screens = await fromFile(argv.input)
+  const screens = await fromFile(argv.input, {
+    step: argv.normalize,
+    speed: argv.playSpeed,
+    typingSpeed: argv.typingSpeed,
+    maxDelay: argv.maxDelay
+  })
   if (!screens) {
     return
   }
