@@ -48,10 +48,15 @@ const glyphHeight = 18
 const glyphBottom = Math.round(0.2 * glyphHeight)
 
 const templatePromise = (async ():
-Promise<ReturnType<typeof handlebars.compile>> =>
-  handlebars.compile(
-    await readFile(path.join(__dirname, '/templates/svg.hbs'), 'utf8'))
-)()
+Promise<ReturnType<typeof handlebars.compile>> => {
+  let data: string
+  try {
+    data = (await readFile(path.join(__dirname, '/templates/svg.hbs'))).toString()
+  } catch {
+    data = (await import('./templates/svg.hbs')).default
+  }
+  return handlebars.compile(data)
+})()
 
 interface DataFrame {
   dur: number

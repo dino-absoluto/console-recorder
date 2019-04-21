@@ -26,7 +26,7 @@ import { failedCheck } from '../utils/fail'
 
 export const command = 'replay <input>'
 export const aliases = [ 'play' ]
-export const describe = 'Replay TTY session'
+export const describe = 'Render a record to SVG file'
 export const builder =
 (yargs: typeof parser) => // eslint-disable-line @typescript-eslint/explicit-function-return-type
   yargs.strict(true)

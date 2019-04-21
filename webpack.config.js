@@ -48,6 +48,9 @@ const setupTypescript = (env) => ({
         test: /\.js$/,
         use: ['source-map-loader'],
         enforce: 'pre'
+      }, {
+        test: /\.hbs/i,
+        use: 'raw-loader'
       }
     ]
   },
