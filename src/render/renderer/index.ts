@@ -47,10 +47,10 @@ handlebars.registerHelper('average',
   (a: number, b: number): number => (a + b) / 2)
 
 /* constants */
-const rem = 15
-const glyphWidth = rem * 0.6
-const glyphHeight = rem * 1.5
-const glyphBaseline = rem * 0.8
+const rem = 12
+const glyphWidth = 7
+const glyphHeight = Math.round(rem * 1.5)
+const glyphBaseline = Math.round(rem * 0.8)
 const fontDefault = [
   'PT Mono',
   'SFMono-Regular',
