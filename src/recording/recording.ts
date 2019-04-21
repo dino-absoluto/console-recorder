@@ -33,6 +33,7 @@ const SPEED_MIN = 0.01
 const THRESHOLD = 4
 const NORMALIZATION_STEP = 25
 
+/** @public */
 export interface RecordingData {
   columns: number
   rows: number
@@ -40,6 +41,7 @@ export interface RecordingData {
   playSpeed: number
 }
 
+/** @public */
 export interface NormalizeOptions {
   step?: number
   typingSpeed?: number

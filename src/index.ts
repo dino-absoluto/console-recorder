@@ -17,6 +17,11 @@
  *
  */
 /* imports */
-export { Recording, RecordEvent } from './recording'
+export {
+  RecordingData,
+  Recording,
+  RecordEvent,
+  NormalizeOptions
+} from './recording'
 export { replay, ReplayOptions } from './replay/replay'
 export { record } from './record/record'

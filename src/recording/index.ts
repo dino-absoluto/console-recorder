@@ -19,4 +19,9 @@
 /* imports */
 
 /* code */
-export { Recording, RecordEvent } from './recording'
+export {
+  RecordingData,
+  Recording,
+  RecordEvent,
+  NormalizeOptions
+} from './recording'
