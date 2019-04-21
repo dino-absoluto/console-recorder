@@ -43,9 +43,11 @@ handlebars.registerHelper('percent',
 handlebars.registerHelper('average',
   (a: number, b: number): number => (a + b) / 2)
 
-const glyphWidth = 8
-const glyphHeight = 18
-const glyphBottom = Math.round(0.2 * glyphHeight)
+/* constants */
+const rem = 12
+const glyphWidth = rem * 0.6
+const glyphHeight = rem * 1.5
+const glyphBottom = rem / 3
 
 const templatePromise = (async ():
 Promise<ReturnType<typeof handlebars.compile>> => {
@@ -77,7 +79,8 @@ class DataBuilder {
   public defaultBackground: Readonly<ScreenColor>
   public defaultForeground: Readonly<ScreenColor>
   public palette: Palette
-  public padding = 20
+  public padding = rem * 1.5
+  public rem = rem
   public glyphWidth = glyphWidth
   public glyphHeight = glyphHeight
   public width: number = 0

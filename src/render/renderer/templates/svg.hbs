@@ -22,7 +22,7 @@ limitations under the License.
   xmlns="http://www.w3.org/2000/svg">
 <style type="text/css">
 :root {
-  font-size: 14px;
+  font-size: {{@root.rem}}px;
 }
 
 .background {
@@ -122,7 +122,7 @@ limitations under the License.
 {{~/each}}
 </style>
 <rect class="background" x="0" y="0" width="{{width}}" height="{{height}}"
-rx="10" ry="10" />
+rx="{{@root.rem}}" ry="{{@root.rem}}" />
 
 {{!-- Code --}}
 
