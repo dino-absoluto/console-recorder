@@ -52,11 +52,16 @@ const glyphWidth = rem * 0.6
 const glyphHeight = rem * 1.5
 const glyphBottom = rem / 3
 const fontDefault = [
+  'Source Code Pro',
   'SFMono-Regular',
-  'Consolas',
-  'Liberation Mono',
   'Menlo',
-  'Courier',
+  'DejaVu Sans Mono',
+  'Liberation Mono',
+  'Consolas',
+  'Ubuntu Mono',
+  'Courier New',
+  'andale mono',
+  'lucida console',
   'monospace'
 ]
 
