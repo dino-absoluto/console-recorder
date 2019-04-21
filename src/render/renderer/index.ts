@@ -32,7 +32,7 @@ import {
   , toFragments
   , Text
 } from './fragments'
-import { readFile, writeFile } from '../utils/pfs'
+import { readFile, writeFile } from '../../utils/pfs'
 import * as c from 'kleur'
 import * as path from 'path'
 import handlebars = require('handlebars')

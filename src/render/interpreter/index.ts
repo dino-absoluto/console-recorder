@@ -17,8 +17,7 @@
  *
  */
 /* imports */
-// import { Record } from '../recorder/record'
-import { Recording } from 'console-recorder'
+import { Recording } from '../../recording'
 import {
   ScreenBuffer
 } from './screen'
