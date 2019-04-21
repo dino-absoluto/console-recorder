@@ -1,0 +1,154 @@
+{{!--
+@author Dino <dinoabsoluto+dev@gmail.com>
+@license
+Copyright 2019 Dino <dinoabsoluto+dev@gmail.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ --}}{{!--
+--}}<svg
+  viewBox="0 0 {{width}} {{height}}"
+  width="{{width}}"
+  height="{{height}}"
+  xmlns="http://www.w3.org/2000/svg">
+<style type="text/css">
+:root {
+  font-size: 14px;
+}
+
+.background {
+  fill: {{@root.defaultBackground}};
+}
+
+.console-cursor,
+.console {
+  transform: translate({{padding}}px, {{padding}}px);
+}
+
+.console-text > text {
+  font-size: 1rem;
+  font-family:
+    SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+  pointer-events: none;
+}
+
+.text {
+  white-space: pre;
+  fill: {{@root.defaultForeground}};
+}
+
+.console-cursor {
+  mix-blend-mode: difference;
+}
+
+.rect, .text, .cursor {
+  animation-iteration-count: infinite;
+  animation-timing-function: step-end;
+  animation-duration: {{@root.totalLength}}s;
+}
+
+.cursor {
+  visibility: visible;
+  animation-name: cursor;
+  fill: {{ @root.defaultForeground }};
+}
+
+@keyframes cursor {
+{{#each cursorFrames~}}
+  {{percent (lookup (lookup @root.frames @index) 'beginPercentage')}} {
+    {{~0}} {{0~}}
+    transform: translate({{this.actualX}}px, {{this.actualY}}px);
+    {{~0}} {{0~}}
+    {{~#if (nullCheck this.visible)~}}
+    {{~#if this.visible}}
+    visibility: visible;
+    {{~0}} {{0~}}
+    {{~else~}}
+    visibility: hidden;
+    {{~0}} {{0~}}
+    {{~/if~}}
+    {{~/if~}}
+  }
+{{/each}}
+}
+
+{{#*inline "animateVisibility"}}
+@keyframes {{name}}{{@index}} {
+{{#each this.frames}}
+  {{percent (lookup (lookup @root.frames this.begin) 'beginPercentage')}} {
+    {{~0}} {{0~}}
+    visibility: visible;
+    {{~0}} {{0~}}
+  }
+  {{percent (lookup (lookup @root.frames this.end) 'endPercentage')}} {
+    {{~0}} {{0~}}
+    visibility: hidden;
+    {{~0}} {{0~}}
+  }
+{{/each}}
+}
+.{{name}}{{@index}} {
+  animation-name: {{name}}{{@index}};
+  {{#if fill}}
+  fill: {{fill}};
+  {{/if}}
+}
+
+{{/inline}}
+
+.text, .rect {
+  visibility: hidden;
+}
+
+{{~#each rects}}
+  {{~> animateVisibility this.options name='rect' fill=fill }}
+{{/each}}
+
+{{~#each fragments}}
+  {{#if fill.isForeground}}
+    {{~> animateVisibility this.options name='text' }}
+  {{else}}
+    {{~> animateVisibility this.options name='text' fill=fill }}
+  {{/if}}
+{{~/each}}
+</style>
+<rect class="background" x="0" y="0" width="{{width}}" height="{{height}}"
+rx="10" ry="10" />
+
+{{!-- Code --}}
+
+<g class="console">
+<g class="console-background">
+{{~#each rects}}
+<rect class="rect rect{{@index}}" x="{{options.x}}" y="{{options.y}}" {{0~}}
+width="{{options.width}}" {{0~}}
+height="{{options.height}}" {{0~}}
+/>
+{{/each}}
+</g>
+<g class="console-text">
+{{~#each fragments}}
+<text class="text text{{@index}}" x="{{options.x}}" y="{{options.y}}" {{0~}}
+textLength="{{options.width}}" {{0~}}
+>
+{{~text~}}
+</text>
+{{/each}}
+</g>
+</g>
+<g class="console-cursor">
+<rect class="cursor"
+x="0" y="0" width="{{glyphWidth}}" height="{{glyphHeight}}">
+</rect>
+</g>
+
+</svg>
