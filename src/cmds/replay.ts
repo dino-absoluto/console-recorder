@@ -29,6 +29,7 @@ export const builder =
   yargs.strict(true)
     .option('playSpeed', {
       type: 'number',
+      alias: [ 'speed' ],
       desc: 'Playing speed multiplier',
       default: 1.0,
       coerce: (n: number): number => {

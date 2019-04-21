@@ -28,7 +28,7 @@ export interface RecordEvent {
   text: string
 }
 
-const SPEED_DEFAULT = 1.25
+const SPEED_DEFAULT = 1.0
 const SPEED_MIN = 0.1
 const THRESHOLD = 4
 const NORMALIZATION_STEP = 25
