@@ -17,8 +17,8 @@
  *
  */
 /* imports */
-import * as record from './cmds/record'
-import * as replay from './cmds/replay'
+import * as record from './record/command-record'
+import * as replay from './replay/command-replay'
 import * as kleur from 'kleur'
 import { PassThrough } from 'stream'
 import { Console } from 'console'
