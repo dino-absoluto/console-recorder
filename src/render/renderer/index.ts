@@ -36,10 +36,13 @@ import { readFile, writeFile } from '../../utils/pfs'
 import * as c from 'kleur'
 import * as path from 'path'
 import handlebars = require('handlebars')
+import round = require('lodash/round')
+
+const PRECISION = 4
 
 handlebars.registerHelper('nullCheck', (some: unknown): boolean => some != null)
 handlebars.registerHelper('percent',
-  (some: number): string => (Math.round(some * 100000) / 1000) + '%')
+  (some: number): string => (round(some * 100, PRECISION) + '%'))
 handlebars.registerHelper('average',
   (a: number, b: number): number => (a + b) / 2)
 
@@ -104,10 +107,10 @@ class DataBuilder {
   public totalLength = 0
   public constructor (screens: ScreenBuffer[]) {
     this.screens = screens
-    this.width = screens[0].columns * glyphWidth + this.padding * 2
-    this.height = (screens.reduce(
+    this.width = Math.round(screens[0].columns * glyphWidth + this.padding * 2)
+    this.height = Math.round((screens.reduce(
       (max, i): number => Math.max(max, i.buffer.length), 0) + 1) *
-      glyphHeight + this.padding * 2
+      glyphHeight + this.padding * 2)
     const last = screens[screens.length - 1]
     if (last != null) {
       this.totalLength = last.timeEnd / 1000
@@ -142,9 +145,9 @@ class DataBuilder {
       }
       if (!fm.options) {
         fm.options = {
-          x: fm.col * glyphWidth,
-          y: fm.row * glyphHeight + (glyphHeight - glyphBottom),
-          width: fm.span * glyphWidth,
+          x: round(fm.col * glyphWidth, PRECISION),
+          y: round(fm.row * glyphHeight + (glyphHeight - glyphBottom), PRECISION),
+          width: round(fm.span * glyphWidth, PRECISION),
           height: glyphHeight,
           frames: []
         }
@@ -175,9 +178,9 @@ class DataBuilder {
       }
       if (!sq.options) {
         sq.options = {
-          x: sq.col * glyphWidth,
-          y: sq.row * glyphHeight,
-          width: sq.span * glyphWidth,
+          x: round(sq.col * glyphWidth, PRECISION),
+          y: round(sq.row * glyphHeight, PRECISION),
+          width: round(sq.span * glyphWidth, PRECISION),
           height: glyphHeight,
           frames: []
         }
