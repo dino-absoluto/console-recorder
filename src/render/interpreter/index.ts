@@ -56,7 +56,7 @@ export const fromFile = async (fpath: string, options: InterpreterOptions = {}):
     })
   }
   const multiplier = 1 / rec.playSpeed
-  const throttle = 50 * multiplier
+  const throttle = 25 * multiplier
   const screens = []
   let lastScreen: ScreenBuffer | undefined
   const begin = (rec.events[0] && rec.events[0].time) || 0
