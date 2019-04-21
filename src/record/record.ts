@@ -26,7 +26,7 @@ import makeDir = require('make-dir')
 
 /** @public Start recording */
 export async function record (fname: string): Promise<void> {
-  const stream = await spawnShell({ useNodePty: false })
+  const stream = await spawnShell({ useNodePty: true })
   startMessage(kleur.blue('RECORDING STARTED - ' + stream.name))
   return Recording.record(
     stream,

@@ -17,6 +17,7 @@
  *
  */
 /* imports */
+import { newScript } from './shell-script'
 import { platform } from 'os'
 import { IPty } from 'node-pty'
 
@@ -39,12 +40,16 @@ export interface SessionOptions {
 }
 
 export const newPty = async (options: SessionOptions): Promise<IPty> => {
-  const pty = await import('node-pty')
-  return pty.spawn(shell, [], {
-    name: 'xterm-256color',
-    cols: options.columns,
-    rows: options.rows,
-    // cwd: platform() === 'win32' ? process.env.USERPROFILE : process.env.HOME,
-    experimentalUseConpty: true
-  })
+  try {
+    const pty = await import('node-pty')
+    return pty.spawn(shell, [], {
+      name: 'xterm-256color',
+      cols: options.columns,
+      rows: options.rows,
+      // cwd: platform() === 'win32' ? process.env.USERPROFILE : process.env.HOME,
+      experimentalUseConpty: true
+    })
+  } catch {
+    return newScript(options)
+  }
 }
