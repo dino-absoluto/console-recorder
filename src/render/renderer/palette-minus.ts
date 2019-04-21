@@ -34,7 +34,7 @@ export default palette
   { type: 'rgb', r: 0x53, g: 0x90, b: 0xba },
   { type: 'rgb', r: 0xd1, g: 0x6a, b: 0xc0 },
   { type: 'rgb', r: 0x36, g: 0x9d, b: 0x91 },
-  { type: 'rgb', r: 0xcb, g: 0xc5, b: 0xbf },
+  { type: 'rgb', r: 0xca, g: 0xc5, b: 0xc0 },
 
   { type: 'rgb', r: 0x2d, g: 0x34, b: 0x3a },
   { type: 'rgb', r: 0xdc, g: 0x85, b: 0x9b },
@@ -43,7 +43,7 @@ export default palette
   { type: 'rgb', r: 0x6f, g: 0xa1, b: 0xc5 },
   { type: 'rgb', r: 0xd8, g: 0x81, b: 0xca },
   { type: 'rgb', r: 0x55, g: 0xac, b: 0xa2 },
-  { type: 'rgb', r: 0xdc, g: 0xd8, b: 0xd4 }
+  { type: 'rgb', r: 0xdc, g: 0xd8, b: 0xd5 }
 ] as ColorRGB[]).forEach((color, index): void => {
   palette[index] = color
 })
