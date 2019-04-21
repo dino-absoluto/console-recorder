@@ -48,7 +48,7 @@ handlebars.registerHelper('average',
 
 /* constants */
 const rem = 12
-const glyphWidth = 7
+const glyphWidth = round(rem * 7 / 12, 1)
 const glyphHeight = Math.round(rem * 1.5)
 const glyphBaseline = Math.round(rem * 0.8)
 const fontDefault = [
