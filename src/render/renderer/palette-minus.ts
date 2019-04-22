@@ -49,4 +49,4 @@ export default palette
 })
 
 palette[ANSIColors.background] = palette8Bit[ANSIColors.black]
-palette[ANSIColors.foreground] = palette8Bit[ANSIColors.white]
+palette[ANSIColors.foreground] = palette8Bit[ANSIColors.brightWhite]
