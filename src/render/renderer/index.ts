@@ -49,21 +49,21 @@ handlebars.registerHelper('add',
   (a: number, b: number): number => a + b)
 handlebars.registerHelper('divide',
   (a: number, b: number): number => a / b)
-handlebars.registerHelper('all',
+handlebars.registerHelper('checkAll',
   (...argv: unknown[]): boolean => {
     const inputs = argv.slice(0, argv.length - 1)
     for (const i of inputs) {
-      if (!i) {
+      if (i == null) {
         return false
       }
     }
     return true
   })
-handlebars.registerHelper('any',
+handlebars.registerHelper('checkAny',
   (...argv: unknown[]): boolean => {
     const inputs = argv.slice(0, argv.length - 1)
     for (const i of inputs) {
-      if (i) {
+      if (i != null) {
         return true
       }
     }

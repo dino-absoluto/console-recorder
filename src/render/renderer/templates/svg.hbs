@@ -71,7 +71,7 @@ limitations under the License.
 
 @keyframes cursor {
 {{#each cursorFrames~}}
-  {{~#if (any this.x this.y this.visible)~}}
+  {{~#if (checkAny this.x this.y this.visible)~}}
     {{percent (lookup (lookup @root.frames @index) 'beginPercentage')}} {
       {{~0}} {{0~}}
       transform: translate({{this.actualX}}px, {{this.actualY}}px);
