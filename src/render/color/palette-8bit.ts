@@ -43,6 +43,8 @@ export const palette8Bit: ColorPalette = [
   { type: 'rgb', r: 0xe9, g: 0xe4, b: 0xde }
 ]
 
+export default palette8Bit
+
 palette8Bit[ANSIColors.background] = palette8Bit[ANSIColors.brightWhite]
 palette8Bit[ANSIColors.foreground] = palette8Bit[ANSIColors.black]
 

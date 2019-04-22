@@ -23,6 +23,7 @@ import { fromFile } from './interpreter'
 import { fromScreens } from './renderer'
 import { parser } from '../cli'
 import { failedCheck } from '../utils/fail'
+import { ColorPalette } from './color/color-data'
 
 export const command = 'render [options]'
 export const aliases = []
@@ -45,6 +46,9 @@ export const builder =
     .option('overwrite', {
       type: 'boolean',
       default: false
+    })
+    .option('palette', {
+      type: 'string'
     })
     .option('playSpeed', {
       type: 'number',
@@ -104,5 +108,15 @@ export const handler = async (argv: Options): Promise<void> => {
   if (!screens) {
     return
   }
-  fromScreens(screens, argv.output, argv.overwrite)
+  let palette: ColorPalette | undefined
+  switch (argv.palette) {
+    case 'minus': {
+      palette = (await import('./color/palette-minus')).default
+      break
+    }
+    default: {
+      break
+    }
+  }
+  fromScreens(screens, argv.output, argv.overwrite, palette)
 }

@@ -35,7 +35,6 @@ import {
 import { readFile, writeFile } from '../../utils/pfs'
 import * as c from 'kleur'
 import * as path from 'path'
-import paletteMinus from './palette-minus'
 import handlebars = require('handlebars')
 import round = require('lodash/round')
 
@@ -266,11 +265,13 @@ export const fromScreens =
 async (
   screens: ScreenBuffer[],
   output: string,
-  overwrite: boolean = false): Promise<void> => {
+  overwrite: boolean = false, palette?: ColorPalette): Promise<void> => {
   if (!screens) { return }
   // const screen = screens[screens.length - 1]
   const dataBuilder = new DataBuilder(screens)
-  dataBuilder.palette = paletteMinus
+  if (palette) {
+    dataBuilder.palette = palette
+  }
   dataBuilder.init()
   const template = await templatePromise
   const data = template(dataBuilder)

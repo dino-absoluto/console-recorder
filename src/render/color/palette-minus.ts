@@ -20,8 +20,8 @@
 import {
   ColorRGB,
   ANSIColors
-} from '../color/color-data'
-import { palette8Bit } from '../color/palette-8bit'
+} from './color-data'
+import palette8Bit from './palette-8bit'
 
 /* code */
 const palette = Array.from(palette8Bit)
