@@ -44,8 +44,8 @@ const PRECISION = 4
 handlebars.registerHelper('nullCheck', (some: unknown): boolean => some != null)
 handlebars.registerHelper('percent',
   (some: number): string => (round(some * 100, PRECISION) + '%'))
-handlebars.registerHelper('average',
-  (a: number, b: number): number => (a + b) / 2)
+handlebars.registerHelper('multiply',
+  (a: number, b: number): number => a * b)
 handlebars.registerHelper('color',
   (palette: ColorPalette, a: ScreenColor): string => a.toHex(palette))
 
