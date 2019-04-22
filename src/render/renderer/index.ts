@@ -117,7 +117,7 @@ class DataBuilder {
     this.screens = screens
     this.width = Math.round(screens[0].columns * glyphWidth + this.padding * 2)
     this.height = Math.round((screens.reduce(
-      (max, i): number => Math.max(max, i.buffer.length), 0) + 1) *
+      (max, i): number => Math.max(max, i.buffer.length), 0)) *
       glyphHeight + this.padding * 2)
     const last = screens[screens.length - 1]
     if (last != null) {

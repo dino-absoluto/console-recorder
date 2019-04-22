@@ -97,7 +97,11 @@ export class ScreenBuffer {
   }
   public get y (): number { return this.state.y }
   public set y (ny: number) {
-    this.state.y = ny > 0 ? ny : 0
+    ny = ny > 0 ? ny : 0
+    this.state.y = ny
+    if (ny >= this.buffer.length) {
+      this.buffer.length = ny + 1
+    }
   }
 
   public get savedX (): number { return this.state.savedX }
