@@ -71,20 +71,22 @@ limitations under the License.
 
 @keyframes cursor {
 {{#each cursorFrames~}}
-  {{percent (lookup (lookup @root.frames @index) 'beginPercentage')}} {
-    {{~0}} {{0~}}
-    transform: translate({{this.actualX}}px, {{this.actualY}}px);
-    {{~0}} {{0~}}
-    {{~#if (nullCheck this.visible)~}}
-    {{~#if this.visible}}
-    visibility: visible;
-    {{~0}} {{0~}}
-    {{~else~}}
-    visibility: hidden;
-    {{~0}} {{0~}}
-    {{~/if~}}
-    {{~/if~}}
-  }
+  {{~#if (any this.x this.y this.visible)~}}
+    {{percent (lookup (lookup @root.frames @index) 'beginPercentage')}} {
+      {{~0}} {{0~}}
+      transform: translate({{this.actualX}}px, {{this.actualY}}px);
+      {{~0}} {{0~}}
+      {{~#if (nullCheck this.visible)~}}
+      {{~#if this.visible~}}
+      visibility: visible;
+      {{~0}} {{0~}}
+      {{~else~}}
+      visibility: hidden;
+      {{~0}} {{0~}}
+      {{~/if~}}
+      {{~/if~}}
+    }
+  {{/if~}}
 {{/each}}
 }
 

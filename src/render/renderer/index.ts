@@ -43,6 +43,32 @@ handlebars.registerHelper('percent',
   (some: number): string => (round(some * 100, PRECISION) + '%'))
 handlebars.registerHelper('multiply',
   (a: number, b: number): number => a * b)
+handlebars.registerHelper('subtract',
+  (a: number, b: number): number => a - b)
+handlebars.registerHelper('add',
+  (a: number, b: number): number => a + b)
+handlebars.registerHelper('divide',
+  (a: number, b: number): number => a / b)
+handlebars.registerHelper('all',
+  (...argv: unknown[]): boolean => {
+    const inputs = argv.slice(0, argv.length - 1)
+    for (const i of inputs) {
+      if (!i) {
+        return false
+      }
+    }
+    return true
+  })
+handlebars.registerHelper('any',
+  (...argv: unknown[]): boolean => {
+    const inputs = argv.slice(0, argv.length - 1)
+    for (const i of inputs) {
+      if (i) {
+        return true
+      }
+    }
+    return false
+  })
 handlebars.registerHelper('color',
   (palette: ColorPalette, a: ScreenColor): string => a.toHex(palette))
 

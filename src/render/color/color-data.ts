@@ -19,8 +19,8 @@
 /* imports */
 /* code */
 export const enum ANSIColors {
-  background = -1
-  , foreground = -2
+  background = -1,
+  foreground = -2
   , black = 0
   , red = 1
   , green = 2
