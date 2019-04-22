@@ -17,9 +17,9 @@
  *
  */
 /* imports */
-import { ANSIColors } from './color'
-import { ScreenColor } from './color-screen'
-import { palette8Bit } from './palette-8bit'
+import { ANSIColors } from '../color/color'
+import { ScreenColor } from '../color/color-screen'
+import { palette8Bit } from '../color/palette-8bit'
 import ansiRegExp from './regexp'
 import cloneDeep = require('lodash/cloneDeep')
 

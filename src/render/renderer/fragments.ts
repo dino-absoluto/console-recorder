@@ -18,8 +18,8 @@
  */
 /* imports */
 import { ScreenBuffer } from '../interpreter/screen'
-import { ScreenColor } from '../interpreter/color-screen'
-import { Palette } from '../interpreter/color'
+import { ScreenColor } from '../color/color-screen'
+import { Palette } from '../color/color'
 
 interface Container {
   palette: Palette

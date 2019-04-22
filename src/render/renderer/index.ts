@@ -18,14 +18,14 @@
  */
 /* imports */
 import { ScreenBuffer } from '../interpreter/screen'
-import { ScreenColor } from '../interpreter/color-screen'
+import { ScreenColor } from '../color/color-screen'
 import {
   Palette,
   ANSIColors
-} from '../interpreter/color'
+} from '../color/color'
 import {
   palette8Bit
-} from '../interpreter/palette-8bit'
+} from '../color/palette-8bit'
 import {
   toBackgrounds
   , Rect
