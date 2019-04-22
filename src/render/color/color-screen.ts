@@ -17,68 +17,54 @@
  *
  */
 /* imports */
-import { palette8Bit } from './palette-8bit'
 import {
-  Palette,
-  TypedColor,
-  ANSIColors,
+  ColorPalette,
+  ColorData,
   ColorRGB,
-  ColorANSI
-} from './color'
+  ColorIndexed,
+  ANSIColors
+} from './color-data'
 
 /* code */
-
-interface PaletteContainer {
-  palette: Palette
-}
-
-const defaultPalette: PaletteContainer = {
-  palette: palette8Bit
-}
 
 const rgbToHex = (r: number, g: number, b: number): string => {
   return `#${(r * 256 * 256 + g * 256 + b).toString(16).padStart(6, '0')}`
 }
 
 export class ScreenColor {
-  protected paletteContainer: PaletteContainer
-  public color: TypedColor = {
-    type: 'ansi',
+  public data: ColorData = {
+    type: 'index',
     code: 0
   }
 
-  public constructor (color: TypedColor, paletteContainer?: PaletteContainer) {
-    this.color = color
-    this.paletteContainer = paletteContainer || defaultPalette
-    Object.defineProperty(this, 'paletteContainer', {
-      enumerable: false
-    })
+  public constructor (color: ColorData) {
+    this.data = color
   }
 
   public get isValid (): boolean {
-    const { color } = this
-    return color.type === 'rgb' ||
-      (color.type === 'ansi' && color.code >= 0 && color.code < 256)
+    const { data } = this
+    return data.type === 'rgb' ||
+      (data.type === 'index' && data.code >= 0 && data.code < 256)
   }
 
   public get isBackground (): boolean {
-    const { color } = this
-    return color.type === 'ansi' && color.code === ANSIColors.background
+    const { data } = this
+    return data.type === 'index' && data.code === ANSIColors.background
   }
 
   public get isForeground (): boolean {
-    const { color } = this
-    return color.type === 'ansi' && color.code === ANSIColors.foreground
+    const { data } = this
+    return data.type === 'index' && data.code === ANSIColors.foreground
   }
 
   public isEqual (target: Readonly<ScreenColor>): boolean {
-    let { color: a } = this
-    let { color: b } = target
+    let { data: a } = this
+    let { data: b } = target
     if (a.type !== b.type) {
       return false
     }
-    if (a.type === 'ansi') {
-      b = b as ColorANSI
+    if (a.type === 'index') {
+      b = b as ColorIndexed
       return a.code === b.code
     }
     if (a.type === 'rgb') {
@@ -91,9 +77,9 @@ export class ScreenColor {
   }
 
   public toANSI (background = false): string {
-    const { color } = this
-    if (color.type === 'ansi') {
-      const { code } = color
+    const { data } = this
+    if (data.type === 'index') {
+      const { code } = data
       if (code < 0 || code > 255) {
         if (background) {
           return '\x1b[49m'
@@ -106,8 +92,8 @@ export class ScreenColor {
       } else {
         return `\x1b[38;5;${code}m`
       }
-    } else if (color.type === 'rgb') {
-      const { r, g, b } = color
+    } else if (data.type === 'rgb') {
+      const { r, g, b } = data
       if (background) {
         return `\x1b[48;2;${r};${g};${b}m`
       } else {
@@ -117,14 +103,17 @@ export class ScreenColor {
     return ''
   }
 
-  public toHex (): string {
-    const { color } = this
-    if (color.type === 'rgb') {
-      const { r, g, b } = color
+  public toHex (palette?: ColorPalette): string {
+    const { data } = this
+    if (data.type === 'rgb') {
+      const { r, g, b } = data
       return `#${(r * 256 * 256 + g * 256 + b).toString(16).padStart(6, '0')}`
     }
-    if (color.type === 'ansi') {
-      const { r, g, b } = this.paletteContainer.palette[color.code]
+    if (data.type === 'index') {
+      if (!palette) {
+        return ''
+      }
+      const { r, g, b } = palette[data.code]
       return rgbToHex(r, g, b)
     }
     return ''
@@ -140,6 +129,6 @@ export class ScreenColor {
 }
 
 export const defaultBackground: Readonly<ScreenColor> =
-  new ScreenColor({ type: 'ansi', code: ANSIColors.background })
+  new ScreenColor({ type: 'index', code: ANSIColors.background })
 export const defaultForeground: Readonly<ScreenColor> =
-  new ScreenColor({ type: 'ansi', code: ANSIColors.foreground })
+  new ScreenColor({ type: 'index', code: ANSIColors.foreground })

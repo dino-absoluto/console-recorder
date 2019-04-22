@@ -19,11 +19,12 @@
 /* imports */
 import {
   ColorRGB,
+  ColorPalette,
   ANSIColors
-} from './color'
+} from './color-data'
 
 /* code */
-export const palette8Bit: ColorRGB[] = [
+export const palette8Bit: ColorPalette = [
   { type: 'rgb', r: 0x35, g: 0x41, b: 0x4d },
   { type: 'rgb', r: 0xbe, g: 0x45, b: 0x63 },
   { type: 'rgb', r: 0x35, g: 0x78, b: 0x00 },

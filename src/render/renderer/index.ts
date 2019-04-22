@@ -20,9 +20,9 @@
 import { ScreenBuffer } from '../interpreter/screen'
 import { ScreenColor } from '../color/color-screen'
 import {
-  Palette,
+  ColorPalette,
   ANSIColors
-} from '../color/color'
+} from '../color/color-data'
 import {
   palette8Bit
 } from '../color/palette-8bit'
@@ -46,6 +46,8 @@ handlebars.registerHelper('percent',
   (some: number): string => (round(some * 100, PRECISION) + '%'))
 handlebars.registerHelper('average',
   (a: number, b: number): number => (a + b) / 2)
+handlebars.registerHelper('color',
+  (palette: ColorPalette, a: ScreenColor): string => a.toHex(palette))
 
 /* constants */
 const rem = 12
@@ -95,7 +97,7 @@ interface CursorState {
 class DataBuilder {
   public defaultBackground: Readonly<ScreenColor>
   public defaultForeground: Readonly<ScreenColor>
-  public palette: Palette
+  public palette: ColorPalette
   public padding = rem * 1.5
   public rem = rem
   public glyphWidth = glyphWidth
@@ -124,22 +126,21 @@ class DataBuilder {
     const first = screens[0]
     if (first) {
       this.defaultBackground =
-        new ScreenColor(first.defaultBackground.color, this)
+        new ScreenColor(first.defaultBackground.data)
       this.defaultForeground =
-        new ScreenColor(first.defaultForeground.color, this)
-      this.palette = first.palette
+        new ScreenColor(first.defaultForeground.data)
     } else {
       this.defaultBackground =
-        new ScreenColor({ type: 'ansi', code: ANSIColors.background }, this)
+        new ScreenColor({ type: 'index', code: ANSIColors.background })
       this.defaultForeground =
-        new ScreenColor({ type: 'ansi', code: ANSIColors.foreground }, this)
-      this.palette = palette8Bit
+        new ScreenColor({ type: 'index', code: ANSIColors.foreground })
     }
+    this.palette = palette8Bit
   }
 
   protected parseScreen (screenIndex: number, screen: ScreenBuffer): void {
     const { fmMap, fragments } = this
-    const fms = toFragments(screen, this)
+    const fms = toFragments(screen)
     for (let fm of fms) {
       if (!fm) { continue }
       {
@@ -172,7 +173,7 @@ class DataBuilder {
       }
     }
     const { rectMap, rects } = this
-    const squares = toBackgrounds(screen, this)
+    const squares = toBackgrounds(screen)
     for (let sq of squares) {
       if (!sq) { continue }
       {

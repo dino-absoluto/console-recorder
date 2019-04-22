@@ -19,11 +19,6 @@
 /* imports */
 import { ScreenBuffer } from '../interpreter/screen'
 import { ScreenColor } from '../color/color-screen'
-import { Palette } from '../color/color'
-
-interface Container {
-  palette: Palette
-}
 
 interface Period {
   begin: number
@@ -52,8 +47,8 @@ const makeRectId = (rect: Rect): string => {
 }
 
 export const toBackgrounds =
-(screen: ScreenBuffer, container: Container): Rect[] => {
-  const defaultBackground = new ScreenColor(screen.defaultBackground.color, container)
+(screen: ScreenBuffer): Rect[] => {
+  const defaultBackground = new ScreenColor(screen.defaultBackground.data)
   let lastBg = defaultBackground
   let lastRect: Rect | undefined
   const rects: Rect[] = []
@@ -67,7 +62,7 @@ export const toBackgrounds =
       }
       if (!block.bg.isEqual(lastBg)) {
         lastBg = block.bg != null
-          ? new ScreenColor(block.bg.color, container)
+          ? new ScreenColor(block.bg.data)
           : defaultBackground
         if (!lastBg.isValid && !lastBg.isForeground) {
           lastRect = undefined
@@ -77,7 +72,7 @@ export const toBackgrounds =
             col,
             row,
             span: 1,
-            fill: new ScreenColor(lastBg.color, container)
+            fill: new ScreenColor(lastBg.data)
           }
           lastRect.id = makeRectId(lastRect)
           rects.push(lastRect)
@@ -116,8 +111,8 @@ const makeTextId = (text: Text): string => {
 }
 
 export const toFragments =
-(screen: ScreenBuffer, container: Container): Text[] => {
-  const defaultForeground = new ScreenColor(screen.defaultForeground.color, container)
+(screen: ScreenBuffer): Text[] => {
+  const defaultForeground = new ScreenColor(screen.defaultForeground.data)
   let lastFg = defaultForeground
   let lastText: Text | undefined
   const texts: Text[] = []
@@ -131,14 +126,14 @@ export const toFragments =
       }
       if (!block.fg.isEqual(lastFg) || !lastText) {
         lastFg = block.fg != null
-          ? new ScreenColor(block.fg.color, container)
+          ? new ScreenColor(block.fg.data)
           : defaultForeground
         lastText = {
           id: '',
           col,
           row,
           span: 1,
-          fill: new ScreenColor(lastFg.color, container),
+          fill: new ScreenColor(lastFg.data),
           text: block.ch
         }
         lastText.id = makeTextId(lastText)

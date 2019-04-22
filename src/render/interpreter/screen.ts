@@ -17,9 +17,8 @@
  *
  */
 /* imports */
-import { ANSIColors } from '../color/color'
+import { ANSIColors } from '../color/color-data'
 import { ScreenColor } from '../color/color-screen'
-import { palette8Bit } from '../color/palette-8bit'
 import ansiRegExp from './regexp'
 import cloneDeep = require('lodash/cloneDeep')
 
@@ -66,10 +65,9 @@ interface ScreenBufferOptions {
 
 export class ScreenBuffer {
   public readonly defaultBackground: Readonly<ScreenColor>
-  = new ScreenColor({ type: 'ansi', code: ANSIColors.background }, this)
+  = new ScreenColor({ type: 'index', code: ANSIColors.background })
   public readonly defaultForeground: Readonly<ScreenColor>
-  = new ScreenColor({ type: 'ansi', code: ANSIColors.foreground }, this)
-  public palette = palette8Bit
+  = new ScreenColor({ type: 'index', code: ANSIColors.foreground })
   public columns = 80
   public rows = 24
   private state = newState(this)
@@ -152,8 +150,7 @@ export class ScreenBuffer {
       rows: this.rows,
       state: cloneDeep(this.state),
       time: this.time,
-      timeEnd: this.timeEnd,
-      palette: this.palette
+      timeEnd: this.timeEnd
     })
     return screen
   }
@@ -383,9 +380,9 @@ export class ScreenBuffer {
         case 37: {
           const code = n - 30
           this.fg = new ScreenColor({
-            type: 'ansi',
+            type: 'index',
             code
-          }, this)
+          })
           break
         }
         case 38: {
@@ -393,9 +390,9 @@ export class ScreenBuffer {
           if (mode === 5) {
             const code = values[++i]
             this.fg = new ScreenColor({
-              type: 'ansi',
+              type: 'index',
               code
-            }, this)
+            })
           } else if (mode === 2) {
             const r = values[++i]
             const g = values[++i]
@@ -405,7 +402,7 @@ export class ScreenBuffer {
               r,
               g,
               b
-            }, this)
+            })
           }
           break
         }
@@ -423,9 +420,9 @@ export class ScreenBuffer {
         case 47: {
           const code = n - 40
           this.bg = new ScreenColor({
-            type: 'ansi',
+            type: 'index',
             code
-          }, this)
+          })
           break
         }
         case 48: {
@@ -433,9 +430,9 @@ export class ScreenBuffer {
           if (mode === 5) {
             const code = values[++i]
             this.bg = new ScreenColor({
-              type: 'ansi',
+              type: 'index',
               code
-            }, this)
+            })
           } else if (mode === 2) {
             const r = values[++i]
             const g = values[++i]
@@ -445,7 +442,7 @@ export class ScreenBuffer {
               r,
               g,
               b
-            }, this)
+            })
           }
           break
         }
@@ -463,9 +460,9 @@ export class ScreenBuffer {
         case 97: {
           const code = n - 90 + 8
           this.fg = new ScreenColor({
-            type: 'ansi',
+            type: 'index',
             code
-          }, this)
+          })
           break
         }
         case 100:
@@ -478,9 +475,9 @@ export class ScreenBuffer {
         case 107: {
           const code = n - 100 + 8
           this.bg = new ScreenColor({
-            type: 'ansi',
+            type: 'index',
             code
-          }, this)
+          })
           break
         }
       }

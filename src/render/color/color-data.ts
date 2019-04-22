@@ -39,8 +39,8 @@ export const enum ANSIColors {
   , brightWhite = 15
 }
 
-export interface ColorANSI {
-  type: 'ansi'
+export interface ColorIndexed {
+  type: 'index'
   code: number
 }
 
@@ -51,5 +51,5 @@ export interface ColorRGB {
   b: number
 }
 
-export type TypedColor = ColorANSI | ColorRGB
-export type Palette = ColorRGB[]
+export type ColorData = ColorIndexed | ColorRGB
+export type ColorPalette = ColorRGB[]

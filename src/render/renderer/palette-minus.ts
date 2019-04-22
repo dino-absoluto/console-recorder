@@ -20,7 +20,7 @@
 import {
   ColorRGB,
   ANSIColors
-} from '../color/color'
+} from '../color/color-data'
 import { palette8Bit } from '../color/palette-8bit'
 
 /* code */
