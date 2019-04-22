@@ -21,10 +21,10 @@ import {
   ColorRGB,
   ANSIColors
 } from './color-data'
-import palette8Bit from './palette-8bit'
+import standard from './palette-standard'
 
 /* code */
-const palette = Array.from(palette8Bit)
+const palette = Array.from(standard)
 export default palette
 ;([
   { type: 'rgb', r: 0x1c, g: 0x20, b: 0x25 },
@@ -48,5 +48,5 @@ export default palette
   palette[index] = color
 })
 
-palette[ANSIColors.background] = palette8Bit[ANSIColors.black]
-palette[ANSIColors.foreground] = palette8Bit[ANSIColors.brightWhite]
+palette[ANSIColors.background] = palette[ANSIColors.black]
+palette[ANSIColors.foreground] = palette[ANSIColors.white]

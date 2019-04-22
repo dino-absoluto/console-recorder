@@ -23,14 +23,12 @@ import {
   ColorPalette,
   ANSIColors
 } from '../color/color-data'
+import paletteStandard from '../color/palette-standard'
 import {
-  palette8Bit
-} from '../color/palette-8bit'
-import {
-  toBackgrounds
-  , Rect
-  , toFragments
-  , Text
+  toBackgrounds,
+  Rect,
+  toFragments,
+  Text
 } from './fragments'
 import { readFile, writeFile } from '../../utils/pfs'
 import * as c from 'kleur'
@@ -96,7 +94,7 @@ interface CursorState {
 class DataBuilder {
   public defaultBackground: Readonly<ScreenColor>
   public defaultForeground: Readonly<ScreenColor>
-  public palette: ColorPalette = palette8Bit
+  public palette: ColorPalette = paletteStandard
   public padding = rem * 1.5
   public rem = rem
   public glyphWidth = glyphWidth
@@ -134,7 +132,6 @@ class DataBuilder {
       this.defaultForeground =
         new ScreenColor({ type: 'index', code: ANSIColors.foreground })
     }
-    this.palette = palette8Bit
   }
 
   protected parseScreen (screenIndex: number, screen: ScreenBuffer): void {

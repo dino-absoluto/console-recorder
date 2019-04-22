@@ -24,7 +24,7 @@ import {
 } from './color-data'
 
 /* code */
-export const palette8Bit: ColorPalette = [
+const palette: ColorPalette = [
   { type: 'rgb', r: 0x35, g: 0x41, b: 0x4d },
   { type: 'rgb', r: 0xbe, g: 0x45, b: 0x63 },
   { type: 'rgb', r: 0x35, g: 0x78, b: 0x00 },
@@ -43,10 +43,10 @@ export const palette8Bit: ColorPalette = [
   { type: 'rgb', r: 0xe9, g: 0xe4, b: 0xde }
 ]
 
-export default palette8Bit
+export default palette
 
-palette8Bit[ANSIColors.background] = palette8Bit[ANSIColors.brightWhite]
-palette8Bit[ANSIColors.foreground] = palette8Bit[ANSIColors.black]
+palette[ANSIColors.background] = palette[ANSIColors.brightWhite]
+palette[ANSIColors.foreground] = palette[ANSIColors.black]
 
 {
   const values = [ 0, 95, 135, 175, 215, 255 ]
@@ -59,7 +59,7 @@ palette8Bit[ANSIColors.foreground] = palette8Bit[ANSIColors.black]
           g: values[g],
           b: values[b]
         }
-        palette8Bit.push(hex)
+        palette.push(hex)
       }
     }
   }
@@ -73,5 +73,5 @@ for (let i = 0; i < 24; ++i) {
     g: v,
     b: v
   }
-  palette8Bit.push(hex)
+  palette.push(hex)
 }
