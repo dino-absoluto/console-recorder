@@ -97,7 +97,7 @@ interface CursorState {
 class DataBuilder {
   public defaultBackground: Readonly<ScreenColor>
   public defaultForeground: Readonly<ScreenColor>
-  public palette: ColorPalette
+  public palette: ColorPalette = palette8Bit
   public padding = rem * 1.5
   public rem = rem
   public glyphWidth = glyphWidth
