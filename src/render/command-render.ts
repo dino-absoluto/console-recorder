@@ -114,6 +114,10 @@ export const handler = async (argv: Options): Promise<void> => {
       palette = (await import('./color/palette-minus')).default
       break
     }
+    case 'minus-light': {
+      palette = (await import('./color/palette-minus-light')).default
+      break
+    }
     default: {
       break
     }
