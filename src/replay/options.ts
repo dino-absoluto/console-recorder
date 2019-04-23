@@ -25,32 +25,34 @@ export const buildOptions =
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 (yargs: typeof parser) =>
   yargs
-    .option('palette', {
-      type: 'string',
-      default: 'minus'
-    })
     .option('speed', {
+      group: 'Replay:',
       type: 'number',
-      desc: 'Playing speed multiplier',
+      desc: 'Multiply playback speed',
       default: 1.0
     })
     .option('step', {
+      group: 'Replay:',
       type: 'number',
       desc: 'Normalize events at steps of {number}ms'
     })
     .option('typingSpeed', {
+      group: 'Replay:',
       type: 'number',
       desc: 'Multiply typing speed by {number}'
     })
     .option('typingStep', {
+      group: 'Replay:',
       type: 'number',
       desc: 'Pause per keystroke'
     })
     .option('typingPause', {
+      group: 'Replay:',
       type: 'number',
       desc: 'Maximum pause when typing'
     })
     .option('maxDelay', {
+      group: 'Replay:',
       type: 'number',
       desc: 'Maximum delay between events'
     })

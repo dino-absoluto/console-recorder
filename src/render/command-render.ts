@@ -38,11 +38,13 @@ export const builder =
   buildOptions(yargs.strict(true))
     .usage('$0 render -i <input> -o <output>')
     .option('input', {
+      group: 'Data:',
       type: 'string',
       alias: ['i'],
       required: true
     })
     .option('output', {
+      group: 'Data:',
       type: 'string',
       alias: ['o'],
       required: true
@@ -52,6 +54,7 @@ export const builder =
       default: false
     })
     .option('palette', {
+      group: 'Render:',
       type: 'string',
       default: 'minus'
     })
