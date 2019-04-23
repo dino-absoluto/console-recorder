@@ -26,16 +26,27 @@ npm i -g console-recorder
 
 ## Usage
 #### Record
-
 ```bash
 console-recorder rec log.json
 ```
 This open a new shell session.
-Use exit to terminate the session and finish the recording.
+
+Use `exit` to terminate the session and finish the recording.
 
 #### Replay
 ```bash
 console-recorder play log.json
 ```
+
 This replay a previously recorded session.
+
 No interactions are necessary, you can terminate the replay with Ctrl+C.
+
+#### Render
+```bash
+console-recorder render -i log.json -o output.svg
+```
+
+Render a recorded session as SVG file.
+
+![palette](docs/media/palette.svg)

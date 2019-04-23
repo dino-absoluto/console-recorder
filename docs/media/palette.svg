@@ -1,0 +1,2182 @@
+<svg
+  viewBox="0 0 596 342"
+  width="596"
+  height="342"
+  xmlns="http://www.w3.org/2000/svg">
+<style type="text/css">
+:root {
+  font-size: 12px;
+}
+
+.background {
+  fill: #1c2025;
+}
+
+.console-cursor,
+.console {
+  transform: translate(18px, 18px);
+}
+
+.text {
+  pointer-events: none;
+  dominant-baseline: middle;
+  white-space: pre;
+  fill: #cac5c0;
+  font-size: 1rem;
+  font-family: PT Mono, SFMono-Regular, Menlo, DejaVu Sans Mono, Liberation Mono, Consolas, Ubuntu Mono, Courier New, andale mono, lucida console, monospace;
+}
+
+.rect, .text, .cursor {
+  animation-iteration-count: infinite;
+  animation-timing-function: step-end;
+  animation-duration: 6.514s;
+}
+
+.rect, .text {
+  visibility: hidden;
+}
+
+.console-cursor {
+  mix-blend-mode: exclusion;
+}
+
+.cursor {
+  visibility: visible;
+  animation-name: cursor;
+  fill: #cac5c0;
+}
+
+@keyframes cursor {
+0% { transform: translate(98px, 0px); }
+7.6758% { transform: translate(105px, 0px); }
+9.2109% { transform: translate(112px, 0px); }
+10.7461% { transform: translate(119px, 0px); }
+12.2812% { transform: translate(126px, 0px); }
+13.8164% { transform: translate(133px, 0px); }
+15.3516% { transform: translate(140px, 0px); }
+16.8867% { transform: translate(147px, 0px); }
+18.4219% { transform: translate(154px, 0px); }
+19.957% { transform: translate(161px, 0px); }
+21.4922% { transform: translate(168px, 0px); }
+23.0273% { transform: translate(175px, 0px); }
+24.5625% { transform: translate(182px, 0px); }
+26.0976% { transform: translate(189px, 0px); }
+27.6328% { transform: translate(196px, 0px); }
+29.1679% { transform: translate(203px, 0px); }
+30.7031% { transform: translate(210px, 0px); }
+32.2383% { transform: translate(217px, 0px); }
+33.7734% { transform: translate(224px, 0px); }
+35.3086% { transform: translate(231px, 0px); }
+36.8437% { transform: translate(238px, 0px); }
+38.3789% { transform: translate(245px, 0px); }
+46.0547% { transform: translate(0px, 18px); }
+53.7304% { transform: translate(0px, 252px); }
+61.7593% { transform: translate(105px, 252px); }
+63.2944% { transform: translate(112px, 252px); }
+64.8296% { transform: translate(119px, 252px); }
+66.3648% { transform: translate(126px, 252px); }
+69.2969% { transform: translate(0px, 288px); }
+}
+
+@keyframes rect0 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect0 { animation-name: rect0;  fill: #1c2025; }
+
+@keyframes rect1 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect1 { animation-name: rect1;  fill: #d56e88; }
+
+@keyframes rect2 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect2 { animation-name: rect2;  fill: #619932; }
+
+@keyframes rect3 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect3 { animation-name: rect3;  fill: #aa8243; }
+
+@keyframes rect4 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect4 { animation-name: rect4;  fill: #5390ba; }
+
+@keyframes rect5 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect5 { animation-name: rect5;  fill: #d16ac0; }
+
+@keyframes rect6 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect6 { animation-name: rect6;  fill: #369d91; }
+
+@keyframes rect7 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect7 { animation-name: rect7;  fill: #cac5c0; }
+
+@keyframes rect8 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect8 { animation-name: rect8;  fill: #2d343a; }
+
+@keyframes rect9 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect9 { animation-name: rect9;  fill: #dc859b; }
+
+@keyframes rect10 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect10 { animation-name: rect10;  fill: #7aa953; }
+
+@keyframes rect11 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect11 { animation-name: rect11;  fill: #b79660; }
+
+@keyframes rect12 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect12 { animation-name: rect12;  fill: #6fa1c5; }
+
+@keyframes rect13 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect13 { animation-name: rect13;  fill: #d881ca; }
+
+@keyframes rect14 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect14 { animation-name: rect14;  fill: #55aca2; }
+
+@keyframes rect15 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect15 { animation-name: rect15;  fill: #dcd8d5; }
+
+@keyframes rect16 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect16 { animation-name: rect16;  fill: #000000; }
+
+@keyframes rect17 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect17 { animation-name: rect17;  fill: #00005f; }
+
+@keyframes rect18 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect18 { animation-name: rect18;  fill: #000087; }
+
+@keyframes rect19 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect19 { animation-name: rect19;  fill: #0000af; }
+
+@keyframes rect20 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect20 { animation-name: rect20;  fill: #0000d7; }
+
+@keyframes rect21 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect21 { animation-name: rect21;  fill: #0000ff; }
+
+@keyframes rect22 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect22 { animation-name: rect22;  fill: #005f00; }
+
+@keyframes rect23 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect23 { animation-name: rect23;  fill: #005f5f; }
+
+@keyframes rect24 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect24 { animation-name: rect24;  fill: #005f87; }
+
+@keyframes rect25 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect25 { animation-name: rect25;  fill: #005faf; }
+
+@keyframes rect26 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect26 { animation-name: rect26;  fill: #005fd7; }
+
+@keyframes rect27 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect27 { animation-name: rect27;  fill: #005fff; }
+
+@keyframes rect28 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect28 { animation-name: rect28;  fill: #008700; }
+
+@keyframes rect29 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect29 { animation-name: rect29;  fill: #00875f; }
+
+@keyframes rect30 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect30 { animation-name: rect30;  fill: #008787; }
+
+@keyframes rect31 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect31 { animation-name: rect31;  fill: #0087af; }
+
+@keyframes rect32 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect32 { animation-name: rect32;  fill: #0087d7; }
+
+@keyframes rect33 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect33 { animation-name: rect33;  fill: #0087ff; }
+
+@keyframes rect34 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect34 { animation-name: rect34;  fill: #00af00; }
+
+@keyframes rect35 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect35 { animation-name: rect35;  fill: #00af5f; }
+
+@keyframes rect36 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect36 { animation-name: rect36;  fill: #00af87; }
+
+@keyframes rect37 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect37 { animation-name: rect37;  fill: #00afaf; }
+
+@keyframes rect38 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect38 { animation-name: rect38;  fill: #00afd7; }
+
+@keyframes rect39 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect39 { animation-name: rect39;  fill: #00afff; }
+
+@keyframes rect40 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect40 { animation-name: rect40;  fill: #00d700; }
+
+@keyframes rect41 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect41 { animation-name: rect41;  fill: #00d75f; }
+
+@keyframes rect42 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect42 { animation-name: rect42;  fill: #00d787; }
+
+@keyframes rect43 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect43 { animation-name: rect43;  fill: #00d7af; }
+
+@keyframes rect44 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect44 { animation-name: rect44;  fill: #00d7d7; }
+
+@keyframes rect45 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect45 { animation-name: rect45;  fill: #00d7ff; }
+
+@keyframes rect46 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect46 { animation-name: rect46;  fill: #00ff00; }
+
+@keyframes rect47 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect47 { animation-name: rect47;  fill: #00ff5f; }
+
+@keyframes rect48 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect48 { animation-name: rect48;  fill: #00ff87; }
+
+@keyframes rect49 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect49 { animation-name: rect49;  fill: #00ffaf; }
+
+@keyframes rect50 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect50 { animation-name: rect50;  fill: #00ffd7; }
+
+@keyframes rect51 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect51 { animation-name: rect51;  fill: #00ffff; }
+
+@keyframes rect52 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect52 { animation-name: rect52;  fill: #5f0000; }
+
+@keyframes rect53 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect53 { animation-name: rect53;  fill: #5f005f; }
+
+@keyframes rect54 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect54 { animation-name: rect54;  fill: #5f0087; }
+
+@keyframes rect55 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect55 { animation-name: rect55;  fill: #5f00af; }
+
+@keyframes rect56 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect56 { animation-name: rect56;  fill: #5f00d7; }
+
+@keyframes rect57 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect57 { animation-name: rect57;  fill: #5f00ff; }
+
+@keyframes rect58 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect58 { animation-name: rect58;  fill: #5f5f00; }
+
+@keyframes rect59 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect59 { animation-name: rect59;  fill: #5f5f5f; }
+
+@keyframes rect60 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect60 { animation-name: rect60;  fill: #5f5f87; }
+
+@keyframes rect61 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect61 { animation-name: rect61;  fill: #5f5faf; }
+
+@keyframes rect62 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect62 { animation-name: rect62;  fill: #5f5fd7; }
+
+@keyframes rect63 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect63 { animation-name: rect63;  fill: #5f5fff; }
+
+@keyframes rect64 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect64 { animation-name: rect64;  fill: #5f8700; }
+
+@keyframes rect65 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect65 { animation-name: rect65;  fill: #5f875f; }
+
+@keyframes rect66 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect66 { animation-name: rect66;  fill: #5f8787; }
+
+@keyframes rect67 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect67 { animation-name: rect67;  fill: #5f87af; }
+
+@keyframes rect68 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect68 { animation-name: rect68;  fill: #5f87d7; }
+
+@keyframes rect69 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect69 { animation-name: rect69;  fill: #5f87ff; }
+
+@keyframes rect70 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect70 { animation-name: rect70;  fill: #5faf00; }
+
+@keyframes rect71 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect71 { animation-name: rect71;  fill: #5faf5f; }
+
+@keyframes rect72 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect72 { animation-name: rect72;  fill: #5faf87; }
+
+@keyframes rect73 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect73 { animation-name: rect73;  fill: #5fafaf; }
+
+@keyframes rect74 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect74 { animation-name: rect74;  fill: #5fafd7; }
+
+@keyframes rect75 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect75 { animation-name: rect75;  fill: #5fafff; }
+
+@keyframes rect76 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect76 { animation-name: rect76;  fill: #5fd700; }
+
+@keyframes rect77 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect77 { animation-name: rect77;  fill: #5fd75f; }
+
+@keyframes rect78 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect78 { animation-name: rect78;  fill: #5fd787; }
+
+@keyframes rect79 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect79 { animation-name: rect79;  fill: #5fd7af; }
+
+@keyframes rect80 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect80 { animation-name: rect80;  fill: #5fd7d7; }
+
+@keyframes rect81 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect81 { animation-name: rect81;  fill: #5fd7ff; }
+
+@keyframes rect82 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect82 { animation-name: rect82;  fill: #5fff00; }
+
+@keyframes rect83 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect83 { animation-name: rect83;  fill: #5fff5f; }
+
+@keyframes rect84 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect84 { animation-name: rect84;  fill: #5fff87; }
+
+@keyframes rect85 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect85 { animation-name: rect85;  fill: #5fffaf; }
+
+@keyframes rect86 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect86 { animation-name: rect86;  fill: #5fffd7; }
+
+@keyframes rect87 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect87 { animation-name: rect87;  fill: #5fffff; }
+
+@keyframes rect88 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect88 { animation-name: rect88;  fill: #870000; }
+
+@keyframes rect89 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect89 { animation-name: rect89;  fill: #87005f; }
+
+@keyframes rect90 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect90 { animation-name: rect90;  fill: #870087; }
+
+@keyframes rect91 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect91 { animation-name: rect91;  fill: #8700af; }
+
+@keyframes rect92 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect92 { animation-name: rect92;  fill: #8700d7; }
+
+@keyframes rect93 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect93 { animation-name: rect93;  fill: #8700ff; }
+
+@keyframes rect94 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect94 { animation-name: rect94;  fill: #875f00; }
+
+@keyframes rect95 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect95 { animation-name: rect95;  fill: #875f5f; }
+
+@keyframes rect96 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect96 { animation-name: rect96;  fill: #875f87; }
+
+@keyframes rect97 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect97 { animation-name: rect97;  fill: #875faf; }
+
+@keyframes rect98 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect98 { animation-name: rect98;  fill: #875fd7; }
+
+@keyframes rect99 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect99 { animation-name: rect99;  fill: #875fff; }
+
+@keyframes rect100 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect100 { animation-name: rect100;  fill: #878700; }
+
+@keyframes rect101 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect101 { animation-name: rect101;  fill: #87875f; }
+
+@keyframes rect102 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect102 { animation-name: rect102;  fill: #878787; }
+
+@keyframes rect103 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect103 { animation-name: rect103;  fill: #8787af; }
+
+@keyframes rect104 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect104 { animation-name: rect104;  fill: #8787d7; }
+
+@keyframes rect105 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect105 { animation-name: rect105;  fill: #8787ff; }
+
+@keyframes rect106 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect106 { animation-name: rect106;  fill: #87af00; }
+
+@keyframes rect107 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect107 { animation-name: rect107;  fill: #87af5f; }
+
+@keyframes rect108 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect108 { animation-name: rect108;  fill: #87af87; }
+
+@keyframes rect109 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect109 { animation-name: rect109;  fill: #87afaf; }
+
+@keyframes rect110 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect110 { animation-name: rect110;  fill: #87afd7; }
+
+@keyframes rect111 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect111 { animation-name: rect111;  fill: #87afff; }
+
+@keyframes rect112 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect112 { animation-name: rect112;  fill: #87d700; }
+
+@keyframes rect113 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect113 { animation-name: rect113;  fill: #87d75f; }
+
+@keyframes rect114 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect114 { animation-name: rect114;  fill: #87d787; }
+
+@keyframes rect115 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect115 { animation-name: rect115;  fill: #87d7af; }
+
+@keyframes rect116 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect116 { animation-name: rect116;  fill: #87d7d7; }
+
+@keyframes rect117 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect117 { animation-name: rect117;  fill: #87d7ff; }
+
+@keyframes rect118 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect118 { animation-name: rect118;  fill: #87ff00; }
+
+@keyframes rect119 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect119 { animation-name: rect119;  fill: #87ff5f; }
+
+@keyframes rect120 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect120 { animation-name: rect120;  fill: #87ff87; }
+
+@keyframes rect121 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect121 { animation-name: rect121;  fill: #87ffaf; }
+
+@keyframes rect122 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect122 { animation-name: rect122;  fill: #87ffd7; }
+
+@keyframes rect123 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect123 { animation-name: rect123;  fill: #87ffff; }
+
+@keyframes rect124 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect124 { animation-name: rect124;  fill: #af0000; }
+
+@keyframes rect125 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect125 { animation-name: rect125;  fill: #af005f; }
+
+@keyframes rect126 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect126 { animation-name: rect126;  fill: #af0087; }
+
+@keyframes rect127 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect127 { animation-name: rect127;  fill: #af00af; }
+
+@keyframes rect128 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect128 { animation-name: rect128;  fill: #af00d7; }
+
+@keyframes rect129 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect129 { animation-name: rect129;  fill: #af00ff; }
+
+@keyframes rect130 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect130 { animation-name: rect130;  fill: #af5f00; }
+
+@keyframes rect131 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect131 { animation-name: rect131;  fill: #af5f5f; }
+
+@keyframes rect132 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect132 { animation-name: rect132;  fill: #af5f87; }
+
+@keyframes rect133 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect133 { animation-name: rect133;  fill: #af5faf; }
+
+@keyframes rect134 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect134 { animation-name: rect134;  fill: #af5fd7; }
+
+@keyframes rect135 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect135 { animation-name: rect135;  fill: #af5fff; }
+
+@keyframes rect136 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect136 { animation-name: rect136;  fill: #af8700; }
+
+@keyframes rect137 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect137 { animation-name: rect137;  fill: #af875f; }
+
+@keyframes rect138 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect138 { animation-name: rect138;  fill: #af8787; }
+
+@keyframes rect139 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect139 { animation-name: rect139;  fill: #af87af; }
+
+@keyframes rect140 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect140 { animation-name: rect140;  fill: #af87d7; }
+
+@keyframes rect141 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect141 { animation-name: rect141;  fill: #af87ff; }
+
+@keyframes rect142 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect142 { animation-name: rect142;  fill: #afaf00; }
+
+@keyframes rect143 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect143 { animation-name: rect143;  fill: #afaf5f; }
+
+@keyframes rect144 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect144 { animation-name: rect144;  fill: #afaf87; }
+
+@keyframes rect145 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect145 { animation-name: rect145;  fill: #afafaf; }
+
+@keyframes rect146 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect146 { animation-name: rect146;  fill: #afafd7; }
+
+@keyframes rect147 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect147 { animation-name: rect147;  fill: #afafff; }
+
+@keyframes rect148 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect148 { animation-name: rect148;  fill: #afd700; }
+
+@keyframes rect149 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect149 { animation-name: rect149;  fill: #afd75f; }
+
+@keyframes rect150 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect150 { animation-name: rect150;  fill: #afd787; }
+
+@keyframes rect151 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect151 { animation-name: rect151;  fill: #afd7af; }
+
+@keyframes rect152 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect152 { animation-name: rect152;  fill: #afd7d7; }
+
+@keyframes rect153 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect153 { animation-name: rect153;  fill: #afd7ff; }
+
+@keyframes rect154 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect154 { animation-name: rect154;  fill: #afff00; }
+
+@keyframes rect155 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect155 { animation-name: rect155;  fill: #afff5f; }
+
+@keyframes rect156 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect156 { animation-name: rect156;  fill: #afff87; }
+
+@keyframes rect157 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect157 { animation-name: rect157;  fill: #afffaf; }
+
+@keyframes rect158 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect158 { animation-name: rect158;  fill: #afffd7; }
+
+@keyframes rect159 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect159 { animation-name: rect159;  fill: #afffff; }
+
+@keyframes rect160 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect160 { animation-name: rect160;  fill: #d70000; }
+
+@keyframes rect161 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect161 { animation-name: rect161;  fill: #d7005f; }
+
+@keyframes rect162 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect162 { animation-name: rect162;  fill: #d70087; }
+
+@keyframes rect163 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect163 { animation-name: rect163;  fill: #d700af; }
+
+@keyframes rect164 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect164 { animation-name: rect164;  fill: #d700d7; }
+
+@keyframes rect165 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect165 { animation-name: rect165;  fill: #d700ff; }
+
+@keyframes rect166 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect166 { animation-name: rect166;  fill: #d75f00; }
+
+@keyframes rect167 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect167 { animation-name: rect167;  fill: #d75f5f; }
+
+@keyframes rect168 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect168 { animation-name: rect168;  fill: #d75f87; }
+
+@keyframes rect169 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect169 { animation-name: rect169;  fill: #d75faf; }
+
+@keyframes rect170 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect170 { animation-name: rect170;  fill: #d75fd7; }
+
+@keyframes rect171 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect171 { animation-name: rect171;  fill: #d75fff; }
+
+@keyframes rect172 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect172 { animation-name: rect172;  fill: #d78700; }
+
+@keyframes rect173 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect173 { animation-name: rect173;  fill: #d7875f; }
+
+@keyframes rect174 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect174 { animation-name: rect174;  fill: #d78787; }
+
+@keyframes rect175 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect175 { animation-name: rect175;  fill: #d787af; }
+
+@keyframes rect176 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect176 { animation-name: rect176;  fill: #d787d7; }
+
+@keyframes rect177 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect177 { animation-name: rect177;  fill: #d787ff; }
+
+@keyframes rect178 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect178 { animation-name: rect178;  fill: #d7af00; }
+
+@keyframes rect179 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect179 { animation-name: rect179;  fill: #d7af5f; }
+
+@keyframes rect180 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect180 { animation-name: rect180;  fill: #d7af87; }
+
+@keyframes rect181 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect181 { animation-name: rect181;  fill: #d7afaf; }
+
+@keyframes rect182 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect182 { animation-name: rect182;  fill: #d7afd7; }
+
+@keyframes rect183 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect183 { animation-name: rect183;  fill: #d7afff; }
+
+@keyframes rect184 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect184 { animation-name: rect184;  fill: #d7d700; }
+
+@keyframes rect185 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect185 { animation-name: rect185;  fill: #d7d75f; }
+
+@keyframes rect186 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect186 { animation-name: rect186;  fill: #d7d787; }
+
+@keyframes rect187 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect187 { animation-name: rect187;  fill: #d7d7af; }
+
+@keyframes rect188 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect188 { animation-name: rect188;  fill: #d7d7d7; }
+
+@keyframes rect189 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect189 { animation-name: rect189;  fill: #d7d7ff; }
+
+@keyframes rect190 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect190 { animation-name: rect190;  fill: #d7ff00; }
+
+@keyframes rect191 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect191 { animation-name: rect191;  fill: #d7ff5f; }
+
+@keyframes rect192 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect192 { animation-name: rect192;  fill: #d7ff87; }
+
+@keyframes rect193 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect193 { animation-name: rect193;  fill: #d7ffaf; }
+
+@keyframes rect194 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect194 { animation-name: rect194;  fill: #d7ffd7; }
+
+@keyframes rect195 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect195 { animation-name: rect195;  fill: #d7ffff; }
+
+@keyframes rect196 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect196 { animation-name: rect196;  fill: #ff0000; }
+
+@keyframes rect197 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect197 { animation-name: rect197;  fill: #ff005f; }
+
+@keyframes rect198 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect198 { animation-name: rect198;  fill: #ff0087; }
+
+@keyframes rect199 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect199 { animation-name: rect199;  fill: #ff00af; }
+
+@keyframes rect200 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect200 { animation-name: rect200;  fill: #ff00d7; }
+
+@keyframes rect201 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect201 { animation-name: rect201;  fill: #ff00ff; }
+
+@keyframes rect202 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect202 { animation-name: rect202;  fill: #ff5f00; }
+
+@keyframes rect203 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect203 { animation-name: rect203;  fill: #ff5f5f; }
+
+@keyframes rect204 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect204 { animation-name: rect204;  fill: #ff5f87; }
+
+@keyframes rect205 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect205 { animation-name: rect205;  fill: #ff5faf; }
+
+@keyframes rect206 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect206 { animation-name: rect206;  fill: #ff5fd7; }
+
+@keyframes rect207 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect207 { animation-name: rect207;  fill: #ff5fff; }
+
+@keyframes rect208 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect208 { animation-name: rect208;  fill: #ff8700; }
+
+@keyframes rect209 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect209 { animation-name: rect209;  fill: #ff875f; }
+
+@keyframes rect210 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect210 { animation-name: rect210;  fill: #ff8787; }
+
+@keyframes rect211 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect211 { animation-name: rect211;  fill: #ff87af; }
+
+@keyframes rect212 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect212 { animation-name: rect212;  fill: #ff87d7; }
+
+@keyframes rect213 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect213 { animation-name: rect213;  fill: #ff87ff; }
+
+@keyframes rect214 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect214 { animation-name: rect214;  fill: #ffaf00; }
+
+@keyframes rect215 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect215 { animation-name: rect215;  fill: #ffaf5f; }
+
+@keyframes rect216 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect216 { animation-name: rect216;  fill: #ffaf87; }
+
+@keyframes rect217 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect217 { animation-name: rect217;  fill: #ffafaf; }
+
+@keyframes rect218 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect218 { animation-name: rect218;  fill: #ffafd7; }
+
+@keyframes rect219 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect219 { animation-name: rect219;  fill: #ffafff; }
+
+@keyframes rect220 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect220 { animation-name: rect220;  fill: #ffd700; }
+
+@keyframes rect221 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect221 { animation-name: rect221;  fill: #ffd75f; }
+
+@keyframes rect222 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect222 { animation-name: rect222;  fill: #ffd787; }
+
+@keyframes rect223 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect223 { animation-name: rect223;  fill: #ffd7af; }
+
+@keyframes rect224 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect224 { animation-name: rect224;  fill: #ffd7d7; }
+
+@keyframes rect225 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect225 { animation-name: rect225;  fill: #ffd7ff; }
+
+@keyframes rect226 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect226 { animation-name: rect226;  fill: #ffff00; }
+
+@keyframes rect227 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect227 { animation-name: rect227;  fill: #ffff5f; }
+
+@keyframes rect228 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect228 { animation-name: rect228;  fill: #ffff87; }
+
+@keyframes rect229 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect229 { animation-name: rect229;  fill: #ffffaf; }
+
+@keyframes rect230 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect230 { animation-name: rect230;  fill: #ffffd7; }
+
+@keyframes rect231 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect231 { animation-name: rect231;  fill: #ffffff; }
+
+@keyframes rect232 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect232 { animation-name: rect232;  fill: #080808; }
+
+@keyframes rect233 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect233 { animation-name: rect233;  fill: #121212; }
+
+@keyframes rect234 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect234 { animation-name: rect234;  fill: #1c1c1c; }
+
+@keyframes rect235 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect235 { animation-name: rect235;  fill: #262626; }
+
+@keyframes rect236 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect236 { animation-name: rect236;  fill: #303030; }
+
+@keyframes rect237 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect237 { animation-name: rect237;  fill: #3a3a3a; }
+
+@keyframes rect238 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect238 { animation-name: rect238;  fill: #444444; }
+
+@keyframes rect239 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect239 { animation-name: rect239;  fill: #4e4e4e; }
+
+@keyframes rect240 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect240 { animation-name: rect240;  fill: #585858; }
+
+@keyframes rect241 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect241 { animation-name: rect241;  fill: #626262; }
+
+@keyframes rect242 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect242 { animation-name: rect242;  fill: #6c6c6c; }
+
+@keyframes rect243 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect243 { animation-name: rect243;  fill: #767676; }
+
+@keyframes rect244 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect244 { animation-name: rect244;  fill: #808080; }
+
+@keyframes rect245 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect245 { animation-name: rect245;  fill: #8a8a8a; }
+
+@keyframes rect246 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect246 { animation-name: rect246;  fill: #949494; }
+
+@keyframes rect247 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect247 { animation-name: rect247;  fill: #9e9e9e; }
+
+@keyframes rect248 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect248 { animation-name: rect248;  fill: #a8a8a8; }
+
+@keyframes rect249 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect249 { animation-name: rect249;  fill: #b2b2b2; }
+
+@keyframes rect250 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect250 { animation-name: rect250;  fill: #bcbcbc; }
+
+@keyframes rect251 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect251 { animation-name: rect251;  fill: #c6c6c6; }
+
+@keyframes rect252 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect252 { animation-name: rect252;  fill: #d0d0d0; }
+
+@keyframes rect253 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect253 { animation-name: rect253;  fill: #dadada; }
+
+@keyframes rect254 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect254 { animation-name: rect254;  fill: #e4e4e4; }
+
+@keyframes rect255 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.rect255 { animation-name: rect255;  fill: #eeeeee; }
+
+@keyframes text0 {
+0%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text0 { animation-name: text0;  fill: #619932; }
+
+@keyframes text1 {
+0%  { visibility: visible; }
+7.6758%  { visibility: hidden; }
+}
+.text1 { animation-name: text1; }
+
+@keyframes text2 {
+7.6758%  { visibility: visible; }
+9.2109%  { visibility: hidden; }
+}
+.text2 { animation-name: text2; }
+
+@keyframes text3 {
+9.2109%  { visibility: visible; }
+10.7461%  { visibility: hidden; }
+}
+.text3 { animation-name: text3; }
+
+@keyframes text4 {
+10.7461%  { visibility: visible; }
+12.2812%  { visibility: hidden; }
+}
+.text4 { animation-name: text4; }
+
+@keyframes text5 {
+12.2812%  { visibility: visible; }
+13.8164%  { visibility: hidden; }
+}
+.text5 { animation-name: text5; }
+
+@keyframes text6 {
+13.8164%  { visibility: visible; }
+15.3516%  { visibility: hidden; }
+}
+.text6 { animation-name: text6; }
+
+@keyframes text7 {
+15.3516%  { visibility: visible; }
+16.8867%  { visibility: hidden; }
+}
+.text7 { animation-name: text7; }
+
+@keyframes text8 {
+16.8867%  { visibility: visible; }
+18.4219%  { visibility: hidden; }
+}
+.text8 { animation-name: text8; }
+
+@keyframes text9 {
+18.4219%  { visibility: visible; }
+19.957%  { visibility: hidden; }
+}
+.text9 { animation-name: text9; }
+
+@keyframes text10 {
+19.957%  { visibility: visible; }
+21.4922%  { visibility: hidden; }
+}
+.text10 { animation-name: text10; }
+
+@keyframes text11 {
+21.4922%  { visibility: visible; }
+23.0273%  { visibility: hidden; }
+}
+.text11 { animation-name: text11; }
+
+@keyframes text12 {
+23.0273%  { visibility: visible; }
+24.5625%  { visibility: hidden; }
+}
+.text12 { animation-name: text12; }
+
+@keyframes text13 {
+24.5625%  { visibility: visible; }
+26.0976%  { visibility: hidden; }
+}
+.text13 { animation-name: text13; }
+
+@keyframes text14 {
+26.0976%  { visibility: visible; }
+27.6328%  { visibility: hidden; }
+}
+.text14 { animation-name: text14; }
+
+@keyframes text15 {
+27.6328%  { visibility: visible; }
+29.1679%  { visibility: hidden; }
+}
+.text15 { animation-name: text15; }
+
+@keyframes text16 {
+29.1679%  { visibility: visible; }
+30.7031%  { visibility: hidden; }
+}
+.text16 { animation-name: text16; }
+
+@keyframes text17 {
+30.7031%  { visibility: visible; }
+32.2383%  { visibility: hidden; }
+}
+.text17 { animation-name: text17; }
+
+@keyframes text18 {
+32.2383%  { visibility: visible; }
+33.7734%  { visibility: hidden; }
+}
+.text18 { animation-name: text18; }
+
+@keyframes text19 {
+33.7734%  { visibility: visible; }
+35.3086%  { visibility: hidden; }
+}
+.text19 { animation-name: text19; }
+
+@keyframes text20 {
+35.3086%  { visibility: visible; }
+36.8437%  { visibility: hidden; }
+}
+.text20 { animation-name: text20; }
+
+@keyframes text21 {
+36.8437%  { visibility: visible; }
+38.3789%  { visibility: hidden; }
+}
+.text21 { animation-name: text21; }
+
+@keyframes text22 {
+38.3789%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text22 { animation-name: text22; }
+
+@keyframes text23 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text23 { animation-name: text23; }
+
+@keyframes text24 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text24 { animation-name: text24;  fill: #dcd8d5; }
+
+@keyframes text25 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text25 { animation-name: text25; }
+
+@keyframes text26 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text26 { animation-name: text26; }
+
+@keyframes text27 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text27 { animation-name: text27; }
+
+@keyframes text28 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text28 { animation-name: text28; }
+
+@keyframes text29 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text29 { animation-name: text29; }
+
+@keyframes text30 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text30 { animation-name: text30; }
+
+@keyframes text31 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text31 { animation-name: text31; }
+
+@keyframes text32 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text32 { animation-name: text32; }
+
+@keyframes text33 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text33 { animation-name: text33; }
+
+@keyframes text34 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text34 { animation-name: text34; }
+
+@keyframes text35 {
+53.7304%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text35 { animation-name: text35; }
+
+@keyframes text36 {
+61.7593%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text36 { animation-name: text36;  fill: #619932; }
+
+@keyframes text37 {
+61.7593%  { visibility: visible; }
+63.2944%  { visibility: hidden; }
+}
+.text37 { animation-name: text37; }
+
+@keyframes text38 {
+63.2944%  { visibility: visible; }
+64.8296%  { visibility: hidden; }
+}
+.text38 { animation-name: text38; }
+
+@keyframes text39 {
+64.8296%  { visibility: visible; }
+66.3648%  { visibility: hidden; }
+}
+.text39 { animation-name: text39; }
+
+@keyframes text40 {
+66.3648%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text40 { animation-name: text40; }
+
+@keyframes text41 {
+69.2969%  { visibility: visible; }
+100%  { visibility: hidden; }
+}
+.text41 { animation-name: text41; }
+
+</style>
+<rect class="background" x="0" y="0" width="596" height="342"
+rx="6" ry="6" />
+
+
+<g class="console">
+<g class="console-background"><rect class="rect rect0" x="0" y="36" width="63" height="18" />
+<rect class="rect rect1" x="63" y="36" width="63" height="18" />
+<rect class="rect rect2" x="126" y="36" width="63" height="18" />
+<rect class="rect rect3" x="189" y="36" width="63" height="18" />
+<rect class="rect rect4" x="252" y="36" width="63" height="18" />
+<rect class="rect rect5" x="315" y="36" width="63" height="18" />
+<rect class="rect rect6" x="378" y="36" width="63" height="18" />
+<rect class="rect rect7" x="441" y="36" width="63" height="18" />
+<rect class="rect rect8" x="0" y="54" width="63" height="18" />
+<rect class="rect rect9" x="63" y="54" width="63" height="18" />
+<rect class="rect rect10" x="126" y="54" width="63" height="18" />
+<rect class="rect rect11" x="189" y="54" width="63" height="18" />
+<rect class="rect rect12" x="252" y="54" width="63" height="18" />
+<rect class="rect rect13" x="315" y="54" width="63" height="18" />
+<rect class="rect rect14" x="378" y="54" width="63" height="18" />
+<rect class="rect rect15" x="441" y="54" width="63" height="18" />
+<rect class="rect rect16" x="0" y="90" width="14" height="18" />
+<rect class="rect rect17" x="14" y="90" width="14" height="18" />
+<rect class="rect rect18" x="28" y="90" width="14" height="18" />
+<rect class="rect rect19" x="42" y="90" width="14" height="18" />
+<rect class="rect rect20" x="56" y="90" width="14" height="18" />
+<rect class="rect rect21" x="70" y="90" width="14" height="18" />
+<rect class="rect rect22" x="84" y="90" width="14" height="18" />
+<rect class="rect rect23" x="98" y="90" width="14" height="18" />
+<rect class="rect rect24" x="112" y="90" width="14" height="18" />
+<rect class="rect rect25" x="126" y="90" width="14" height="18" />
+<rect class="rect rect26" x="140" y="90" width="14" height="18" />
+<rect class="rect rect27" x="154" y="90" width="14" height="18" />
+<rect class="rect rect28" x="168" y="90" width="14" height="18" />
+<rect class="rect rect29" x="182" y="90" width="14" height="18" />
+<rect class="rect rect30" x="196" y="90" width="14" height="18" />
+<rect class="rect rect31" x="210" y="90" width="14" height="18" />
+<rect class="rect rect32" x="224" y="90" width="14" height="18" />
+<rect class="rect rect33" x="238" y="90" width="14" height="18" />
+<rect class="rect rect34" x="252" y="90" width="14" height="18" />
+<rect class="rect rect35" x="266" y="90" width="14" height="18" />
+<rect class="rect rect36" x="280" y="90" width="14" height="18" />
+<rect class="rect rect37" x="294" y="90" width="14" height="18" />
+<rect class="rect rect38" x="308" y="90" width="14" height="18" />
+<rect class="rect rect39" x="322" y="90" width="14" height="18" />
+<rect class="rect rect40" x="336" y="90" width="14" height="18" />
+<rect class="rect rect41" x="350" y="90" width="14" height="18" />
+<rect class="rect rect42" x="364" y="90" width="14" height="18" />
+<rect class="rect rect43" x="378" y="90" width="14" height="18" />
+<rect class="rect rect44" x="392" y="90" width="14" height="18" />
+<rect class="rect rect45" x="406" y="90" width="14" height="18" />
+<rect class="rect rect46" x="420" y="90" width="14" height="18" />
+<rect class="rect rect47" x="434" y="90" width="14" height="18" />
+<rect class="rect rect48" x="448" y="90" width="14" height="18" />
+<rect class="rect rect49" x="462" y="90" width="14" height="18" />
+<rect class="rect rect50" x="476" y="90" width="14" height="18" />
+<rect class="rect rect51" x="490" y="90" width="14" height="18" />
+<rect class="rect rect52" x="0" y="108" width="14" height="18" />
+<rect class="rect rect53" x="14" y="108" width="14" height="18" />
+<rect class="rect rect54" x="28" y="108" width="14" height="18" />
+<rect class="rect rect55" x="42" y="108" width="14" height="18" />
+<rect class="rect rect56" x="56" y="108" width="14" height="18" />
+<rect class="rect rect57" x="70" y="108" width="14" height="18" />
+<rect class="rect rect58" x="84" y="108" width="14" height="18" />
+<rect class="rect rect59" x="98" y="108" width="14" height="18" />
+<rect class="rect rect60" x="112" y="108" width="14" height="18" />
+<rect class="rect rect61" x="126" y="108" width="14" height="18" />
+<rect class="rect rect62" x="140" y="108" width="14" height="18" />
+<rect class="rect rect63" x="154" y="108" width="14" height="18" />
+<rect class="rect rect64" x="168" y="108" width="14" height="18" />
+<rect class="rect rect65" x="182" y="108" width="14" height="18" />
+<rect class="rect rect66" x="196" y="108" width="14" height="18" />
+<rect class="rect rect67" x="210" y="108" width="14" height="18" />
+<rect class="rect rect68" x="224" y="108" width="14" height="18" />
+<rect class="rect rect69" x="238" y="108" width="14" height="18" />
+<rect class="rect rect70" x="252" y="108" width="14" height="18" />
+<rect class="rect rect71" x="266" y="108" width="14" height="18" />
+<rect class="rect rect72" x="280" y="108" width="14" height="18" />
+<rect class="rect rect73" x="294" y="108" width="14" height="18" />
+<rect class="rect rect74" x="308" y="108" width="14" height="18" />
+<rect class="rect rect75" x="322" y="108" width="14" height="18" />
+<rect class="rect rect76" x="336" y="108" width="14" height="18" />
+<rect class="rect rect77" x="350" y="108" width="14" height="18" />
+<rect class="rect rect78" x="364" y="108" width="14" height="18" />
+<rect class="rect rect79" x="378" y="108" width="14" height="18" />
+<rect class="rect rect80" x="392" y="108" width="14" height="18" />
+<rect class="rect rect81" x="406" y="108" width="14" height="18" />
+<rect class="rect rect82" x="420" y="108" width="14" height="18" />
+<rect class="rect rect83" x="434" y="108" width="14" height="18" />
+<rect class="rect rect84" x="448" y="108" width="14" height="18" />
+<rect class="rect rect85" x="462" y="108" width="14" height="18" />
+<rect class="rect rect86" x="476" y="108" width="14" height="18" />
+<rect class="rect rect87" x="490" y="108" width="14" height="18" />
+<rect class="rect rect88" x="0" y="126" width="14" height="18" />
+<rect class="rect rect89" x="14" y="126" width="14" height="18" />
+<rect class="rect rect90" x="28" y="126" width="14" height="18" />
+<rect class="rect rect91" x="42" y="126" width="14" height="18" />
+<rect class="rect rect92" x="56" y="126" width="14" height="18" />
+<rect class="rect rect93" x="70" y="126" width="14" height="18" />
+<rect class="rect rect94" x="84" y="126" width="14" height="18" />
+<rect class="rect rect95" x="98" y="126" width="14" height="18" />
+<rect class="rect rect96" x="112" y="126" width="14" height="18" />
+<rect class="rect rect97" x="126" y="126" width="14" height="18" />
+<rect class="rect rect98" x="140" y="126" width="14" height="18" />
+<rect class="rect rect99" x="154" y="126" width="14" height="18" />
+<rect class="rect rect100" x="168" y="126" width="14" height="18" />
+<rect class="rect rect101" x="182" y="126" width="14" height="18" />
+<rect class="rect rect102" x="196" y="126" width="14" height="18" />
+<rect class="rect rect103" x="210" y="126" width="14" height="18" />
+<rect class="rect rect104" x="224" y="126" width="14" height="18" />
+<rect class="rect rect105" x="238" y="126" width="14" height="18" />
+<rect class="rect rect106" x="252" y="126" width="14" height="18" />
+<rect class="rect rect107" x="266" y="126" width="14" height="18" />
+<rect class="rect rect108" x="280" y="126" width="14" height="18" />
+<rect class="rect rect109" x="294" y="126" width="14" height="18" />
+<rect class="rect rect110" x="308" y="126" width="14" height="18" />
+<rect class="rect rect111" x="322" y="126" width="14" height="18" />
+<rect class="rect rect112" x="336" y="126" width="14" height="18" />
+<rect class="rect rect113" x="350" y="126" width="14" height="18" />
+<rect class="rect rect114" x="364" y="126" width="14" height="18" />
+<rect class="rect rect115" x="378" y="126" width="14" height="18" />
+<rect class="rect rect116" x="392" y="126" width="14" height="18" />
+<rect class="rect rect117" x="406" y="126" width="14" height="18" />
+<rect class="rect rect118" x="420" y="126" width="14" height="18" />
+<rect class="rect rect119" x="434" y="126" width="14" height="18" />
+<rect class="rect rect120" x="448" y="126" width="14" height="18" />
+<rect class="rect rect121" x="462" y="126" width="14" height="18" />
+<rect class="rect rect122" x="476" y="126" width="14" height="18" />
+<rect class="rect rect123" x="490" y="126" width="14" height="18" />
+<rect class="rect rect124" x="0" y="144" width="14" height="18" />
+<rect class="rect rect125" x="14" y="144" width="14" height="18" />
+<rect class="rect rect126" x="28" y="144" width="14" height="18" />
+<rect class="rect rect127" x="42" y="144" width="14" height="18" />
+<rect class="rect rect128" x="56" y="144" width="14" height="18" />
+<rect class="rect rect129" x="70" y="144" width="14" height="18" />
+<rect class="rect rect130" x="84" y="144" width="14" height="18" />
+<rect class="rect rect131" x="98" y="144" width="14" height="18" />
+<rect class="rect rect132" x="112" y="144" width="14" height="18" />
+<rect class="rect rect133" x="126" y="144" width="14" height="18" />
+<rect class="rect rect134" x="140" y="144" width="14" height="18" />
+<rect class="rect rect135" x="154" y="144" width="14" height="18" />
+<rect class="rect rect136" x="168" y="144" width="14" height="18" />
+<rect class="rect rect137" x="182" y="144" width="14" height="18" />
+<rect class="rect rect138" x="196" y="144" width="14" height="18" />
+<rect class="rect rect139" x="210" y="144" width="14" height="18" />
+<rect class="rect rect140" x="224" y="144" width="14" height="18" />
+<rect class="rect rect141" x="238" y="144" width="14" height="18" />
+<rect class="rect rect142" x="252" y="144" width="14" height="18" />
+<rect class="rect rect143" x="266" y="144" width="14" height="18" />
+<rect class="rect rect144" x="280" y="144" width="14" height="18" />
+<rect class="rect rect145" x="294" y="144" width="14" height="18" />
+<rect class="rect rect146" x="308" y="144" width="14" height="18" />
+<rect class="rect rect147" x="322" y="144" width="14" height="18" />
+<rect class="rect rect148" x="336" y="144" width="14" height="18" />
+<rect class="rect rect149" x="350" y="144" width="14" height="18" />
+<rect class="rect rect150" x="364" y="144" width="14" height="18" />
+<rect class="rect rect151" x="378" y="144" width="14" height="18" />
+<rect class="rect rect152" x="392" y="144" width="14" height="18" />
+<rect class="rect rect153" x="406" y="144" width="14" height="18" />
+<rect class="rect rect154" x="420" y="144" width="14" height="18" />
+<rect class="rect rect155" x="434" y="144" width="14" height="18" />
+<rect class="rect rect156" x="448" y="144" width="14" height="18" />
+<rect class="rect rect157" x="462" y="144" width="14" height="18" />
+<rect class="rect rect158" x="476" y="144" width="14" height="18" />
+<rect class="rect rect159" x="490" y="144" width="14" height="18" />
+<rect class="rect rect160" x="0" y="162" width="14" height="18" />
+<rect class="rect rect161" x="14" y="162" width="14" height="18" />
+<rect class="rect rect162" x="28" y="162" width="14" height="18" />
+<rect class="rect rect163" x="42" y="162" width="14" height="18" />
+<rect class="rect rect164" x="56" y="162" width="14" height="18" />
+<rect class="rect rect165" x="70" y="162" width="14" height="18" />
+<rect class="rect rect166" x="84" y="162" width="14" height="18" />
+<rect class="rect rect167" x="98" y="162" width="14" height="18" />
+<rect class="rect rect168" x="112" y="162" width="14" height="18" />
+<rect class="rect rect169" x="126" y="162" width="14" height="18" />
+<rect class="rect rect170" x="140" y="162" width="14" height="18" />
+<rect class="rect rect171" x="154" y="162" width="14" height="18" />
+<rect class="rect rect172" x="168" y="162" width="14" height="18" />
+<rect class="rect rect173" x="182" y="162" width="14" height="18" />
+<rect class="rect rect174" x="196" y="162" width="14" height="18" />
+<rect class="rect rect175" x="210" y="162" width="14" height="18" />
+<rect class="rect rect176" x="224" y="162" width="14" height="18" />
+<rect class="rect rect177" x="238" y="162" width="14" height="18" />
+<rect class="rect rect178" x="252" y="162" width="14" height="18" />
+<rect class="rect rect179" x="266" y="162" width="14" height="18" />
+<rect class="rect rect180" x="280" y="162" width="14" height="18" />
+<rect class="rect rect181" x="294" y="162" width="14" height="18" />
+<rect class="rect rect182" x="308" y="162" width="14" height="18" />
+<rect class="rect rect183" x="322" y="162" width="14" height="18" />
+<rect class="rect rect184" x="336" y="162" width="14" height="18" />
+<rect class="rect rect185" x="350" y="162" width="14" height="18" />
+<rect class="rect rect186" x="364" y="162" width="14" height="18" />
+<rect class="rect rect187" x="378" y="162" width="14" height="18" />
+<rect class="rect rect188" x="392" y="162" width="14" height="18" />
+<rect class="rect rect189" x="406" y="162" width="14" height="18" />
+<rect class="rect rect190" x="420" y="162" width="14" height="18" />
+<rect class="rect rect191" x="434" y="162" width="14" height="18" />
+<rect class="rect rect192" x="448" y="162" width="14" height="18" />
+<rect class="rect rect193" x="462" y="162" width="14" height="18" />
+<rect class="rect rect194" x="476" y="162" width="14" height="18" />
+<rect class="rect rect195" x="490" y="162" width="14" height="18" />
+<rect class="rect rect196" x="0" y="180" width="14" height="18" />
+<rect class="rect rect197" x="14" y="180" width="14" height="18" />
+<rect class="rect rect198" x="28" y="180" width="14" height="18" />
+<rect class="rect rect199" x="42" y="180" width="14" height="18" />
+<rect class="rect rect200" x="56" y="180" width="14" height="18" />
+<rect class="rect rect201" x="70" y="180" width="14" height="18" />
+<rect class="rect rect202" x="84" y="180" width="14" height="18" />
+<rect class="rect rect203" x="98" y="180" width="14" height="18" />
+<rect class="rect rect204" x="112" y="180" width="14" height="18" />
+<rect class="rect rect205" x="126" y="180" width="14" height="18" />
+<rect class="rect rect206" x="140" y="180" width="14" height="18" />
+<rect class="rect rect207" x="154" y="180" width="14" height="18" />
+<rect class="rect rect208" x="168" y="180" width="14" height="18" />
+<rect class="rect rect209" x="182" y="180" width="14" height="18" />
+<rect class="rect rect210" x="196" y="180" width="14" height="18" />
+<rect class="rect rect211" x="210" y="180" width="14" height="18" />
+<rect class="rect rect212" x="224" y="180" width="14" height="18" />
+<rect class="rect rect213" x="238" y="180" width="14" height="18" />
+<rect class="rect rect214" x="252" y="180" width="14" height="18" />
+<rect class="rect rect215" x="266" y="180" width="14" height="18" />
+<rect class="rect rect216" x="280" y="180" width="14" height="18" />
+<rect class="rect rect217" x="294" y="180" width="14" height="18" />
+<rect class="rect rect218" x="308" y="180" width="14" height="18" />
+<rect class="rect rect219" x="322" y="180" width="14" height="18" />
+<rect class="rect rect220" x="336" y="180" width="14" height="18" />
+<rect class="rect rect221" x="350" y="180" width="14" height="18" />
+<rect class="rect rect222" x="364" y="180" width="14" height="18" />
+<rect class="rect rect223" x="378" y="180" width="14" height="18" />
+<rect class="rect rect224" x="392" y="180" width="14" height="18" />
+<rect class="rect rect225" x="406" y="180" width="14" height="18" />
+<rect class="rect rect226" x="420" y="180" width="14" height="18" />
+<rect class="rect rect227" x="434" y="180" width="14" height="18" />
+<rect class="rect rect228" x="448" y="180" width="14" height="18" />
+<rect class="rect rect229" x="462" y="180" width="14" height="18" />
+<rect class="rect rect230" x="476" y="180" width="14" height="18" />
+<rect class="rect rect231" x="490" y="180" width="14" height="18" />
+<rect class="rect rect232" x="0" y="216" width="21" height="18" />
+<rect class="rect rect233" x="21" y="216" width="21" height="18" />
+<rect class="rect rect234" x="42" y="216" width="21" height="18" />
+<rect class="rect rect235" x="63" y="216" width="21" height="18" />
+<rect class="rect rect236" x="84" y="216" width="21" height="18" />
+<rect class="rect rect237" x="105" y="216" width="21" height="18" />
+<rect class="rect rect238" x="126" y="216" width="21" height="18" />
+<rect class="rect rect239" x="147" y="216" width="21" height="18" />
+<rect class="rect rect240" x="168" y="216" width="21" height="18" />
+<rect class="rect rect241" x="189" y="216" width="21" height="18" />
+<rect class="rect rect242" x="210" y="216" width="21" height="18" />
+<rect class="rect rect243" x="231" y="216" width="21" height="18" />
+<rect class="rect rect244" x="252" y="216" width="21" height="18" />
+<rect class="rect rect245" x="273" y="216" width="21" height="18" />
+<rect class="rect rect246" x="294" y="216" width="21" height="18" />
+<rect class="rect rect247" x="315" y="216" width="21" height="18" />
+<rect class="rect rect248" x="336" y="216" width="21" height="18" />
+<rect class="rect rect249" x="357" y="216" width="21" height="18" />
+<rect class="rect rect250" x="378" y="216" width="21" height="18" />
+<rect class="rect rect251" x="399" y="216" width="21" height="18" />
+<rect class="rect rect252" x="420" y="216" width="21" height="18" />
+<rect class="rect rect253" x="441" y="216" width="21" height="18" />
+<rect class="rect rect254" x="462" y="216" width="21" height="18" />
+<rect class="rect rect255" x="483" y="216" width="21" height="18" />
+</g>
+<g class="console-text"><text class="text text0" x="0" y="10" textLength="84" >▲ examples/ </text>
+<text class="text text1" x="84" y="10" textLength="14" >$ </text>
+<text class="text text2" x="84" y="10" textLength="21" >$ t</text>
+<text class="text text3" x="84" y="10" textLength="28" >$ ts</text>
+<text class="text text4" x="84" y="10" textLength="35" >$ ts-</text>
+<text class="text text5" x="84" y="10" textLength="42" >$ ts-n</text>
+<text class="text text6" x="84" y="10" textLength="49" >$ ts-no</text>
+<text class="text text7" x="84" y="10" textLength="56" >$ ts-nod</text>
+<text class="text text8" x="84" y="10" textLength="63" >$ ts-node</text>
+<text class="text text9" x="84" y="10" textLength="70" >$ ts-node </text>
+<text class="text text10" x="84" y="10" textLength="77" >$ ts-node p</text>
+<text class="text text11" x="84" y="10" textLength="84" >$ ts-node pr</text>
+<text class="text text12" x="84" y="10" textLength="91" >$ ts-node pri</text>
+<text class="text text13" x="84" y="10" textLength="98" >$ ts-node prin</text>
+<text class="text text14" x="84" y="10" textLength="105" >$ ts-node print</text>
+<text class="text text15" x="84" y="10" textLength="112" >$ ts-node print-</text>
+<text class="text text16" x="84" y="10" textLength="119" >$ ts-node print-p</text>
+<text class="text text17" x="84" y="10" textLength="126" >$ ts-node print-pa</text>
+<text class="text text18" x="84" y="10" textLength="133" >$ ts-node print-pal</text>
+<text class="text text19" x="84" y="10" textLength="140" >$ ts-node print-pale</text>
+<text class="text text20" x="84" y="10" textLength="147" >$ ts-node print-palet</text>
+<text class="text text21" x="84" y="10" textLength="154" >$ ts-node print-palett</text>
+<text class="text text22" x="84" y="10" textLength="161" >$ ts-node print-palette</text>
+<text class="text text23" x="0" y="28" textLength="147" >---STANDARD COLORS---</text>
+<text class="text text24" x="0" y="46" textLength="504" >    0        1        2        3        4        5        6        7    </text>
+<text class="text text25" x="0" y="64" textLength="504" >    0        1        2        3        4        5        6        7    </text>
+<text class="text text26" x="0" y="82" textLength="112" >---216 COLORS---</text>
+<text class="text text27" x="0" y="100" textLength="504" >                                                                        </text>
+<text class="text text28" x="0" y="118" textLength="504" >                                                                        </text>
+<text class="text text29" x="0" y="136" textLength="504" >                                                                        </text>
+<text class="text text30" x="0" y="154" textLength="504" >                                                                        </text>
+<text class="text text31" x="0" y="172" textLength="504" >                                                                        </text>
+<text class="text text32" x="0" y="190" textLength="504" >                                                                        </text>
+<text class="text text33" x="0" y="208" textLength="105" >---GRAYSCALE---</text>
+<text class="text text34" x="0" y="226" textLength="504" >                                                                        </text>
+<text class="text text35" x="0" y="244" textLength="63" >---END---</text>
+<text class="text text36" x="0" y="262" textLength="84" >▲ examples/ </text>
+<text class="text text37" x="84" y="262" textLength="21" >$ e</text>
+<text class="text text38" x="84" y="262" textLength="28" >$ ex</text>
+<text class="text text39" x="84" y="262" textLength="35" >$ exi</text>
+<text class="text text40" x="84" y="262" textLength="42" >$ exit</text>
+<text class="text text41" x="0" y="280" textLength="28" >exit</text>
+</g>
+</g>
+<g class="console-cursor">
+<rect class="cursor"
+x="0" y="0" width="7" height="18">
+</rect>
+</g>
+
+</svg>
