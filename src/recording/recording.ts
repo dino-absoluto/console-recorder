@@ -120,7 +120,7 @@ export class Recording implements RecordingData {
     }
     {
       const step = options.step && options.step > 0
-        ? options.typingStep
+        ? options.step
         : undefined
       const maxDelay = options.maxDelay && options.maxDelay > 0
         ? options.maxDelay
