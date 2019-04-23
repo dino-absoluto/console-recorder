@@ -26,17 +26,22 @@ npm i -g console-recorder
 ```
 
 ## Usage
+This tool supports 3 commands:
+- `record`
+- `replay`
+- `render`
+
 #### Record
 ```bash
-console-recorder rec log.json
+console-recorder record log.json
 ```
-This open a new shell session.
+This open a new shell session and start recording.
 
-Use `exit` to terminate the session and finish the recording.
+Use `exit` to terminate the session and finish recording.
 
 #### Replay
 ```bash
-console-recorder play log.json
+console-recorder replay log.json
 ```
 
 This replay a previously recorded session.
