@@ -24,6 +24,7 @@ import { fromScreens } from './renderer'
 import { parser } from '../cli'
 import { failedCheck } from '../utils/fail'
 import { ColorPalette } from './color/color-data'
+import { buildOptions, wrapOptions } from '../replay/options'
 
 export const command = 'render [options]'
 export const aliases = []
@@ -31,7 +32,7 @@ export const describe = 'Render a record to SVG file'
 export const builder =
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 (yargs: typeof parser) =>
-  yargs.strict(true)
+  buildOptions(yargs.strict(true))
     .usage('$0 -i <input> -o <output>')
     .option('input', {
       type: 'string',
@@ -50,39 +51,6 @@ export const builder =
     .option('palette', {
       type: 'string',
       default: 'minus'
-    })
-    .option('playSpeed', {
-      type: 'number',
-      alias: [ 'speed' ],
-      desc: 'Playing speed multiplier',
-      default: 1.0,
-      coerce: (n: number): number => {
-        return n > 0.1 ? n : 1.0
-      }
-    })
-    .option('normalize', {
-      type: 'number',
-      desc: 'Normalize events at steps of {number}ms'
-    })
-    .option('typingSpeed', {
-      type: 'number',
-      desc: 'Multiply typing speed by {number}',
-      implies: 'normalize'
-    })
-    .option('typingStep', {
-      type: 'number',
-      desc: 'Pause per keystroke',
-      implies: 'normalize'
-    })
-    .option('typingPause', {
-      type: 'number',
-      desc: 'Maximum pause when typing',
-      implies: 'normalize'
-    })
-    .option('maxDelay', {
-      type: 'number',
-      desc: 'Maximum delay between events, calculated before playSpeed',
-      implies: 'normalize'
     })
     .check((argv): boolean => {
       if (!argv.input) {
@@ -110,14 +78,7 @@ export const builder =
 type Options = ReturnType<typeof builder>['argv']
 
 export const handler = async (argv: Options): Promise<void> => {
-  const screens = await fromFile(argv.input, {
-    step: argv.normalize,
-    speed: argv.playSpeed,
-    typingSpeed: argv.typingSpeed,
-    typingPause: argv.typingPause,
-    typingStep: argv.typingStep,
-    maxDelay: argv.maxDelay
-  })
+  const screens = await fromFile(argv.input, wrapOptions(argv))
   if (!screens) {
     return
   }

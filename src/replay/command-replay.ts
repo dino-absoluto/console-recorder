@@ -20,6 +20,7 @@
 import { accessSync, constants } from 'fs'
 import { parser } from '../cli'
 import { failedCheck } from '../utils/fail'
+import { buildOptions, wrapOptions } from './options'
 
 export const command = 'replay <input>'
 export const aliases = [ 'play' ]
@@ -27,30 +28,7 @@ export const describe = 'Replay TTY session'
 export const builder =
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 (yargs: typeof parser) =>
-  yargs.strict(true)
-    .option('playSpeed', {
-      type: 'number',
-      alias: [ 'speed' ],
-      desc: 'Playing speed multiplier',
-      default: 1.0,
-      coerce: (n: number): number => {
-        return n > 0.1 ? n : 1.0
-      }
-    })
-    .option('normalize', {
-      type: 'number',
-      desc: 'Normalize events at steps of {number}ms'
-    })
-    .option('typingSpeed', {
-      type: 'number',
-      desc: 'Multiply typing speed by {number}',
-      implies: 'normalize'
-    })
-    .option('maxDelay', {
-      type: 'number',
-      desc: 'Maximum delay between events, calculated before playSpeed',
-      implies: 'normalize'
-    })
+  buildOptions(yargs.strict(true))
     .positional('input', {
       type: 'string',
       desc: 'A recorded TTY session'
@@ -85,10 +63,5 @@ type Options = ReturnType<typeof builder>['argv']
 export const handler = async (argv: Options): Promise<void> => {
   const { replay } = await import('..')
   const input: string = argv.input as string
-  await replay(input, {
-    step: argv.normalize,
-    speed: argv.playSpeed,
-    typingSpeed: argv.typingSpeed,
-    maxDelay: argv.maxDelay
-  })
+  await replay(input, wrapOptions(argv))
 }

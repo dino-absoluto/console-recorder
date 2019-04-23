@@ -43,6 +43,7 @@ export interface RecordingData {
 
 /** @public */
 export interface NormalizeOptions {
+  speed?: number
   step?: number
   typingSpeed?: number
   typingPause?: number
