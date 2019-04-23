@@ -24,33 +24,18 @@ Replay is a visual reproduction. The actual commands won't be re-run.
 npm i -g console-recorder
 ```
 
-## Record & playback
-Record session.
+## Usage
+#### Record
 
 ```bash
 console-recorder rec log.json
-┌────────────────────────────────────────────────┐
-│ -RECORDING STARTED-
-▲ console-recorder/ $ echo Hello World!
-Hello World!
-▲ console-recorder/ $ exit
-exit
-
-│ -RECORDING ENDED-
-└────────────────────────────────────────────────┘
 ```
+This open a new shell session.
+Use exit to terminate the session and finish the recording.
 
-Replay a previously recorded session.
-
+#### Replay
 ```bash
 console-recorder play log.json
-┌────────────────────────────────────────────────┐
-│ -REPLAY STARTED-
-▲ console-recorder/ $ echo Hello World!
-Hello World!
-▲ console-recorder/ $ exit
-exit
-
-│ -REPLAY ENDED-
-└────────────────────────────────────────────────┘
 ```
+This replay a previously recorded session.
+No interactions are necessary, you can terminate the replay with Ctrl+C.
