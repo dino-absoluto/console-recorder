@@ -38,7 +38,7 @@ export interface RecordingData {
 }
 
 /** @public */
-export interface NormalizeOptions {
+export interface Modifiers {
   speed?: number
   step?: number
   typingSpeed?: number
@@ -113,7 +113,7 @@ export class Recording implements RecordingData {
       })
   }
 
-  public normalize (options: NormalizeOptions = {}): void {
+  public normalize (options: Modifiers = {}): void {
     const { events } = this
     if (!(events.length > 0)) {
       return

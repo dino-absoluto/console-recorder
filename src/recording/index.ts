@@ -23,5 +23,5 @@ export {
   RecordingData,
   Recording,
   RecordEvent,
-  NormalizeOptions
+  Modifiers
 } from './recording'

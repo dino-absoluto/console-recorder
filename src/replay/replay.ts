@@ -19,13 +19,13 @@
 /* imports */
 import {
   Recording,
-  NormalizeOptions } from '../recording'
+  Modifiers } from '../recording'
 import { startMessage, endMessage } from '../utils/messages'
 import * as readLine from 'readline'
 import * as kleur from 'kleur'
 
 /** @public Describe options for replay() */
-export type ReplayOptions = NormalizeOptions
+export type ReplayOptions = Modifiers
 
 /** @public Start replaying */
 export async function replay (fname: string, options: ReplayOptions = {}): Promise<void> {

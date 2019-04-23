@@ -19,7 +19,7 @@
 /* imports */
 import {
   Recording,
-  NormalizeOptions
+  Modifiers
 } from '../../recording'
 import {
   ScreenBuffer
@@ -28,7 +28,7 @@ import * as c from 'kleur'
 
 const timeExtension = 2000
 
-interface InterpreterOptions extends NormalizeOptions {
+interface InterpreterOptions extends Modifiers {
   maxRows?: number
 }
 
