@@ -38,20 +38,24 @@ export const builder =
   buildOptions(yargs.strict(true))
     .usage('$0 render -i <input> -o <output>')
     .option('input', {
-      group: 'Data:',
+      group: 'IO:',
       type: 'string',
       alias: ['i'],
-      required: true
+      required: true,
+      desc: 'Input recording'
     })
     .option('output', {
-      group: 'Data:',
+      group: 'IO:',
       type: 'string',
       alias: ['o'],
-      required: true
+      required: true,
+      desc: 'Output SVG file'
     })
     .option('overwrite', {
+      group: 'IO:',
       type: 'boolean',
-      default: false
+      default: false,
+      desc: 'Overwrite existing file'
     })
     .option('palette', {
       group: 'Render:',
