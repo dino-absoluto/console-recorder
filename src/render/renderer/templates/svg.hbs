@@ -93,17 +93,15 @@ limitations under the License.
 {{#*inline "animateVisibility"}}
 @keyframes {{name}}{{@index}} {
 {{#each this.frames}}
-  {{percent (lookup (lookup @root.frames this.begin) 'beginPercentage')}} {
-    {{~0}} {{0~}}
-    visibility: visible;
-    {{~0}} {{0~}}
-  }
-  {{percent (lookup (lookup @root.frames this.end) 'endPercentage')}} {
-    {{~0}} {{0~}}
-    visibility: hidden;
-    {{~0}} {{0~}}
-  }
+  {{~#unless @first}}, {{/unless~}}
+  {{percent (lookup (lookup @root.frames this.begin) 'beginPercentage')~}}
 {{/each}}
+  { visibility: visible; }
+{{#each this.frames}}
+  {{~#unless @first}}, {{/unless~}}
+  {{percent (lookup (lookup @root.frames this.end) 'endPercentage')~}}
+{{/each}}
+  { visibility: hidden; }
 }
 .{{name}}{{@index}} {
   animation-name: {{name}}{{@index}};
