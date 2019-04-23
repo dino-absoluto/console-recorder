@@ -3,7 +3,7 @@
   "mainEntryPointFilePath": "<projectFolder>/built/dts/index.d.ts",
   "apiReport": {
     "enabled": false,
-    "reportTempFolder": "<projectFolder>/__tmp__/apiReport/",
+    "reportTempFolder": "<projectFolder>/built/apiReport/",
     "reportFolder": "<projectFolder>/built/reports/",
   },
   "dtsRollup": {
@@ -12,6 +12,6 @@
   },
   "docModel": {
     "enabled": true,
-    "apiJsonFilePath": "<projectFolder>/__tmp__/docModel/<unscopedPackageName>.api.json"
+    "apiJsonFilePath": "<projectFolder>/built/docModel/<unscopedPackageName>.api.json"
   }
 }
