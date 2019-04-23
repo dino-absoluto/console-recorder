@@ -34,7 +34,7 @@ export const buildOptions =
     .option('step', {
       group: 'Replay:',
       type: 'number',
-      desc: 'Normalize duration at steps of {n}ms'
+      desc: 'Normalize durations at steps of {n}ms'
     })
     .option('typingSpeed', {
       group: 'Replay:',
