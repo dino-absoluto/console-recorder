@@ -36,7 +36,7 @@ export const builder =
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 (yargs: typeof parser) =>
   buildOptions(yargs.strict(true))
-    .usage('$0 -i <input> -o <output>')
+    .usage('$0 render -i <input> -o <output>')
     .option('input', {
       type: 'string',
       alias: ['i'],
