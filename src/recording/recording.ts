@@ -177,10 +177,10 @@ export class Recording implements RecordingData {
         let delta = e.time - lastTime
         lastTime = e.time
         if (lastKey) {
+          delta *= multiplier
           if (step) {
             delta = Math.round(delta / step) * step
           }
-          delta *= multiplier
           if (pause) {
             delta = Math.min(delta, pause)
           }
