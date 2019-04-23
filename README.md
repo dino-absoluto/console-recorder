@@ -14,9 +14,10 @@ you can reproduce the console state in real-time.
 Replay is a visual reproduction. The actual commands won't be re-run.
 
 #### Features
-- The playback speed can be adjusted faster or slower.
+- Record tools such as VIM.
+- Customize your replay experience with options: speed, typingSpeed, etc.
 - Terminate the replay with Ctrl+C.
-- And obviously, tools such as VIM works too.
+- Turn your recording to **Animated SVG** file.
 
 ## Install
 
@@ -40,13 +41,13 @@ console-recorder play log.json
 
 This replay a previously recorded session.
 
-No interactions are necessary, you can terminate the replay with Ctrl+C.
+No interaction is necessary, you can terminate the replay with Ctrl+C.
 
 #### Render
 ```bash
 console-recorder render -i log.json -o output.svg
 ```
 
-Render a recorded session as SVG file.
+Render a recorded session to an **Animated SVG** file.
 
 ![palette](docs/media/palette.svg)
