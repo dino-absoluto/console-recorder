@@ -25,18 +25,25 @@ import {
   ScreenBuffer
 } from './screen'
 
-const timeExtension = 2000
+const DEFAULT_TIME_EXTENSION = 2000
 
 interface InterpreterOptions extends Modifiers {
   maxRows?: number
+  timeExtension?: number
 }
 
 export const fromFile = async (rec: Recording, options: InterpreterOptions = {}): Promise<ScreenBuffer[] | undefined> => {
   if (!rec) { return }
   const screen = new ScreenBuffer({
     columns: rec.columns,
-    rows: rec.rows
+    rows:
+      options.maxRows && options.maxRows > 0
+        ? options.maxRows
+        : rec.rows
   })
+  const timeExtension = options.timeExtension && options.timeExtension >= 0
+    ? options.timeExtension
+    : DEFAULT_TIME_EXTENSION
   rec.normalize(options)
   const throttle = 25
   const screens = []

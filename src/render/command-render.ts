@@ -57,6 +57,12 @@ export const builder =
       default: false,
       desc: 'Overwrite existing file'
     })
+    .option('timeExtension', {
+      group: 'Render:',
+      type: 'number',
+      default: 2000,
+      desc: 'Set pause duration after the animation is completed'
+    })
     .option('palette', {
       group: 'Render:',
       type: 'string',
@@ -109,7 +115,9 @@ export const handler = async (argv: Options): Promise<void> => {
       cUnit('seconds')
     )
   }
-  const screens = await fromFile(rec, wrapOptions(argv))
+  const screens = await fromFile(rec, Object.assign({
+    timeExtension: argv.timeExtension
+  }, wrapOptions(argv)))
   if (!screens) {
     return
   }
