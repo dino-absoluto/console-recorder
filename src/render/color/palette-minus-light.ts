@@ -48,5 +48,5 @@ export default palette
   palette[index] = color
 })
 
-palette[ANSIColors.background] = palette[ANSIColors.black]
-palette[ANSIColors.foreground] = palette[ANSIColors.white]
+palette[ANSIColors.background] = palette[ANSIColors.brightWhite]
+palette[ANSIColors.foreground] = palette[ANSIColors.black]
