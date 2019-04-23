@@ -52,7 +52,7 @@ export const buildOptions =
     })
     .option('maxDelay', {
       type: 'number',
-      desc: 'Maximum delay between events, calculated before playSpeed'
+      desc: 'Maximum delay between events'
     })
 
 type Options = ReturnType<typeof buildOptions>['argv']

@@ -122,6 +122,9 @@ export class Recording implements RecordingData {
       const step = options.step && options.step > 0
         ? options.step
         : undefined
+      const speed = options.speed && options.speed > 0
+        ? options.speed
+        : 1
       const maxDelay = options.maxDelay && options.maxDelay > 0
         ? options.maxDelay
         : Number.MAX_SAFE_INTEGER
@@ -132,6 +135,7 @@ export class Recording implements RecordingData {
       let lastEvent: RecordEvent | undefined
       for (const e of events) {
         let delta = e.time - lastTime
+        delta *= speed
         if (step) {
           delta = Math.round(delta / step) * step
         }
