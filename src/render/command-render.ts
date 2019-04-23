@@ -48,7 +48,8 @@ export const builder =
       default: false
     })
     .option('palette', {
-      type: 'string'
+      type: 'string',
+      default: 'minus'
     })
     .option('playSpeed', {
       type: 'number',
