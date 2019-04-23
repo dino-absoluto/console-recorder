@@ -29,7 +29,7 @@ import * as c from 'kleur'
 const timeExtension = 2000
 
 interface InterpreterOptions extends NormalizeOptions {
-  speed?: number
+  maxRows?: number
 }
 
 export const fromFile = async (fpath: string, options: InterpreterOptions = {}): Promise<ScreenBuffer[] | undefined> => {
@@ -42,24 +42,16 @@ export const fromFile = async (fpath: string, options: InterpreterOptions = {}):
   const screen = new ScreenBuffer({
     columns: rec.columns,
     rows: rec.rows
-  // , defaultBackground: DEFAULT_FG
-  // , defaultForeground: DEFAULT_BG
   })
-  if (options.speed) {
-    rec.playSpeed = options.speed
-  }
-  if (options.step) {
-    rec.normalize(options)
-  }
-  const multiplier = 1 / rec.playSpeed
-  const throttle = 25 * multiplier
+  rec.normalize(options)
+  const throttle = 25
   const screens = []
   let lastScreen: ScreenBuffer | undefined
   const begin = (rec.events[0] && rec.events[0].time) || 0
   let lastTime = 0
   for (const e of rec.events) {
     screen.decode(e.text)
-    const time = (e.time - begin) * multiplier
+    const time = e.time - begin
     if (lastScreen && time - lastTime < throttle) {
       continue
     }

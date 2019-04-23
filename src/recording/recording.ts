@@ -28,17 +28,13 @@ export interface RecordEvent {
   text: string
 }
 
-const SPEED_DEFAULT = 1.0
-const SPEED_MIN = 0.01
 const THRESHOLD = 4
-const NORMALIZATION_STEP = 25
 
 /** @public */
 export interface RecordingData {
   columns: number
   rows: number
   events: RecordEvent[]
-  playSpeed: number
 }
 
 /** @public */
@@ -59,7 +55,6 @@ export class Recording implements RecordingData {
   /** @internal */
   private playing: Promise<void> | undefined
   /** @internal */
-  private pPlaySpeed: number = SPEED_DEFAULT
   public constructor (options: Partial<RecordingData> = {}) {
     if (options.events) {
       this.events = options.events
@@ -70,12 +65,6 @@ export class Recording implements RecordingData {
     if (options.rows) {
       this.rows = options.rows
     }
-    if (options.playSpeed) {
-      this.playSpeed = options.playSpeed
-    }
-    Object.defineProperties(this, {
-      pPlaySpeed: { enumerable: false }
-    })
   }
 
   public static async fromFile (fpath: string): Promise<Recording> {
@@ -95,8 +84,7 @@ export class Recording implements RecordingData {
       return new Recording({
         events,
         columns: data.columns,
-        rows: data.rows,
-        playSpeed: data.playSpeed
+        rows: data.rows
       })
     }
     throw new Error('failed to read from file')
@@ -125,48 +113,51 @@ export class Recording implements RecordingData {
       })
   }
 
-  public get playSpeed (): number { return this.pPlaySpeed }
-  public set playSpeed (speed: number) {
-    this.pPlaySpeed = speed >= SPEED_MIN ? speed : SPEED_DEFAULT
-  }
-
   public normalize (options: NormalizeOptions = {}): void {
     const { events } = this
     if (!(events.length > 0)) {
       return
     }
-    let step = options.step
-    if (!step || !(step > 1)) {
-      step = NORMALIZATION_STEP
-    }
-    const maxDelay = options.maxDelay && options.maxDelay > 0
-      ? options.maxDelay
-      : Number.MAX_SAFE_INTEGER
-    let startTime = events[0].time
-    let lastTime = startTime
-    let corrected = 0
-    const newEvents: RecordEvent[] = []
-    let lastEvent: RecordEvent | undefined
-    for (const e of events) {
-      const delta = Math.min(maxDelay, Math.round((e.time - lastTime) / step) * step)
-      lastTime = e.time
-      if (!lastEvent || delta > 0) {
-        corrected += delta
-        lastEvent = {
-          time: corrected,
-          text: e.text
-        }
-        newEvents.push(lastEvent)
-      } else {
-        lastEvent.text += e.text
-      }
-    }
-    this.events = newEvents
-    if (options.typingSpeed && options.typingSpeed > 0) {
-      const step = options.typingStep && options.typingStep > 0
+    {
+      const step = options.step && options.step > 0
         ? options.typingStep
         : undefined
-      const multiplier = 1 / options.typingSpeed
+      const maxDelay = options.maxDelay && options.maxDelay > 0
+        ? options.maxDelay
+        : Number.MAX_SAFE_INTEGER
+      let startTime = events[0].time
+      let lastTime = startTime
+      let corrected = 0
+      const newEvents: RecordEvent[] = []
+      let lastEvent: RecordEvent | undefined
+      for (const e of events) {
+        let delta = e.time - lastTime
+        if (step) {
+          delta = Math.round(delta / step) * step
+        }
+        delta = Math.min(delta, maxDelay)
+        lastTime = e.time
+        if (!lastEvent || delta > 0) {
+          corrected += delta
+          lastEvent = {
+            time: corrected,
+            text: e.text
+          }
+          newEvents.push(lastEvent)
+        } else {
+          lastEvent.text += e.text
+        }
+      }
+      this.events = newEvents
+    }
+    {
+      const { typingSpeed, typingStep } = options
+      const step = typingStep && typingStep > 0
+        ? typingStep
+        : undefined
+      const multiplier = typingSpeed && typingSpeed > 0
+        ? (1 / typingSpeed)
+        : 1
       const pause = options.typingPause && options.typingPause > 0
         ? options.typingPause
         : undefined
@@ -201,12 +192,11 @@ export class Recording implements RecordingData {
   }
 
   public async replay (stream: NodeJS.WritableStream): Promise<void> {
-    const ratio = 1 / this.playSpeed
     const timer = elapseTimer()
     const play = async (): Promise<void> => {
       for (const e of this.events) {
         const elapsed = timer()
-        const period = e.time * ratio - elapsed
+        const period = e.time - elapsed
         if (this.playing === undefined) {
           throw new Error('canceled')
         }

@@ -25,23 +25,12 @@ import * as readLine from 'readline'
 import * as kleur from 'kleur'
 
 /** @public Describe options for replay() */
-export interface ReplayOptions extends NormalizeOptions {
-  speed?: number
-}
+export type ReplayOptions = NormalizeOptions
 
 /** @public Start replaying */
 export async function replay (fname: string, options: ReplayOptions = {}): Promise<void> {
   return Recording.fromFile(fname).then(async (record): Promise<void> => {
-    if (options.step) {
-      record.normalize({
-        maxDelay: options.maxDelay,
-        typingSpeed: options.typingSpeed,
-        step: options.step
-      })
-    }
-    if (options.speed) {
-      record.playSpeed = options.speed
-    }
+    record.normalize(options)
     const { stdin, stdout } = process
     const columns = stdout.columns
     const rows = stdout.rows
