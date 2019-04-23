@@ -91,6 +91,7 @@ limitations under the License.
 }
 
 {{#*inline "animateVisibility"}}
+{{#if this.frames.length~}}
 @keyframes {{name}}{{@index}} {
 {{#each this.frames}}
   {{~#unless @first}}, {{/unless~}}
@@ -103,13 +104,17 @@ limitations under the License.
 {{/each}}
   { visibility: hidden; }
 }
-.{{name}}{{@index}} {
-  animation-name: {{name}}{{@index}};
-  {{#if fill}}
-  fill: {{color @root.palette fill}};
+{{~/if}}
+
+{{#if (checkAny fill this.frames.length)}}
+.{{name}}{{@index}} { {{0~}}
+  animation-name: {{name}}{{@index}}; {{0~}}
+  {{#if fill}} {{0~}}
+  fill: {{color @root.palette fill}}; {{0~}}
   {{/if}}
 }
 
+{{/if}}
 {{/inline}}
 
 .text, .rect {
