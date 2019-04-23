@@ -62,7 +62,7 @@ const loadPalette = async (fname: string): Promise<ColorPalette> => {
       })
     }
     if (data.light) {
-      palette[ANSIColors.background] = palette[ANSIColors.white]
+      palette[ANSIColors.background] = palette[ANSIColors.brightWhite]
       palette[ANSIColors.foreground] = palette[ANSIColors.black]
     } else {
       palette[ANSIColors.background] = palette[ANSIColors.black]
