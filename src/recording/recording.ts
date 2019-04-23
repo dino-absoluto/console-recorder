@@ -167,16 +167,16 @@ export class Recording implements RecordingData {
       for (const e of this.events) {
         let delta = e.time - lastTime
         lastTime = e.time
-        if (lastKey) {
-          delta *= multiplier
-          if (step) {
-            delta = Math.round(delta / step) * step
-          }
-          if (pause) {
-            delta = Math.min(delta, pause)
-          }
-        }
         if (e.text.length === 1 || e.text === '\b\u001b[K') {
+          if (lastKey) {
+            delta *= multiplier
+            if (step) {
+              delta = Math.round(delta / step) * step
+            }
+            if (pause) {
+              delta = Math.min(delta, pause)
+            }
+          }
           lastKey = true
         } else {
           lastKey = false

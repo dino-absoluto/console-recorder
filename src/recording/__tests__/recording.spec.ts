@@ -64,18 +64,6 @@ describe('Recording', (): void => {
     const rec2 = await Recording.fromFile(fname)
     expect(rec2).toMatchObject(rec)
   })
-  test('playSpeed', (): void => {
-    const rec = new Recording()
-    expect(rec.playSpeed).toBeCloseTo(1.0, 2)
-    rec.playSpeed = 0.1
-    expect(rec.playSpeed).toBeCloseTo(0.1, 2)
-    rec.playSpeed = 0.05
-    expect(rec.playSpeed).toBeCloseTo(0.05, 2)
-    rec.playSpeed = 0.01
-    expect(rec.playSpeed).toBeCloseTo(0.01, 2)
-    rec.playSpeed = 0.00999
-    expect(rec.playSpeed).toBeCloseTo(1.0, 2)
-  })
   test('simple recording', async (): Promise<void> => {
     const events: RecordEvent[] = [
       {
@@ -210,8 +198,34 @@ describe('Recording', (): void => {
         { time: 150, text: 'd' },
         { time: 200, text: 'e' },
         { time: 250, text: '\b\u001b[K' },
-        { time: 300, text: 'Hello World!' },
-        { time: 400, text: 'Hello World!' }
+        { time: 350, text: 'Hello World!' },
+        { time: 450, text: 'Hello World!' }
+      ]
+    },
+    {
+      events: [
+        { time: 25, text: 'Welcome!' },
+        { time: 300, text: 'b' },
+        { time: 370, text: 'c' },
+        { time: 460, text: 'd' },
+        { time: 570, text: 'e' },
+        { time: 1000, text: '\b\u001b[K' },
+        { time: 1200, text: 'Hello World!' },
+        { time: 1250, text: 'Hello World!' }
+      ],
+      options: {
+        step: 100,
+        typingSpeed: 2
+      },
+      normalized: [
+        { time: 0, text: 'Welcome!' },
+        { time: 300, text: 'b' },
+        { time: 350, text: 'c' },
+        { time: 400, text: 'd' },
+        { time: 450, text: 'e' },
+        { time: 650, text: '\b\u001b[K' },
+        { time: 850, text: 'Hello World!' },
+        { time: 950, text: 'Hello World!' }
       ]
     }
   ])('normalize', async ({
