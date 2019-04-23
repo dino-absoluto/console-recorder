@@ -82,18 +82,24 @@ type Options = ReturnType<typeof builder>['argv']
 
 export const handler = async (argv: Options): Promise<void> => {
   const rec = await Recording.fromFile(argv.input)
+  const cSection = c.blue
+  const cFile = c.magenta
+  const cValue = c.yellow
+  const cUnit = c.green
   {
-    console.log(
-      c.blue('· input:'),
-      c.white(argv.input)
-    )
     const lastEvent = rec.events[rec.events.length - 1]
+    console.log(
+      cSection('· input:'),
+      cFile(argv.input)
+    )
     console.log(' ',
-      c.yellow(rec.events.length), c.green('frames'))
+      cValue(rec.events.length),
+      cUnit('frames')
+    )
     console.log(' ',
-      c.yellow(
+      cValue(
         round(((lastEvent && lastEvent.time) || 0) / 1000, 4)),
-      c.green('seconds')
+      cUnit('seconds')
     )
   }
   const screens = await fromFile(rec, wrapOptions(argv))
@@ -111,19 +117,26 @@ export const handler = async (argv: Options): Promise<void> => {
       break
     }
     default: {
+      argv.palette = 'default'
       break
     }
   }
   const data = await fromScreens(screens, argv.output, argv.overwrite, palette)
   if (data) {
     console.log(
-      c.blue('· output:'),
-      c.white(argv.output))
+      cSection('· output:'),
+      cFile(argv.output))
     console.log(' ',
-      c.yellow(screens.length), c.green('frames'))
+      cValue(screens.length),
+      cUnit('frames')
+    )
     console.log(' ',
-      c.yellow(data.totalLength),
-      c.green('seconds')
+      cValue(data.totalLength),
+      cUnit('seconds')
+    )
+    console.log(' ',
+      cValue(argv.palette),
+      cUnit('palette')
     )
   }
 }
