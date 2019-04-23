@@ -106,6 +106,34 @@ describe('replay', () => {
     expect(logStream.data).toMatchSnapshot()
     expect(stdin.setRawMode).toBeCalledTimes(2)
   })
+  test('fake state 2', async () => {
+    jest.useFakeTimers()
+    stdin.setRawMode = jest.fn()
+    stdout.columns = 80
+    stdout.rows = 24
+    const stream = new TestStream()
+    const logStream = new TestStream()
+    const oldConsole = global.console
+    global.console = new Console(logStream)
+    jest.spyOn(stdout, 'write').mockImplementation(
+      stream.write.bind(stream) as typeof stdout.write)
+    jest.spyOn(stdout, 'end').mockImplementation(
+      stream.end.bind(stream) as typeof stdout.end)
+    const promise = replay(path.join(__dirname, 'fixtures/simple.json'))
+    let pDone = false
+    let done = () => pDone
+    promise.then(() => (pDone = true))
+    await Promise.race([promise, (async () => {
+      while (!done()) {
+        jest.runAllTimers()
+        await immediate()
+      }
+    })()])
+    global.console = oldConsole
+    expect(stream.data).toMatchSnapshot()
+    expect(logStream.data).toMatchSnapshot()
+    expect(stdin.setRawMode).toBeCalledTimes(2)
+  })
   test('cancel', async () => {
     jest.useFakeTimers()
     stdin.setRawMode = jest.fn()
@@ -181,9 +209,7 @@ describe('replay', () => {
     expect(stdin.setRawMode).toBeCalledTimes(2)
   })
   test('error.ENOENT', async () => {
-    const promise = replay(path.join(__dirname, 'fixtures/non-existent.json'), {
-      speed: 10
-    })
+    const promise = replay(path.join(__dirname, 'fixtures/non-existent.json'))
     expect(promise).rejects.toThrow('ENOENT')
   })
 })
