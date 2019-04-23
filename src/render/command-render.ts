@@ -66,7 +66,8 @@ export const builder =
     .option('palette', {
       group: 'Render:',
       type: 'string',
-      default: 'minus'
+      default: 'minus',
+      desc: 'Set the colorscheme'
     })
     .check((argv): boolean => {
       if (!argv.input) {
