@@ -35,7 +35,8 @@ This tool supports 3 commands:
 ```bash
 console-recorder record log.json
 ```
-This open a new shell session and start recording.
+
+Open a new shell session and start recording.
 
 Use `exit` to terminate the session and finish recording.
 
@@ -44,7 +45,7 @@ Use `exit` to terminate the session and finish recording.
 console-recorder replay log.json
 ```
 
-This replay a previously recorded session.
+Replay a previously recorded session.
 
 No interaction is necessary, you can terminate the replay with Ctrl+C.
 

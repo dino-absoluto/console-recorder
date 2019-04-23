@@ -23,7 +23,7 @@ import { failedCheck } from '../utils/fail'
 
 export const command = 'record <output>'
 export const aliases = [ 'rec' ]
-export const describe = 'Record TTY session'
+export const describe = 'Record a terminal session'
 export const builder =
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 (yargs: typeof parser) =>

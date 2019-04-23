@@ -24,7 +24,7 @@ import { buildOptions, wrapOptions } from './options'
 
 export const command = 'replay <input>'
 export const aliases = [ 'play' ]
-export const describe = 'Replay TTY session'
+export const describe = 'Replay a terminal session'
 export const builder =
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 (yargs: typeof parser) =>
