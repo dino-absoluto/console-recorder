@@ -289,7 +289,7 @@ async (
   screens: ScreenBuffer[],
   output: string,
   overwrite: boolean = false, palette?: ColorPalette): Promise<void> => {
-  if (!screens) { return }
+  if (!screens || !screens.length) { return }
   // const screen = screens[screens.length - 1]
   const dataBuilder = new DataBuilder(screens)
   if (palette) {
@@ -301,7 +301,15 @@ async (
   await writeFile(output, data, {
     flag: overwrite ? 'w' : 'wx'
   })
+  const lastScreen = screens[screens.length - 1]
   console.log(
     c.blue('· output:'),
     c.white(output))
+  console.log(' ',
+    c.yellow(screens.length), c.green('frames'))
+  console.log(' ',
+    c.yellow(
+      Math.round(((lastScreen && lastScreen.timeEnd) || 0) / 100) / 10),
+    c.green('seconds')
+  )
 }

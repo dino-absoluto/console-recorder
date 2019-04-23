@@ -43,6 +43,16 @@ export const fromFile = async (fpath: string, options: InterpreterOptions = {}):
     columns: rec.columns,
     rows: rec.rows
   })
+  {
+    const lastEvent = rec.events[rec.events.length - 1]
+    console.log(' ',
+      c.yellow(rec.events.length), c.green('frames'))
+    console.log(' ',
+      c.yellow(
+        Math.round(((lastEvent && lastEvent.time) || 0) / 100) / 10),
+      c.green('seconds')
+    )
+  }
   rec.normalize(options)
   const throttle = 25
   const screens = []
@@ -64,12 +74,5 @@ export const fromFile = async (fpath: string, options: InterpreterOptions = {}):
     lastScreen = screen.clone()
     screens.push(lastScreen)
   }
-  console.log(' ',
-    c.yellow(screens.length), c.green('frames'))
-  console.log(' ',
-    c.yellow(
-      Math.round(((lastScreen && lastScreen.timeEnd) || 0) / 100) / 10),
-    c.green('seconds')
-  )
   return screens
 }
