@@ -34,9 +34,11 @@ limitations under the License.
   transform: translate({{padding}}px, {{padding}}px);
 }
 
-.console-text > text {
+.text {
   pointer-events: none;
   dominant-baseline: middle;
+  white-space: pre;
+  fill: {{color @root.palette @root.defaultForeground}};
   font-size: 1rem;
   font-family: {{0~}}
   {{#each @root.fontFamily~}}
@@ -48,19 +50,18 @@ limitations under the License.
   {{~/each~}};
 }
 
-.text {
-  white-space: pre;
-  fill: {{color @root.palette @root.defaultForeground}};
-}
-
-.console-cursor {
-  mix-blend-mode: exclusion;
-}
-
 .rect, .text, .cursor {
   animation-iteration-count: infinite;
   animation-timing-function: step-end;
   animation-duration: {{@root.totalLength}}s;
+}
+
+.rect, .text {
+  visibility: hidden;
+}
+
+.console-cursor {
+  mix-blend-mode: exclusion;
 }
 
 .cursor {
@@ -116,10 +117,6 @@ limitations under the License.
 
 {{/if}}
 {{/inline}}
-
-.text, .rect {
-  visibility: hidden;
-}
 
 {{~#each rects}}
   {{~> animateVisibility this.options name='rect' fill=fill }}
