@@ -24,7 +24,10 @@ import { fromScreens } from './renderer'
 import { parser } from '../cli'
 import { failedCheck } from '../utils/fail'
 import { ColorPalette } from './color/color-data'
+import { Recording } from '../recording'
 import { buildOptions, wrapOptions } from '../replay/options'
+import * as c from 'kleur'
+import round = require('lodash/round')
 
 export const command = 'render [options]'
 export const aliases = []
@@ -78,7 +81,22 @@ export const builder =
 type Options = ReturnType<typeof builder>['argv']
 
 export const handler = async (argv: Options): Promise<void> => {
-  const screens = await fromFile(argv.input, wrapOptions(argv))
+  const rec = await Recording.fromFile(argv.input)
+  {
+    console.log(
+      c.blue('· input:'),
+      c.white(argv.input)
+    )
+    const lastEvent = rec.events[rec.events.length - 1]
+    console.log(' ',
+      c.yellow(rec.events.length), c.green('frames'))
+    console.log(' ',
+      c.yellow(
+        round(((lastEvent && lastEvent.time) || 0) / 1000, 4)),
+      c.green('seconds')
+    )
+  }
+  const screens = await fromFile(rec, wrapOptions(argv))
   if (!screens) {
     return
   }
@@ -96,5 +114,16 @@ export const handler = async (argv: Options): Promise<void> => {
       break
     }
   }
-  fromScreens(screens, argv.output, argv.overwrite, palette)
+  const data = await fromScreens(screens, argv.output, argv.overwrite, palette)
+  if (data) {
+    console.log(
+      c.blue('· output:'),
+      c.white(argv.output))
+    console.log(' ',
+      c.yellow(screens.length), c.green('frames'))
+    console.log(' ',
+      c.yellow(data.totalLength),
+      c.green('seconds')
+    )
+  }
 }

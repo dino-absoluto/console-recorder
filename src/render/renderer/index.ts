@@ -31,7 +31,6 @@ import {
   Text
 } from './fragments'
 import { readFile, writeFile } from '../../utils/pfs'
-import * as c from 'kleur'
 import * as path from 'path'
 import handlebars = require('handlebars')
 import round = require('lodash/round')
@@ -288,7 +287,7 @@ export const fromScreens =
 async (
   screens: ScreenBuffer[],
   output: string,
-  overwrite: boolean = false, palette?: ColorPalette): Promise<void> => {
+  overwrite: boolean = false, palette?: ColorPalette): Promise<DataBuilder | undefined> => {
   if (!screens || !screens.length) { return }
   // const screen = screens[screens.length - 1]
   const dataBuilder = new DataBuilder(screens)
@@ -301,15 +300,5 @@ async (
   await writeFile(output, data, {
     flag: overwrite ? 'w' : 'wx'
   })
-  const lastScreen = screens[screens.length - 1]
-  console.log(
-    c.blue('· output:'),
-    c.white(output))
-  console.log(' ',
-    c.yellow(screens.length), c.green('frames'))
-  console.log(' ',
-    c.yellow(
-      Math.round(((lastScreen && lastScreen.timeEnd) || 0) / 100) / 10),
-    c.green('seconds')
-  )
+  return dataBuilder
 }

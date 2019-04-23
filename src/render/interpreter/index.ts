@@ -24,7 +24,6 @@ import {
 import {
   ScreenBuffer
 } from './screen'
-import * as c from 'kleur'
 
 const timeExtension = 2000
 
@@ -32,27 +31,12 @@ interface InterpreterOptions extends Modifiers {
   maxRows?: number
 }
 
-export const fromFile = async (fpath: string, options: InterpreterOptions = {}): Promise<ScreenBuffer[] | undefined> => {
-  console.log(
-    c.blue('· input:'),
-    c.white(fpath)
-  )
-  const rec = await Recording.fromFile(fpath)
+export const fromFile = async (rec: Recording, options: InterpreterOptions = {}): Promise<ScreenBuffer[] | undefined> => {
   if (!rec) { return }
   const screen = new ScreenBuffer({
     columns: rec.columns,
     rows: rec.rows
   })
-  {
-    const lastEvent = rec.events[rec.events.length - 1]
-    console.log(' ',
-      c.yellow(rec.events.length), c.green('frames'))
-    console.log(' ',
-      c.yellow(
-        Math.round(((lastEvent && lastEvent.time) || 0) / 100) / 10),
-      c.green('seconds')
-    )
-  }
   rec.normalize(options)
   const throttle = 25
   const screens = []
