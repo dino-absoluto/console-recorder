@@ -49,11 +49,7 @@ export const fromFile = async (fpath: string, options: InterpreterOptions = {}):
     rec.playSpeed = options.speed
   }
   if (options.step) {
-    rec.normalize({
-      maxDelay: options.maxDelay,
-      typingSpeed: options.typingSpeed,
-      step: options.step
-    })
+    rec.normalize(options)
   }
   const multiplier = 1 / rec.playSpeed
   const throttle = 25 * multiplier

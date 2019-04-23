@@ -210,8 +210,8 @@ describe('Recording', (): void => {
         { time: 150, text: 'd' },
         { time: 200, text: 'e' },
         { time: 250, text: '\b\u001b[K' },
-        { time: 350, text: 'Hello World!' },
-        { time: 450, text: 'Hello World!' }
+        { time: 300, text: 'Hello World!' },
+        { time: 400, text: 'Hello World!' }
       ]
     }
   ])('normalize', async ({

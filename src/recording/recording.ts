@@ -45,6 +45,8 @@ export interface RecordingData {
 export interface NormalizeOptions {
   step?: number
   typingSpeed?: number
+  typingPause?: number
+  typingStep?: number
   maxDelay?: number
 }
 
@@ -160,14 +162,32 @@ export class Recording implements RecordingData {
     }
     this.events = newEvents
     if (options.typingSpeed && options.typingSpeed > 0) {
+      const step = options.typingStep && options.typingStep > 0
+        ? options.typingStep
+        : undefined
       const multiplier = 1 / options.typingSpeed
+      const pause = options.typingPause && options.typingPause > 0
+        ? options.typingPause
+        : undefined
       let lastTime = 0
       let corrected = 0
+      let lastKey = false
       for (const e of this.events) {
         let delta = e.time - lastTime
         lastTime = e.time
-        if (e.text.length === 1 || e.text === '\b\u001b[K') {
+        if (lastKey) {
+          if (step) {
+            delta = Math.round(delta / step) * step
+          }
           delta *= multiplier
+          if (pause) {
+            delta = Math.min(delta, pause)
+          }
+        }
+        if (e.text.length === 1 || e.text === '\b\u001b[K') {
+          lastKey = true
+        } else {
+          lastKey = false
         }
         corrected += delta
         e.time = corrected

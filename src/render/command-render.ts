@@ -69,6 +69,16 @@ export const builder =
       desc: 'Multiply typing speed by {number}',
       implies: 'normalize'
     })
+    .option('typingStep', {
+      type: 'number',
+      desc: 'Pause per keystroke',
+      implies: 'normalize'
+    })
+    .option('typingPause', {
+      type: 'number',
+      desc: 'Maximum pause when typing',
+      implies: 'normalize'
+    })
     .option('maxDelay', {
       type: 'number',
       desc: 'Maximum delay between events, calculated before playSpeed',
@@ -104,6 +114,8 @@ export const handler = async (argv: Options): Promise<void> => {
     step: argv.normalize,
     speed: argv.playSpeed,
     typingSpeed: argv.typingSpeed,
+    typingPause: argv.typingPause,
+    typingStep: argv.typingStep,
     maxDelay: argv.maxDelay
   })
   if (!screens) {
