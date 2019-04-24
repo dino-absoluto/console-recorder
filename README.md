@@ -56,4 +56,4 @@ console-recorder render -i log.json -o output.svg
 
 Render a recorded session to an **Animated SVG** file.
 
-![palette](docs/media/palette.svg)
+![palette](docs/media/palette.svg?sanitize=true)
