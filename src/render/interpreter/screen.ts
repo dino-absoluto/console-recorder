@@ -31,6 +31,7 @@ export interface Block {
 type Line = Block[]
 
 interface BufferState {
+  history: Line[]
   buffer: Line[]
   x: number
   y: number
@@ -44,6 +45,7 @@ interface BufferState {
 
 const newState = (container: ScreenBuffer): BufferState => {
   return {
+    history: [],
     buffer: [],
     x: 0,
     y: 0,
@@ -91,6 +93,7 @@ export class ScreenBuffer {
   }
 
   public get buffer (): Line[] { return this.state.buffer }
+  public get history (): Line[] { return this.state.history }
   public get x (): number { return this.state.x }
   public set x (nx: number) {
     this.state.x = nx > 0 ? nx : 0
@@ -189,7 +192,10 @@ export class ScreenBuffer {
     }
     this.x = x + blocks.length
     if (this.buffer.length > this.rows) {
-      this.buffer.shift()
+      const drop = this.buffer.shift()
+      if (drop) {
+        this.history.push(drop)
+      }
       this.y--
     }
   }
