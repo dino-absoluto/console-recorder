@@ -21,7 +21,7 @@ export {
   RecordingData,
   Recording,
   RecordEvent,
-  NormalizeOptions
+  Modifiers
 } from './recording'
 export { replay, ReplayOptions } from './replay/replay'
 export { record } from './record/record'
