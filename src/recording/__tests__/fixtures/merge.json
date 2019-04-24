@@ -1,0 +1,14 @@
+{
+ "columns": 80,
+ "rows": 40,
+ "events": [
+   {
+     "time": 20,
+     "text": "a"
+   },
+   {
+     "time": 20,
+     "text": "b"
+   }
+ ]
+}

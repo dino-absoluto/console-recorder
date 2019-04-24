@@ -64,6 +64,21 @@ describe('Recording', (): void => {
     const rec2 = await Recording.fromFile(fname)
     expect(rec2).toMatchObject(rec)
   })
+  test('load malformed.json', async (): Promise<void> => {
+    const fname = path.join(__dirname, 'fixtures/malformed.json')
+    await expect(Recording.fromFile(fname))
+      .rejects.toThrow('failed to read')
+  })
+  test('load merge.json', async (): Promise<void> => {
+    const fname = path.join(__dirname, 'fixtures/merge.json')
+    const rec = await Recording.fromFile(fname)
+    expect(rec.events).toMatchObject([
+      {
+        time: 20,
+        text: 'ab'
+      }
+    ])
+  })
   test('simple recording', async (): Promise<void> => {
     const events: RecordEvent[] = [
       {
