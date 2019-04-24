@@ -69,6 +69,11 @@ export const builder =
       default: 'minus',
       desc: 'Set the colorscheme'
     })
+    .option('maxRows', {
+      group: 'Render:',
+      type: 'number',
+      desc: 'Set maximum rows'
+    })
     .check((argv): boolean => {
       if (!argv.input) {
         throw failedCheck('invalid input')
@@ -117,7 +122,8 @@ export const handler = async (argv: Options): Promise<void> => {
     )
   }
   const screens = await fromFile(rec, Object.assign({
-    timeExtension: argv.timeExtension
+    timeExtension: argv.timeExtension,
+    maxRows: argv.maxRows
   }, wrapOptions(argv)))
   if (!screens) {
     return
