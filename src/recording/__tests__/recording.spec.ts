@@ -227,6 +227,35 @@ describe('Recording', (): void => {
         { time: 850, text: 'Hello World!' },
         { time: 950, text: 'Hello World!' }
       ]
+    },
+    {
+      events: [
+        { time: 100, text: 'a' },
+        { time: 100, text: 'b' },
+        { time: 5100, text: 'c' }
+      ],
+      options: {
+      },
+      normalized: [
+        { time: 0, text: 'ab' },
+        { time: 5000, text: 'c' }
+      ]
+    },
+    {
+      events: [
+        { time: 25, text: 'a' },
+        { time: 5000, text: 'b' },
+        { time: 5100, text: 'c' }
+      ],
+      options: {
+        typingStep: 100,
+        typingPause: 200
+      },
+      normalized: [
+        { time: 0, text: 'a' },
+        { time: 200, text: 'b' },
+        { time: 300, text: 'c' }
+      ]
     }
   ])('normalize', async ({
     events,
